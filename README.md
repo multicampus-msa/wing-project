@@ -2,7 +2,7 @@
 
 인디 음악 플랫폼 Win:G
 
-- 소스트리 등 gui 툴로 wing-project 저장소를 클론한다. 또는 git clone https://github.com/multicampus-msa/wing-project 
+- 소스트리 등 gui 툴로 wing-project 저장소를 클론한다. 또는 터미널에서 git clone https://github.com/multicampus-msa/wing-project 
 - 터미널에서 yarn 설치 : **npm i yarn -g**
 - 터미널에서 client 디렉토리로 이동한 후 **yarn** 실행
 
