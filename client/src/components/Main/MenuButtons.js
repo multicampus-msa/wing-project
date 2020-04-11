@@ -22,8 +22,10 @@ const MenuButtons = () => {
             return (
                 <Link style={{ textDecoration: 'none' }} to={'/' + button}>
                     <Button
+                        style={{minWidth: "120px", maxWidth: "120px"}}
                         size="large" variant="contained" color={colorSwitch[idx] ? "secondary" : "primary"}
-                        onClick={() => onClick(idx)}>
+                        onClick={() => onClick(idx)}
+                    >
                         {button}
                     </Button>
                 </Link>
