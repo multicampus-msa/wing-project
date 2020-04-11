@@ -1,5 +1,6 @@
 import { Button, withStyles } from "@material-ui/core";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const StyledButton = withStyles({
     root: {
@@ -20,12 +21,15 @@ const MainLoginButton = () => {
 
     {/* 로그인 버튼*/}
     return (
-        <StyledButton
-            variant="contained"
-            color="secondary"
-            style={{ left: "65%", width: "100px", float: 'right', position: "absolute" }}>
-            <img src="login.png" alt="로그인 버튼 이미지"></img>
-        </StyledButton>
+        <Link style={{ textDecoration: 'none' }} to={'/login'}>
+            <StyledButton
+                variant="contained"
+                color="secondary"
+                style={{ left: "65%", width: "100px", float: 'right', position: "absolute" }}
+            >
+                <img src="login.png" alt="로그인 버튼 이미지"></img>
+            </StyledButton>
+        </Link>
     )
 };
 

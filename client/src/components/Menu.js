@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import MenuButtons from "./Main/MenuButtons";
 import MainLoginButton from "./Main/MainLoginButton";
 
 const StyledDiv = styled.div`
-text-align: center;
+    text-align: center;
 `;
 
 const Menu = () => {
