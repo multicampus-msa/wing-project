@@ -27,7 +27,7 @@ const MainLoginButton = () => {
                 color="secondary"
                 style={{ left: "65%", width: "100px", float: 'right', position: "absolute" }}
             >
-                <img src="login.png" alt="로그인 버튼 이미지"></img>
+                <img src="login.png" alt="로그인 버튼 이미지"/>
             </StyledButton>
         </Link>
     )

@@ -32,7 +32,7 @@ const MenuButtons = () => {
     );
 
     return (
-        <div style={{textAlign: "center"}}>
+        <div style={{display: "flex", alignContent: "center"}}>
             {buttonList}<SearchInputField/>
         </div>
     )
