@@ -9,7 +9,7 @@ const SearchInputField = () => {
     };
 
     return (
-        <TextField size="small" id="outlined-basic" label="Search" variant="outlined" onKeyPress={HandleKey} />
+        <TextField size="small" id="outlined-basic" variant="outlined" onKeyPress={HandleKey} />
     )
 };
 
