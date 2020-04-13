@@ -20,7 +20,7 @@ const AuthTemplateBlock = styled.div`
 
 const WhiteBox = styled.div`
     position: absolute;
-    bottom: 22rem;
+    bottom: 18rem;
     .logo-area {
         display: block;
         padding-bottom: 4rem;
