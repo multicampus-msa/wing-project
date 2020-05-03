@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom'
+import Route from 'react-router-dom/es/Route'
 import HomePage from './Home/HomePage'
 import LivePage from './Live/LivePage'
 import StreamingPage from './Streaming/StreamingPage'
@@ -17,7 +17,7 @@ function Root() {
             <Route exact path="/support" component={SupportPage}/>
             <Route exact path="/concert" component={ConcertPage}/>
             <Route exact path="/login" component={LoginPage}/>
-        </>
+       </>
     );
 }
 

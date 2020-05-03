@@ -1,14 +1,10 @@
 import React from 'react'
-import ArtistInputTemplate from "./ArtistInputTemplate";
-import ArtistInput from "./ArtistInput";
 
 const StreamingPage = () => {
 
     return (
         <div>
-            <ArtistInputTemplate>
-                <ArtistInput/>
-            </ArtistInputTemplate>
+            스트리밍 메인...
         </div>
     )
 };

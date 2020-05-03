@@ -1,5 +1,3 @@
-
-// 버튼 클릭했을 때 색상 처리
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
@@ -34,7 +32,7 @@ const MenuButtons = () => {
     );
 
     return (
-        <div style={{display: "flex", alignContent: "center"}}>
+        <div>
             {buttonList}<SearchInputField/>
         </div>
     )
