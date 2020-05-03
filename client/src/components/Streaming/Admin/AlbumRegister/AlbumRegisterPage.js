@@ -1,19 +1,15 @@
 import React from 'react'
 import ArtistInputTemplate from "./ArtistInputTemplate";
-import ArtistInput from "./ArtistInput";
+import ArtistInputForm from "./ArtistInputForm";
 
-const StreamingPage = () => {
-
+const ArtistRegisterPage = () => {
     return (
         <div>
             <ArtistInputTemplate>
-                <ArtistInput/>
+                <ArtistInputForm/>
             </ArtistInputTemplate>
         </div>
     )
 };
 
-export default StreamingPage
-
-
-
+export default ArtistRegisterPage
