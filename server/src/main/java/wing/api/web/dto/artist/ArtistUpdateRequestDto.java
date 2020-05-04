@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -20,6 +21,7 @@ public class ArtistUpdateRequestDto {
     private String realName;
     private String account;
     private String bank;
+    private List<Long> albumIdList;
 
     @Builder
     public ArtistUpdateRequestDto(String artistName, String artistCompany, String artistGenre,
