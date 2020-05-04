@@ -2,8 +2,11 @@ package wing.api.web.dto.artist;
 
 import lombok.Getter;
 import wing.api.domain.artist.Artist;
+import wing.api.domain.musicInfo.MusicInfo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 public class ArtistResponseDto {
@@ -19,6 +22,8 @@ public class ArtistResponseDto {
     private final String realName;
     private final String account;
     private final String bank;
+    private final List<Long> albumIdList;
+    private final List<Long> musicIdList;
 
     public ArtistResponseDto(Artist entity) {
         this.artistId = entity.getArtistId();
@@ -32,5 +37,13 @@ public class ArtistResponseDto {
         this.realName = entity.getRealName();
         this.account = entity.getAccount();
         this.bank = entity.getBank();
+
+        this.albumIdList = new ArrayList<>();
+        this.musicIdList = new ArrayList<>();
+        for(MusicInfo info : entity.getInfos()) {
+            albumIdList.add(info.getAlbum().getAlbumId());
+            musicIdList.add(info.getMusic().getMusicId());
+        }
+
     }
 }

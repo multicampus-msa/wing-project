@@ -3,7 +3,6 @@ package wing.api.web.dto.album;
 import lombok.Getter;
 import wing.api.domain.album.Album;
 import wing.api.domain.music.Music;
-import wing.api.web.dto.music.MusicResponseDto;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class AlbumResponseDto {
     private final Date date;
     private final String imageUri;
     private final String description;
-    private final List<MusicResponseDto> trackList;
+    private final List<Long> musicIdList;
 
     public AlbumResponseDto(Album entity) {
         this.albumId = entity.getAlbumId();
@@ -32,9 +31,9 @@ public class AlbumResponseDto {
         this.imageUri = entity.getImageUri();
         this.description = entity.getDescription();
 
-        this.trackList = new ArrayList<>();
+        this.musicIdList = new ArrayList<>();
         for(Music music : entity.getMusicList())
-            trackList.add(new MusicResponseDto(music));
+            musicIdList.add(music.getMusicId());
 
     }
 }
