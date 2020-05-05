@@ -53,11 +53,10 @@ public class MusicService {
     @Transactional
     public Long update(Long id, MusicUpdateRequestDto requestDto) {
         Music music = musicRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("앨범 정보 없음 id=" + id));
+                () -> new IllegalArgumentException("음악 정보 없음 id=" + id));
 
-        // TODO
-        // MusicUpdateRequestDto 작성하기
-
+        music.update(requestDto.getMusicName(), requestDto.getMusicGenre(), requestDto.getFileUri()
+                , requestDto.getTrackNumber(), requestDto.getLyrics());
 
         return id;
     }

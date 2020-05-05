@@ -53,13 +53,12 @@ public class Music {
     }
 
     public void update(String musicName, String musicGenre, String fileUri,
-                       int trackNumber, String lyrics, Album toAlbum) {
+                       int trackNumber, String lyrics) {
 
         this.musicName = musicName;
         this.musicGenre = musicGenre;
         this.fileUri = fileUri;
         this.trackNumber = trackNumber;
         this.lyrics = lyrics;
-        this.toAlbum = toAlbum;
     }
 }
