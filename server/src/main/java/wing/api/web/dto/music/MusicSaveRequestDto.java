@@ -15,18 +15,16 @@ public class MusicSaveRequestDto {
     private String fileUri;
     private int trackNumber;
     private String lyrics;
-    private Long likeCnt;
 
     @Builder
     public MusicSaveRequestDto(String musicName, String musicGenre, String fileUri,
-                               int trackNumber, String lyrics, Long likeCnt) {
+                               int trackNumber, String lyrics) {
 
         this.musicName = musicName;
         this.musicGenre = musicGenre;
         this.fileUri = fileUri;
         this.trackNumber = trackNumber;
         this.lyrics = lyrics;
-        this.likeCnt = likeCnt;
     }
 
 
@@ -37,7 +35,6 @@ public class MusicSaveRequestDto {
                 .musicName(musicName)
                 .musicGenre(musicGenre)
                 .lyrics(lyrics)
-                .likeCnt(likeCnt)
                 .fileUri(fileUri)
                 .build();
     }

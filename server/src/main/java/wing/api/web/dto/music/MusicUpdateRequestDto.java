@@ -10,5 +10,20 @@ import java.sql.Date;
 @Getter
 public class MusicUpdateRequestDto {
 
-    //TODO
+    private String musicName;
+    private String musicGenre;
+    private String fileUri;
+    private int trackNumber;
+    private String lyrics;
+
+    @Builder
+    public MusicUpdateRequestDto(String musicName, String musicGenre, String fileUri,
+                               int trackNumber, String lyrics) {
+
+        this.musicName = musicName;
+        this.musicGenre = musicGenre;
+        this.fileUri = fileUri;
+        this.trackNumber = trackNumber;
+        this.lyrics = lyrics;
+    }
 }
