@@ -1,6 +1,5 @@
 package wing.api.domain.music;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -50,6 +49,7 @@ public class Music {
         this.trackNumber = trackNumber;
         this.lyrics = lyrics;
         this.toAlbum = toAlbum;
+        this.likeCnt = 0L;
     }
 
     public void update(String musicName, String musicGenre, String fileUri,
