@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import wing.api.domain.album.Album;
 import wing.api.domain.musicInfo.MusicInfo;
 
@@ -25,6 +26,9 @@ public class Music {
     private String fileUri;
     private int trackNumber;
     private String lyrics;
+
+    @Column
+    @ColumnDefault("0")
     private Long likeCnt;
 
     @ManyToOne(targetEntity = Album.class, fetch = FetchType.EAGER)
@@ -38,26 +42,24 @@ public class Music {
 
     @Builder
     public Music(String musicName, String musicGenre, String fileUri,
-                 int trackNumber, String lyrics, Long likeCnt, Album toAlbum) {
+                 int trackNumber, String lyrics, Album toAlbum) {
 
         this.musicName = musicName;
         this.musicGenre = musicGenre;
         this.fileUri = fileUri;
         this.trackNumber = trackNumber;
         this.lyrics = lyrics;
-        this.likeCnt = likeCnt;
         this.toAlbum = toAlbum;
     }
 
     public void update(String musicName, String musicGenre, String fileUri,
-                       int trackNumber, String lyrics, Long likeCnt, Album toAlbum) {
+                       int trackNumber, String lyrics, Album toAlbum) {
 
         this.musicName = musicName;
         this.musicGenre = musicGenre;
         this.fileUri = fileUri;
         this.trackNumber = trackNumber;
         this.lyrics = lyrics;
-        this.likeCnt = likeCnt;
         this.toAlbum = toAlbum;
     }
 }
