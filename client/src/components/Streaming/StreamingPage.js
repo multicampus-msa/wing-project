@@ -1,30 +1,46 @@
 import React from 'react'
-import styled from 'styled-components'
 import Button from "@material-ui/core/Button";
-import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Link, Route } from "react-router-dom";
 import Recommend from "./Recommend";
 import StreamingMain from "./StreamingMain";
 import Electronica from "./Electronica";
 import Pop from "./Pop";
 import Ballad from "./Ballad";
 import Hiphop from "./Hiphop";
-import StreamingPageStyledDiv from "./StyledComponents/StreamingPageStyledDiv";
+import styled from "styled-components";
 
+const StyledDiv = styled.div`
+  display: grid;
+  justify-content: center;
+  grid-template-rows: repeat(4, 300px);
+  grid-template-columns: repeat(7, 150px);
+  grid-gap: 3rem 1rem;
+  
+  .MuiButton-root {
+    justify-content: left;
+    width: 145px;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    font-family: "NanumBarunGothic", sans-serif;
+    background: whitesmoke;
+  }
+`
 
 const StreamingPage = () => {
 
     return (
         <>
             <BrowserRouter>
-                <StreamingPageStyledDiv>
-                    <div style={{ gridRow: "1 / 2", gridColumn: "1 / 2" }}>
+                <StyledDiv>
+                    <div style={{ gridRow: "1 / 7", gridColumn: "1 / 2"  }}>
                         <Link to={'/Streaming'}>
-                            <Button>스트리밍 메인</Button>
+                            <Button>최신음악</Button>
                         </Link>
 
                         <Link to={'/Streaming/recommend'}>
                             <Button>취향저격</Button>
                         </Link>
+
 
                         <Link to={'/Streaming/electronica'}>
                             <Button>일렉트로니카</Button>
@@ -51,7 +67,7 @@ const StreamingPage = () => {
                     <Route exact path={'/Streaming/pop'} component={Pop}/>
                     <Route exact path={'/Streaming/hiphop'} component={Hiphop}/>
                     <Route exact path={'/Streaming/ballad'} component={Ballad}/>
-                </StreamingPageStyledDiv>
+                </StyledDiv>
             </BrowserRouter>
         </>
     )
