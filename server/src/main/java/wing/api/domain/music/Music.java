@@ -61,4 +61,8 @@ public class Music {
         this.trackNumber = trackNumber;
         this.lyrics = lyrics;
     }
+
+    public void infosUpdate(Set<MusicInfo> infos) {
+        this.infos = new HashSet<>(infos);
+    }
 }
