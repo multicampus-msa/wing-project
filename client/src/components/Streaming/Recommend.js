@@ -9,7 +9,7 @@ const StyledDiv = styled.div`
   grid-template-rows: 30px 10px 60px 400px 400px 400px;
   grid-column-gap: 1rem;
   margin-top: 1rem; 
-  font-family: "NanumBarunGothic", sans-serif;
+  font-family: "NanumSquare", sans-serif;
   
   h2 {
     grid-column: 1 / 4;
