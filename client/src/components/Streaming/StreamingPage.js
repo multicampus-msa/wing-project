@@ -21,7 +21,7 @@ const StyledDiv = styled.div`
     width: 145px;
     font-size: 1.2rem;
     font-weight: bolder;
-    font-family: "NanumBarunGothic", sans-serif;
+    font-family: "NanumSquare", sans-serif;
     background: whitesmoke;
   }
 `
