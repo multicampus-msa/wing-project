@@ -9,7 +9,7 @@ import wing.api.web.dto.music.MusicResponseDto;
 import wing.api.web.dto.music.MusicSaveRequestDto;
 import wing.api.web.dto.music.MusicUpdateRequestDto;
 
-import java.util.List;
+import java.util.Set;
 
 
 @Api(tags = {"Music Controller"})
@@ -29,7 +29,7 @@ public class MusicController {
 
     @ApiOperation(value = "음악 검색", notes = "이름으로 검색 후 JSON 리스트로 반환. name 파라미터 필요.")
     @GetMapping("/api/music")
-    private List<MusicResponseDto> findByName(@RequestParam("name") String name) {
+    private Set<MusicResponseDto> findByName(@RequestParam("name") String name) {
         return musicService.findByNameContaining(name);
     }
 
@@ -39,7 +39,7 @@ public class MusicController {
     private Long save(@RequestParam Long artistId, @RequestParam Long albumId,
                       @RequestBody MusicSaveRequestDto requestDto) {
 
-        return musicService.save(artistId, albumId, requestDto);
+        return musicService.save(albumId, requestDto);
     }
 
 

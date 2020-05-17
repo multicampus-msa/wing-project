@@ -7,8 +7,8 @@ import wing.api.domain.musicInfo.MusicInfo;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -32,7 +32,7 @@ public class Artist {
 
 
     @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
-    List<MusicInfo> infos = new ArrayList<>();
+    Set<MusicInfo> infos = new HashSet<>();
 
 
     @Builder

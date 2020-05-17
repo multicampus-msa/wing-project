@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import wing.api.domain.album.Album;
 import wing.api.domain.music.Music;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @NoArgsConstructor
 @Getter
 public class MusicSaveRequestDto {
@@ -15,16 +18,18 @@ public class MusicSaveRequestDto {
     private String fileUri;
     private int trackNumber;
     private String lyrics;
+    private Set<Long> artistIdList;
 
     @Builder
     public MusicSaveRequestDto(String musicName, String musicGenre, String fileUri,
-                               int trackNumber, String lyrics) {
+                               int trackNumber, String lyrics, Set<Long> artistIdList) {
 
         this.musicName = musicName;
         this.musicGenre = musicGenre;
         this.fileUri = fileUri;
         this.trackNumber = trackNumber;
         this.lyrics = lyrics;
+        this.artistIdList = new HashSet<>(artistIdList);
     }
 
 
