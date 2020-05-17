@@ -1,8 +1,17 @@
 import React from 'react';
+import SupportList from './SupportList';
+import SupportDetail from './SupportDetail';
+import { Route, Switch } from 'react-router-dom';
 
 const SupportPage = () => {
     return (
-        <div><h2>Support Page</h2></div>
+        <>
+            <Switch>
+                <Route exact path="/support" component={SupportList}/>
+                <Route exact path="/support/:pageNum" component={SupportList}/>
+                <Route exact path="/support/detail/:artistId" component={SupportDetail}/>
+            </Switch>
+        </>
     )
 }
 

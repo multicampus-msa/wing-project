@@ -14,7 +14,7 @@ function Root() {
             <Route exact path="/home" component={HomePage}/>
             <Route exact path="/streaming" component={StreamingPage}/>
             <Route exact path="/live" component={LivePage}/>
-            <Route exact path="/support" component={SupportPage}/>
+            <Route path="/support" component={SupportPage}/>
             <Route exact path="/concert" component={ConcertPage}/>
             <Route exact path="/login" component={LoginPage}/>
        </>
