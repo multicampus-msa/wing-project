@@ -6,7 +6,9 @@ import wing.api.domain.musicInfo.MusicInfo;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 public class ArtistResponseDto {
@@ -22,7 +24,7 @@ public class ArtistResponseDto {
     private final String realName;
     private final String account;
     private final String bank;
-    private final List<Long> albumIdList;
+    private final Set<Long> albumIdList;
     private final List<Long> musicIdList;
 
     public ArtistResponseDto(Artist entity) {
@@ -38,7 +40,7 @@ public class ArtistResponseDto {
         this.account = entity.getAccount();
         this.bank = entity.getBank();
 
-        this.albumIdList = new ArrayList<>();
+        this.albumIdList = new HashSet<>();
         this.musicIdList = new ArrayList<>();
         for(MusicInfo info : entity.getInfos()) {
             albumIdList.add(info.getAlbum().getAlbumId());

@@ -1,15 +1,15 @@
 package wing.api.domain.music;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import wing.api.domain.album.Album;
 import wing.api.domain.musicInfo.MusicInfo;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -25,6 +25,9 @@ public class Music {
     private String fileUri;
     private int trackNumber;
     private String lyrics;
+
+    @Column
+    @ColumnDefault("0")
     private Long likeCnt;
 
     @ManyToOne(targetEntity = Album.class, fetch = FetchType.EAGER)
@@ -33,31 +36,33 @@ public class Music {
 
 
     @OneToMany(mappedBy = "music", cascade = CascadeType.ALL)
-    List<MusicInfo> infos = new ArrayList<>();
+    Set<MusicInfo> infos = new HashSet<>();
 
 
     @Builder
     public Music(String musicName, String musicGenre, String fileUri,
-                 int trackNumber, String lyrics, Long likeCnt, Album toAlbum) {
+                 int trackNumber, String lyrics, Album toAlbum) {
 
         this.musicName = musicName;
         this.musicGenre = musicGenre;
         this.fileUri = fileUri;
         this.trackNumber = trackNumber;
         this.lyrics = lyrics;
-        this.likeCnt = likeCnt;
         this.toAlbum = toAlbum;
+        this.likeCnt = 0L;
     }
 
     public void update(String musicName, String musicGenre, String fileUri,
-                       int trackNumber, String lyrics, Long likeCnt, Album toAlbum) {
+                       int trackNumber, String lyrics) {
 
         this.musicName = musicName;
         this.musicGenre = musicGenre;
         this.fileUri = fileUri;
         this.trackNumber = trackNumber;
         this.lyrics = lyrics;
-        this.likeCnt = likeCnt;
-        this.toAlbum = toAlbum;
+    }
+
+    public void infosUpdate(Set<MusicInfo> infos) {
+        this.infos = new HashSet<>(infos);
     }
 }

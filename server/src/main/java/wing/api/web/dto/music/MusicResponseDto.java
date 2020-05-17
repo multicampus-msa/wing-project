@@ -4,34 +4,38 @@ import lombok.Getter;
 import wing.api.domain.music.Music;
 import wing.api.domain.musicInfo.MusicInfo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Getter
 public class MusicResponseDto {
 
+    private final Long musicId;
     private final String musicName;
     private final String musicGenre;
     private final String fileUri;
     private final int trackNumber;
     private final String lyrics;
     private final Long likeCnt;
-    private final Long albumId;
-    private final List<Long> artistIdList;
+    private final Set<Map<String, String>> artistList;
+    private final String albumImage;
+    private final String albumName;
 
     public MusicResponseDto(Music entity) {
+        this.musicId = entity.getMusicId();
         this.musicName = entity.getMusicName();
         this.musicGenre = entity.getMusicGenre();
         this.fileUri = entity.getFileUri();
         this.trackNumber = entity.getTrackNumber();
         this.lyrics = entity.getLyrics();
         this.likeCnt = entity.getLikeCnt();
-        this.albumId = entity.getToAlbum().getAlbumId();
-
-        this.artistIdList = new ArrayList<>();
-        for(MusicInfo info : entity.getInfos())
-            artistIdList.add(info.getArtist().getArtistId());
-
+        this.albumName = entity.getToAlbum().getAlbumName();
+        this.albumImage = entity.getToAlbum().getImageUri();
+        this.artistList = new HashSet<>();
+        for(MusicInfo info : entity.getInfos()) {
+            Map<String, String> artistObj = new HashMap<>();
+            artistObj.put("artistId", info.getArtist().getArtistId().toString());
+            artistObj.put("artistName", info.getArtist().getArtistName());
+            artistList.add(artistObj);
+        }
     }
-
 }
