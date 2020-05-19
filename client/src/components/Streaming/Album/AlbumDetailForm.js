@@ -108,6 +108,8 @@ const AlbumDetailForm = ({ id }) => {
                                 )
                             })
                         }
+
+                        <div className="footer" style={{display: "absolute", bottom: "100%", width: "100%", height: "200px"}}> </div>
                     </>
 
                     :
