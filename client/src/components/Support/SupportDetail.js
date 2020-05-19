@@ -1,5 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import YouTube from 'react-youtube';
 
@@ -48,6 +50,11 @@ function SupportDetail({match}) {
                         <h3>180,000원 후원</h3>
                         <h3>14명의 서포터</h3>
                         <h2>후원 QR코드</h2>
+                        <Link to={`/support/payment/${artist.artistId}`}>
+                            <Button variant="contained">
+                                후원하기
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>

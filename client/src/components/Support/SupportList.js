@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import SupportCard from './SupportCard';
@@ -52,17 +52,17 @@ function SupportList ({match}) {
                         <PaginationLink previous href="#" />
                     </PaginationItem>
                     <PaginationItem active>
-                        <PaginationLink href="/support/1">
+                        <PaginationLink href="/support/list/1">
                         1
                         </PaginationLink>
                     </PaginationItem>
                     <PaginationItem>
-                        <PaginationLink href="/support/2">
+                        <PaginationLink href="/support/list/2">
                         2
                         </PaginationLink>
                     </PaginationItem>
                     <PaginationItem>
-                        <PaginationLink href="#">
+                        <PaginationLink href="/support/list/3">
                         3
                         </PaginationLink>
                     </PaginationItem>
