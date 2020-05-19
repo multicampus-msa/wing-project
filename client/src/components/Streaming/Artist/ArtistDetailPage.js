@@ -2,7 +2,7 @@ import React from "react";
 import ArtistDetailTemplate from "./ArtistDetailTemplate";
 import ArtistDetailForm from "./ArtistDetailForm";
 
-const Artist = ({ match }) => {
+const ArtistDetailPage = ({ match }) => {
 
     return (
         <ArtistDetailTemplate>
@@ -11,4 +11,4 @@ const Artist = ({ match }) => {
     )
 }
 
-export default Artist
+export default ArtistDetailPage
