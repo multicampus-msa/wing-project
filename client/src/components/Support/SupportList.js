@@ -51,7 +51,7 @@ function SupportList ({match}) {
                     <PaginationItem>
                         <PaginationLink previous href="#" />
                     </PaginationItem>
-                    <PaginationItem active>
+                    <PaginationItem>
                         <PaginationLink href="/support/list/1">
                         1
                         </PaginationLink>

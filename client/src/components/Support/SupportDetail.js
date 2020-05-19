@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import YouTube from 'react-youtube';
+import API_URL from "../Constants/API_URL";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,7 +35,7 @@ function SupportDetail({match}) {
     const classes = useStyles();
     const [artist, setArtist] = useState([]);
 
-    axios.get('http://localhost:8080/api/artist/' + match.params.artistId)
+    axios.get(API_URL + '/api/artist/' + match.params.artistId)
     .then(res => setArtist(res.data));
 
     return (

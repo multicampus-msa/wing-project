@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import API_URL from "../Constants/API_URL";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,7 +26,7 @@ export default function SupportCard(props) {
   const classes = useStyles();
   const [artist, setArtist] = useState(null);
 
-  axios.get('http://localhost:8080/api/artist/' + props.artistId)
+  axios.get(API_URL + '/api/artist/' + props.artistId)
   .then(res => setArtist(res.data));
 
   return (

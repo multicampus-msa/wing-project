@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 import queryString from 'query-string';
 import axios from 'axios';
+import API_URL from "../Constants/API_URL";
 
 import {withRouter} from 'react-router-dom';
 
@@ -37,7 +38,7 @@ function SupportPayment({history, match}) {
         setBuyerEmail] = React.useState('');
     const [artist, setArtist] = useState([]);
 
-    axios.get('http://localhost:8080/api/artist/' + match.params.artistId)
+    axios.get(API_URL + '/api/artist/' + match.params.artistId)
     .then(res => setArtist(res.data));
 
     function handleClick() {
@@ -53,8 +54,8 @@ function SupportPayment({history, match}) {
             IMP.request_pay({
                 pg: 'html5_inicis',
                 pay_method: 'card',
-                merchant_uid: 'artist_' + String(artist.artistId),
-                name: String(artist.artistName) + '후원',
+                merchant_uid: 'artist_' + String(artist.artistId) + '_' + new Date().getTime(),
+                name: String(artist.artistName) + ' 후원',
                 amount: Number(amount),
                 buyer_email: String(buyerEmail),
                 buyer_name: String(buyerName),

@@ -2,13 +2,14 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';
+import styled from 'styled-components';
 
 function SupportPaymentResult({ history }) {
   const { location } = history;
   const { search } = location;
   const query = queryString.parse(search);
   
-  const { merchant_uid, error_msg, buyer_name } = query;
+  const { name, error_msg, buyer_name, paid_amount } = query;
   const isSuccessed = getIsSuccessed();
   function getIsSuccessed() {
     const { success, imp_success } = query;
@@ -20,30 +21,54 @@ function SupportPaymentResult({ history }) {
 
   const resultType = isSuccessed ? '성공' : '실패';
   return (
-      <div>
-        <p>{`결제에 ${resultType}하였습니다`}</p>
-        <ul>
-          <li>
-            <span>아티스트</span>
-            <span>{merchant_uid}</span>
-          </li>
-          {isSuccessed  ? (
-            <li>
-              <span>후원자 이름</span>
-              <span>{buyer_name}</span>
-            </li>
-          ) : (
-            <li>
-              <span>에러 메시지</span>
-              <span>{error_msg}</span>
-            </li>
-          )}
-        </ul>
+      <Wrapper>
+        <Header>{`후원에 ${resultType}하였습니다`}</Header>
+        <Text>
+          {name}
+        </Text>
+        {isSuccessed  ? (
+          <>
+            <Text>
+              후원자 이름 : {buyer_name}
+            </Text>
+            <Text>
+              후원 금액 : {paid_amount}
+            </Text>
+          </>
+        ) : (
+          <Text>
+            에러 메시지 : {error_msg}
+          </Text>
+        )}
         <Button variant="contained" onClick={() => history.push('/support')}>
           돌아가기
         </Button>
-      </div>
+      </Wrapper>
   );
 }
+
+const Wrapper = styled.div `
+  padding: 5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const Header = styled.div `
+  font-weight: bold;
+  text-align: center;
+  padding: 2rem;
+  padding-top: 0;
+  font-size: 3rem;
+`;
+
+const Text = styled.div `
+  font-weight: bold;
+  text-align: left;
+  padding: 2rem;
+  padding-top: 0;
+  font-size: 1rem;
+`;
 
 export default withRouter(SupportPaymentResult);
