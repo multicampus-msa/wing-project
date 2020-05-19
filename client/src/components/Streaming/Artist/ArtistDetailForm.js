@@ -89,6 +89,8 @@ const ArtistDetailForm = ({ id }) => {
                     )
                     : <span> </span>
             }
+
+            <div className="footer" style={{display: "absolute", bottom: "100%", width: "100%", height: "400px"}}> </div>
         </>
     )
 }

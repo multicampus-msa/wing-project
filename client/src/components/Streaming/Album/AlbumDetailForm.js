@@ -95,7 +95,11 @@ const AlbumDetailForm = ({ id }) => {
                                         marginTop: "1rem",
                                         display: "inline-grid",
                                         fontSize: "23px",
-                                        border: "1px solid",
+                                        borderTop: "2px",
+                                        borderBottom: "2px",
+                                        borderLeft: "0",
+                                        borderRight: "0",
+                                        borderStyle: "solid",
                                         gridRow: `${8 + Number(music.trackNumber)}`,
                                         gridColumn: "1 / 5",
                                         alignItems: "center",
@@ -108,6 +112,8 @@ const AlbumDetailForm = ({ id }) => {
                                 )
                             })
                         }
+
+                        <div className="footer" style={{display: "absolute", bottom: "100%", width: "100%", height: "200px"}}> </div>
                     </>
 
                     :
