@@ -1,6 +1,5 @@
 import React from 'react'
-import { TextField, withStyles } from "@material-ui/core";
-import styled from "styled-components"
+import { TextField } from "@material-ui/core";
 
 
 const SearchInputField = () => {
