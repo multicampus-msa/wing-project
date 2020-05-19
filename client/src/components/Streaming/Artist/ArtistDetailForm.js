@@ -6,7 +6,10 @@ import { Link } from 'react-router-dom'
 
 const ContentDiv = styled.div`
   font-size: 25px;
-  
+`
+
+const TitleDiv = styled.div`
+  border-bottom: 1px solid;
 `
 
 const ArtistDetailForm = ({ id }) => {
@@ -21,7 +24,6 @@ const ArtistDetailForm = ({ id }) => {
             .then(res => {
                 setArtistObject(res.data);
                 setAlbumObject(res.data.albumList);
-                console.log(res.data.albumList);
                 setIsResponseOk(true);
             })
             .catch(err => alert(err))
@@ -36,7 +38,10 @@ const ArtistDetailForm = ({ id }) => {
                 marginTop: "1rem",
                 fontSize: "32px",
                 fontWeight: "bold"
-            }}>Artist
+            }}>
+                <TitleDiv>
+                    Artist
+                </TitleDiv>
             </div>
             {
                 isResponseOk ? (
@@ -56,22 +61,25 @@ const ArtistDetailForm = ({ id }) => {
                             <ContentDiv>{artistObject.artistCompany}</ContentDiv>
 
                             <div style={{fontSize: "33px", fontWeight: "bold", gridColumn: "1 / 5"}}>
-                                Description
+                                <TitleDiv>
+                                    Description
+                                </TitleDiv>
                             </div>
                             <div style={{fontSize: "18px", gridColumn: "1 / 5"}}>
                                 {artistObject.description}
                             </div>
                             <div style={{fontSize: "33px", fontWeight: "bold", gridColumn: "1 / 5"}}>
-                                Discography
+                                <TitleDiv>
+                                    Discography
+                                </TitleDiv>
                             </div>
                             {
                                 albumObject.map(album => {
                                     return (
-                                            <div style={{ gridRow: "9", outline: "none" }}>
-                                                <Link to={"/streaming/album/" + album.albumId}>
+                                            <div style={{ fontSize: "20px", gridRow: "9" }}>
+                                                <Link style={{ color: "black" }} to={"/streaming/album/" + album.albumId}>
                                                 <img alt="albumImage" style={{ width: "170px", height: "170px" }} src={album.ImageUri}/>
                                                 <p>{album.albumName}</p>
-                                                <p>{album.date}</p>
                                                 </Link>
                                             </div>
                                     )
