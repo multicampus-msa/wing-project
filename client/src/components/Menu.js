@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import MenuButtons from "./Main/MenuButtons";
 import MainLoginButton from "./Main/MainLoginButton";
+import LOGO_URL from "./Constants/LOGO_URL";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -13,7 +14,7 @@ const Menu = () => {
     return (
         <Fragment>
             <StyledDiv>
-                <Link to="/"><img src="logo.png" alt="Win:G 로고"/></Link>
+                <Link to="/"><img src={LOGO_URL} alt="Win:G 로고"/></Link>
                 <MainLoginButton/>
             </StyledDiv>
             <br/>
