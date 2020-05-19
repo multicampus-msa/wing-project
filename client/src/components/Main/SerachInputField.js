@@ -9,7 +9,7 @@ const SearchInputField = () => {
     };
 
     return (
-        <TextField size="small" id="outlined-basic" variant="outlined" onKeyPress={HandleKey} />
+        <TextField placeholder="검색어를 입력하세요"size="small" id="outlined-basic" variant="outlined" onKeyPress={HandleKey} />
     )
 };
 
