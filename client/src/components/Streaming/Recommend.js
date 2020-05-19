@@ -34,6 +34,11 @@ const StyledDiv = styled.div`
     -ms-transform: scale(1.1,1.1);
     -webkit-transform: scale(1.1,1.1);
     transform: scale(1.1,1.1);
+   }
+  
+  .img_description:hover {
+    visibility: visible;
+    opacity: 1;
   }
 `
 
@@ -62,22 +67,27 @@ const Recommend = () => {
             <p style={{ fontSize: "20px", marginTop: "1rem" }}>사용자의 음악 청취 패턴, 선호 장르를 종합한 결과입니다.</p>
             {
                 isResponseOk ? recommendObject.map((music, index) => {
-                        return (
-                            <div style={{
-                                gridColumn: `${(index % 3) + 1} / ${(index % 3) + 2}`,
-                                width: "300px",
-                                height: "370px",
-                                marginRight: "1rem",
-                                marginBottom: "1rem"
-                            }}
-                            >
-                                <MuiLink
-                                    id="imgWrapper"
-                                    href={music.fileUri}>
-                                    <img style={{ width: "200px", height: "200px" }} src={music.albumImage}/><br/>
-                                </MuiLink>
-                                <div style={{ fontSize: "22px" }}>{music.albumName}</div>
-                                <span style={{ color: "grey", fontSize: "19px" }}>
+                    return (
+                        <div style={{
+                            gridColumn: `${(index % 3) + 1} / ${(index % 3) + 2}`,
+                            width: "300px",
+                            height: "370px",
+                            marginRight: "1rem",
+                            marginBottom: "1rem"
+                        }}
+                        >
+                            <MuiLink
+                                id="imgWrapper"
+                                href={music.fileUri}>
+                                <img style={{ width: "200px", height: "200px" }} src={music.albumImage}/>
+                                <br/>
+                            </MuiLink>
+                            <div style={{ fontSize: "22px" }}>
+                                <RouterLink style={{ color: "grey" }} to={"/streaming/album/" + music.albumId}>
+                                    {music.albumName}
+                                </RouterLink>
+                            </div>
+                            <span style={{ color: "grey", fontSize: "19px" }}>
                                         {music.artistList.map(obj => {
                                             return (
                                                 <RouterLink style={{ color: "grey" }}
@@ -86,13 +96,13 @@ const Recommend = () => {
                                                 </RouterLink>
                                             )
                                         })}
-                                        <p>{music.musicName}</p>
+                                <p>{music.musicName}</p>
                                 </span>
 
-                            </div>
-                        )
-                    })
-                    : <div id="loading">loading..</div>
+                        </div>
+                    )
+                })
+            : <div id="loading">loading..</div>
             }
         </StyledDiv>
     )
