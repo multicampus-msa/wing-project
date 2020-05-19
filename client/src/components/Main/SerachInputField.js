@@ -1,5 +1,6 @@
 import React from 'react'
-import { TextField } from "@material-ui/core";
+import { TextField, withStyles } from "@material-ui/core";
+import styled from "styled-components"
 
 
 const SearchInputField = () => {
@@ -9,7 +10,8 @@ const SearchInputField = () => {
     };
 
     return (
-        <TextField placeholder="검색어를 입력하세요"size="small" id="outlined-basic" variant="outlined" onKeyPress={HandleKey} />
+        <TextField placeholder="검색어를 입력하세요" size="normal" id="outlined-basic" variant="outlined"
+                       onKeyPress={HandleKey}/>
     )
 };
 
