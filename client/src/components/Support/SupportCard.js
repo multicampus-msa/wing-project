@@ -11,14 +11,27 @@ import API_URL from "../Constants/API_URL";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 240,
-    height: 350,
+    width: 250,
+    height: 280,
     float: 'left',
-    margin: '5px',
+    margin: '10px',
+    border: '1px solid gray',
+    '&:hover': {
+      transform: 'scale(1.02)',
+      boxShadow: '0 16px 70px -12.125px rgba(0,0,0,0.3)',
+    },
   },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
+  },
+  headerTitle: {
+    fontSize: '20px',
+    fontWeight: "bold",
+  },
+  headerRoot: {
+    background: "#e69cff",
+    height: "40px",
   },
 }));
 
@@ -35,7 +48,7 @@ export default function SupportCard(props) {
         artist==null ||
         <Link to={`/support/detail/${artist.artistId}`}>
           <Card className={classes.root}>
-            <CardHeader
+            <CardHeader classes={{title: classes.headerTitle, root: classes.headerRoot}}
               title={artist.artistName}
             />
             <CardMedia
@@ -44,8 +57,8 @@ export default function SupportCard(props) {
               title={artist.artistName}
             />
             <CardContent>
-              <Typography variant="caption" color="textSecondary" component="p">
-                  {artist.description}
+              <Typography variant="body2" color="textSecondary" component="p" align='left'>
+                {(artist.description.split('.')[0]).length > 55 ? artist.description.substr(0, 55) + '...' : artist.description.split('.')[0]}
               </Typography>
             </CardContent>
           </Card>
