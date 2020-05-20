@@ -11,12 +11,12 @@ function Root() {
     return (
         <>
             <Route exact path="/" component={HomePage}/>
-            <Route exact path="/home" component={HomePage}/>
-            <Route exact path="/streaming" component={StreamingPage}/>
-            <Route exact path="/live" component={LivePage}/>
+            <Route path="/home" component={HomePage}/>
+            <Route path="/streaming" component={StreamingPage}/>
+            <Route path="/live" component={LivePage}/>
             <Route path="/support" component={SupportPage}/>
-            <Route exact path="/concert" component={ConcertPage}/>
-            <Route exact path="/login" component={LoginPage}/>
+            <Route path="/concert" component={ConcertPage}/>
+            <Route path="/login" component={LoginPage}/>
        </>
     );
 }
