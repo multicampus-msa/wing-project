@@ -10,6 +10,7 @@ import Hiphop from "./Hiphop";
 import styled from "styled-components";
 import ArtistDetailPage from "./Artist/ArtistDetailPage";
 import AlbumDetailPage from "./Album/AlbumDetailPage";
+import MusicDetailPage from "./Music/MusicDetailPage";
 
 const StyledDiv = styled.div`
   display: grid;
@@ -70,6 +71,7 @@ const StreamingPage = () => {
                 <Route exact path={'/Streaming/ballad'} component={Ballad}/>
                 <Route exact path={'/Streaming/artist/:id'} component={ArtistDetailPage}/>
                 <Route exact path={'/Streaming/album/:id'} component={AlbumDetailPage}/>
+                <Route exact path={'/Streaming/music/:id'} component={MusicDetailPage}/>
             </StyledDiv>
         </BrowserRouter>
     )
