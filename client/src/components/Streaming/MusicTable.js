@@ -94,8 +94,15 @@ export default function ({ musicList }) {
                                     <TableCell padding="checkbox"><Checkbox/></TableCell>
                                     <TableCell style={{ fontSize: "17px" }}>
                                         <RouterLink style={{ color: "black" }} to={"/streaming/music/" + row.musicId}>
-                                            {row.musicName}
+                                            <img
+                                                src="https://icons-for-free.com/iconfiles/png/512/file+menu+page+paper+icon-1320165846955357008.png"
+                                                alt="lyrics"
+                                                style={{ display: "inline", width: "22px", height: "22px" }}
+                                            />
                                         </RouterLink>
+                                        <Link href={row.fileUri} style={{ color: "black" }}>
+                                            {row.musicName}
+                                        </Link>
                                     </TableCell>
                                     <TableCell align="right">
                                         {
