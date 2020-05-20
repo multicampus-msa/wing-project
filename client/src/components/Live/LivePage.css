@@ -1,0 +1,19 @@
+
+.LiveList{
+    margin-top : 5rem;
+    margin-left: 5rem;
+    margin-right: 10rem;
+    text-align: center;
+}
+
+.Page {
+    display:flex;
+    align-items: center;
+    text-align:center;
+}
+
+.Page > div {
+    margin:auto;
+}
+
+
