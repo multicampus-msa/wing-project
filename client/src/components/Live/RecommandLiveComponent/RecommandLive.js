@@ -11,12 +11,13 @@ import {
 } from "reactstrap";
 import _ from "lodash";
 import SearchBar from "./SearchBar";
-import VideoList from "./VideoList";
-import Search from "./Search";
+import RecommandVideoList from "./RecommandVideoList";
+import SearchData from "./SearchData";
 import VideoPlayer from "./VideoPlayer";
-import ChatBar from './ChatTemplate/ChatBar'; 
+import ChatBar from '../ChatTemplate/ChatBar'; 
 
-const API_KEY = "AIzaSyAbHU2YayTtCVZw08IGVCni7uVVUitPhPs";
+const API_KEY = "AIzaSyAbHU2YayTtCVZw08IGVCni7uVVUitPhPs"; // 상우 API KEY
+//const API_KEY = "AIzaSyAuwZEvGnPgEkdiYMxey0RXsCfclb0vJ7k"; // 성건 API KEY
 
 class LiveList extends Component {
   constructor(props) {
@@ -26,11 +27,11 @@ class LiveList extends Component {
       selectedVideo: null,
       playUrl : ''
     };
-    this.videoSearch("YTN"); // 초기 검색값 설정할 수 있다.
+    this.videoSearch(); // 초기 검색값 설정할 수 있다.
   }
 
   videoSearch(term) {
-    Search({ key: API_KEY, term: term }, videos => {
+    SearchData({ key: API_KEY, term: term }, videos => {
       this.setState({
         videos: videos,
         selectedVideo: videos[0],
@@ -70,7 +71,7 @@ class LiveList extends Component {
             <br></br>
 
             <div>
-              <VideoList
+              <RecommandVideoList
                 onVideoSelect={selectedVideo =>
                   this.setState({ selectedVideo })
                 }
