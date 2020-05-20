@@ -1,7 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import YouTube from 'react-youtube';
+import API_URL from "../Constants/API_URL";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,7 +35,7 @@ function SupportDetail({match}) {
     const classes = useStyles();
     const [artist, setArtist] = useState([]);
 
-    axios.get('http://localhost:8080/api/artist/' + match.params.artistId)
+    axios.get(API_URL + '/api/artist/' + match.params.artistId)
     .then(res => setArtist(res.data));
 
     return (
@@ -48,6 +51,11 @@ function SupportDetail({match}) {
                         <h3>180,000원 후원</h3>
                         <h3>14명의 서포터</h3>
                         <h2>후원 QR코드</h2>
+                        <Link to={`/support/payment/${artist.artistId}`}>
+                            <Button variant="contained">
+                                후원하기
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>
