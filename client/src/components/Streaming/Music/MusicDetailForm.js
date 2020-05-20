@@ -15,16 +15,16 @@ const TitleDiv = styled.div`
   
 `
 
-const AlbumDetailForm = ({ id }) => {
+const MusicDetailForm = ({ id }) => {
 
-    const [albumObject, setAlbumObject] = useState({});
+    const [musicObject, setMusicObject] = useState({});
     const [isResponseOk, setIsResponseOk] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        axios.get(API_URL + "/api/album/" + id)
+        axios.get(API_URL + "/api/music/" + id)
             .then(res => {
-                setAlbumObject(res.data);
+                setMusicObject(res.data);
                 setIsResponseOk(true);
             })
     }, [id])
@@ -40,7 +40,7 @@ const AlbumDetailForm = ({ id }) => {
                 fontWeight: "bold"
             }}>
                 <TitleDiv>
-                    Album
+                    Music
                 </TitleDiv>
             </div>
             {
@@ -48,14 +48,14 @@ const AlbumDetailForm = ({ id }) => {
                     <>
                         <div style={{ gridRow: "2 / 6", gridColumn: "1 / 3" }}>
                             <img style={{ width: "350px", height: "350px" }}
-                                 src={albumObject.imageUri}
+                                 src={musicObject.albumImage}
                                  alt="albumImage"
                             />
                         </div>
                         <div style={{ gridColumn: "3 / 5", fontSize: "33px", fontWeight: "bold" }}>
-                            {albumObject.albumName}
+                            {musicObject.musicName}
                             <br/>
-                            {albumObject.artistList.map(obj => {
+                            {musicObject.artistList.map(obj => {
                                 return (
                                     <p style={{ fontSize: "22px" }}>
                                         <RouterLink
@@ -67,29 +67,28 @@ const AlbumDetailForm = ({ id }) => {
                                 )
                             })}
                         </div>
-                        <ContentDiv style={{ marginTop: "2rem" }}>Date</ContentDiv>
-                        <ContentDiv style={{ marginTop: "2rem" }}>{albumObject.date}</ContentDiv>
-                        <ContentDiv>Company</ContentDiv>
-                        <ContentDiv>{albumObject.company}</ContentDiv>
-                        <ContentDiv style={{ marginTop: "-2rem" }}>Distributor</ContentDiv>
-                        <ContentDiv style={{ marginTop: "-2rem" }}>{albumObject.distributor}</ContentDiv>
+                        <ContentDiv style={{ marginTop: "2rem" }}>Genre</ContentDiv>
+                        <ContentDiv style={{ marginTop: "2rem" }}>{musicObject.musicGenre}</ContentDiv>
+                        <ContentDiv>Album</ContentDiv>
+                        <ContentDiv>
+                            <p style={{ fontSize: "22px" }}>
+                                <RouterLink
+                                    style={{ color: "Green" }}
+                                    to={"/streaming/album/" + musicObject.albumId}>
+                                    {musicObject.albumName}
+                                </RouterLink>
+                            </p>
+                        </ContentDiv>
+                        <ContentDiv style={{ marginTop: "-2rem" }}> </ContentDiv>
+                        <ContentDiv style={{ marginTop: "-2rem" }}> </ContentDiv>
 
                         <div style={{ fontSize: "33px", fontWeight: "bold", gridColumn: "1 / 5" }}>
                             <TitleDiv>
-                                Description
+                                Lyrics
                             </TitleDiv>
                         </div>
                         <div style={{ fontSize: "18px", gridColumn: "1 / 5" }}>
-                            {albumObject.description}
-                        </div>
-                        <div style={{ fontSize: "33px", fontWeight: "bold", gridColumn: "1 / 5" }}>
-                            <TitleDiv>
-                                Tracklist
-                            </TitleDiv>
-                        </div>
-
-                        <div style={{gridRow: "9 / 13",gridColumn: "1 / 5"}}>
-                            <MusicTable musicList={albumObject.musicList}/>
+                            {musicObject.lyrics}
                         </div>
 
                         <div className="footer" style={{display: "absolute", bottom: "100%", width: "100%", height: "200px"}}> </div>
@@ -104,4 +103,4 @@ const AlbumDetailForm = ({ id }) => {
     )
 }
 
-export default AlbumDetailForm
+export default MusicDetailForm
