@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:upstream" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6554ca5c-7e7a-4d80-94ff-e1fdd1c3d03d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Login/AuthForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Login/AuthForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Login/AuthTemplate.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Login/AuthTemplate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Login/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Login/LoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Login/RegisterPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Login/RegisterPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Main/MainLoginButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Main/MainLoginButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Root.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Root.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/wing/api/domain/user/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/wing/api/domain/user/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/wing/api/domain/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/wing/api/domain/user/User.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1bOfryvf1vbV02a2rvKNQ4MGtnC" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.54528654" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="show.unlinked.gradle.project.popup" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="wing.api.web.dto.user" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\MultiCampus-Project\wing-project\server\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="WingApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="api.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="wing.api.WingApiApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SshConsoleOptionsProvider">
+    <option name="myEncoding" value="UTF-8" />
+    <option name="myConnectionType" value="NONE" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6554ca5c-7e7a-4d80-94ff-e1fdd1c3d03d" name="Default Changelist" comment="" />
+      <created>1588508262865</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588508262865</updated>
+      <workItem from="1588508272241" duration="474000" />
+      <workItem from="1588508787410" duration="176000" />
+      <workItem from="1588509010563" duration="1656000" />
+      <workItem from="1588575495560" duration="26000" />
+      <workItem from="1588685808748" duration="206000" />
+      <workItem from="1588686665665" duration="5373000" />
+      <workItem from="1588746360055" duration="51000" />
+      <workItem from="1589869322018" duration="8161000" />
+      <workItem from="1589890338647" duration="2923000" />
+      <workItem from="1589933356254" duration="15061000" />
+      <workItem from="1589960708060" duration="2049000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="161" key="#Plugins" timestamp="1588685977617">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="161" key="#Plugins/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1588685977617" />
+    <state x="2685" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1589963329489">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2685" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589963329489" />
+    <state x="2420" y="437" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1589941325489">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2420" y="437" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589941325489" />
+    <state x="2610" y="268" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589874535539">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2610" y="268" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589874535539" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1588510668491">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1588510668491" />
+    <state x="0" y="94" key="SettingsEditor" timestamp="1588690655537">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="0" y="94" key="SettingsEditor/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1588690655537" />
+    <state x="2472" y="249" key="Vcs.Push.Dialog.v2" timestamp="1589963752016">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2472" y="249" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589963752016" />
+    <state x="2649" y="246" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1589963400886">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2649" y="246" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589963400886" />
+    <state x="2564" y="244" width="632" height="552" key="find.popup" timestamp="1589963741419">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2564" y="244" width="632" height="552" key="find.popup/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589963741419" />
+    <state x="644" y="244" width="632" height="552" key="find.popup/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1589731344837" />
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1589731449579">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1589731449579" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1589731464514">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1589731464514" />
+  </component>
+</project>
