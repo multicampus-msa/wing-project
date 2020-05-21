@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import wing.api.domain.musicInfo.MusicInfo;
+import wing.api.domain.transactionData.TransactionData;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -33,6 +34,9 @@ public class Artist {
 
     @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
     Set<MusicInfo> infos = new HashSet<>();
+
+    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
+    Set<TransactionData> dataSet = new HashSet<>();
 
 
     @Builder
