@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
-import VideoListItem from "./VideoListItem";
+import BestVideoListItem from "./BestVideoListItem";
 
 const VideoList = ({ videos, onVideoSelect, setPlay }) => {
   const videoItems = videos.map(video => {
     return (
       <div>
-        <VideoListItem
+        <BestVideoListItem
           onVideoSelect={onVideoSelect}
           key={video.etag}
           video={video}

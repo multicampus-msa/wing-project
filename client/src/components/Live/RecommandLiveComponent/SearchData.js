@@ -12,6 +12,7 @@ module.exports = function(options, callback) {
     key: options.key,
     q: options.term,
     eventType: "live",
+    channelId:"UCJhjE7wbdYAae1G25m0tHAA", // 현재 테스트 페이지 : cafe Music BGM Channel 채널 
     type: "video",
     maxResults: 10
   };
@@ -22,9 +23,6 @@ module.exports = function(options, callback) {
       var arr = response.data.items;
 
       if (callback) {
-        // callback(
-        // arr.filter(video => video.snippet.liveBroadcastContent === "live") // 라이브 영상만 띄울 경우
-        //  );
         callback(arr); // 모든 영상 다 띄울 경우
       }
     })

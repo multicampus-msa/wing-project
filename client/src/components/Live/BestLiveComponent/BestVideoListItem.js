@@ -3,9 +3,11 @@ import { Button } from 'reactstrap';
 
 const VideoListItem = ({video, onVideoSelect, setPlay}) => {
     const imageUrl = video.snippet.thumbnails.default.url;
-    const videoUrl = "https://youtu.be/"+video.id.videoId;
+    //const videoUrl = "https://youtu.be/"+video.id.videoId;
+    const videoUrl = "https://youtu.be/"+video.snippet.resourceId.videoId;
     
-    console.log(video);
+    //console.log(video);
+    console.log(video.snippet.resourceId.videoId); 
 
     return (
         <li onClick ={()=>onVideoSelect(video)} 
