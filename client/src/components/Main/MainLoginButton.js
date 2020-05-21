@@ -22,17 +22,7 @@ const StyledButton = withStyles({
 class MainLoginButton extends Component{
     constructor(props){
         super(props);
-        // this.handleLoginClick = this.handleLoginClick.bind(this);
-        // this.handleLogoutClick = this.handleLogoutClick.bind(this);
-        // this.state = {isLoggedIn: false};
         this.state={token:''}
-    }
-    handleLoginClick() {
-        this.setState({isLoggedIn: true});
-    }
-
-    handleLogoutClick() {
-        this.setState({isLoggedIn: false});
     }
 
     componentDidMount(){
