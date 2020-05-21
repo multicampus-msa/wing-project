@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import RecommandVideoListItem from "./RecommandVideoListItem";
 
 const VideoList = ({ videos, onVideoSelect, setPlay }) => {

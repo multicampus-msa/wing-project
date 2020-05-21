@@ -79,7 +79,7 @@ const Recommend = () => {
                             <MuiLink
                                 id="imgWrapper"
                                 href={music.fileUri}>
-                                <img style={{ width: "200px", height: "200px" }} src={music.albumImage}/>
+                                <img alt="앨범 이미지" style={{ width: "200px", height: "200px" }} src={music.albumImage}/>
                                 <br/>
                             </MuiLink>
                             <div style={{ fontSize: "22px" }}>

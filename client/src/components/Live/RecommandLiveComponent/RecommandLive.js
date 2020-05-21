@@ -1,15 +1,4 @@
 import React, { Component, Fragment } from "react";
-import {
-  Card,
-  Button,
-  CardImg,
-  CardTitle,
-  CardText,
-  CardDeck,
-  CardSubtitle,
-  CardBody
-} from "reactstrap";
-import _ from "lodash";
 import SearchBar from "./SearchBar";
 import RecommandVideoList from "./RecommandVideoList";
 import SearchData from "./SearchData";

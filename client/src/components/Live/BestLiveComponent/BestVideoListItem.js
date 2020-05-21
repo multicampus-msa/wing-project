@@ -14,7 +14,7 @@ const VideoListItem = ({video, onVideoSelect, setPlay}) => {
             className="list-group-item">
             <div className="video-list media">
                 <div className="media-left">
-                    <img className="media object" src={imageUrl} />
+                    <img alt="media" className="media object" src={imageUrl} />
                 </div>
                 <div className="media-body" style ={{marginLeft : '2rem', marginTop : '0.5rem', display : 'block'}}>
                         <div className="media-heading" style={{fontSize : '20px'}}><b>{video.snippet.title}</b></div>
