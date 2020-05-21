@@ -4,8 +4,20 @@ import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import SupportCard from './SupportCard';
 
 const useStyles = makeStyles((theme) => ({
+    wrapper: {
+        display: 'block',
+        width: '1080px',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginBottom: '10px',
+        position: 'relative',
+        fontFamily: "NanumSquare",
+    },
     root: {
         justifyContent: 'center',
+        display: 'block',
+        height: '600px',
+        marginBottom: '25px',
     },
     page: {
         display: 'grid',
@@ -17,12 +29,17 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: '10px',
         textAlign: 'center',
         color: '#FFF',
-        width: '1000px',
+        width: '1080px',
         display: 'grid',
     },
     title: {
-        textAlign: 'center'
-    }
+        textAlign: 'center',
+        marginBottom: '10px',
+        fontWeight: 'bold',
+    },
+    line: {
+        borderWidth: '2px',
+    },
   }));
 
 function SupportList ({match}) {
@@ -30,8 +47,9 @@ function SupportList ({match}) {
     const pageNum = match.params.pageNum == null ? 1 : match.params.pageNum;
 
     return (
-        <div>
-            <h2 className={classes.title}>Support Page</h2>
+        <div className={classes.wrapper}>
+            <h2 className={classes.title}>아티스트 후원 목록</h2>
+            <hr className={classes.line}/>
             <div className={classes.body}>
                 <div className={classes.root}>
                     <SupportCard artistId={Number(pageNum) * 8 - 7}/>
@@ -46,10 +64,14 @@ function SupportList ({match}) {
                 <div className={classes.page}>
                     <Pagination aria-label="Page navigation">
                     <PaginationItem>
-                        <PaginationLink first href="#" />
+                        <PaginationLink href="#">
+                        {'≪'}
+                        </PaginationLink>
                     </PaginationItem>
                     <PaginationItem>
-                        <PaginationLink previous href="#" />
+                        <PaginationLink href="#">
+                        {'<'}
+                        </PaginationLink>
                     </PaginationItem>
                     <PaginationItem>
                         <PaginationLink href="/support/list/1">
@@ -77,10 +99,14 @@ function SupportList ({match}) {
                         </PaginationLink>
                     </PaginationItem>
                     <PaginationItem>
-                        <PaginationLink next href="#" />
+                        <PaginationLink href="#">
+                        {'>'}
+                        </PaginationLink>
                     </PaginationItem>
                     <PaginationItem>
-                        <PaginationLink last href="#" />
+                        <PaginationLink href="#">
+                        {'≫'}
+                        </PaginationLink>
                     </PaginationItem>
                     </Pagination>
                 </div>

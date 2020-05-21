@@ -104,6 +104,7 @@ function SupportPayment({history, match}) {
                         onChange={(event) => setBuyerEmail(event.target.value)}/>
                 </div>
             </form>
+            <br/>
             <div className={classes.root}>
                 <Button variant="contained" onClick={() => handleClick()}>
                     후원하기
