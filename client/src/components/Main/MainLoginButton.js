@@ -4,7 +4,7 @@ const StyledButton = withStyles({
     root: {
         justifyContent: 'center',
         display: 'black',
-        background: 'green',
+        
         borderRadius: 3,
         border: 0,
         color: 'white',
@@ -18,28 +18,32 @@ const StyledButton = withStyles({
     },
 })(Button);
 
+
 class MainLoginButton extends Component{
+    constructor(props){
+        super(props);
+        this.state={token:''}
+    }
+
     componentDidMount(){
         this.googleSDK();
     }
 
-    prepareLoginButton=()=>{
-        this.auth2.attachClickHandler(this.refs.googleLoginBtn, {},
-            // 로그인 성공
-            (googleUser) => {
-                let profile = googleUser.getBasicProfile();
-                console.log('ID : '+profile.getId());
-                console.log('Name : '+profile.getName());
-                console.log('Image URL : '+profile.getImageUrl());
-                console.log('Email : '+profile.getEmail());
-                // TODO ..                
+    login=()=>{
+        this.auth2.signIn().then(googleUser=>{
+            let profile = googleUser.getBasicProfile();
+            console.log('ID : '+profile.getId());
+            console.log('Name : '+profile.getName());
+            console.log('Image URL : '+profile.getImageUrl());
+            console.log('Email : '+profile.getEmail());
+            this.setState({token: googleUser.getAuthResponse().id_token});
+        })
+    }
 
-            },
-
-            // 로그인 실패
-            (error)=>{
-                alert(JSON.stringify(error, undefined, 2));
-            });
+    logout=()=>{
+        this.setState({token:''});
+        console.log("로그아웃 합니다");
+        this.auth2.disconnect();
     }
 
     googleSDK=()=>{
@@ -51,7 +55,6 @@ class MainLoginButton extends Component{
                     cookiepolicy: 'single_host_origin',
                     scope: 'profile email'
                 });
-                this.prepareLoginButton();
             })
         }
         (function(d,s,id){
@@ -64,14 +67,14 @@ class MainLoginButton extends Component{
         }(document, 'script', 'google-jssdk'));        
     }
     render(){
+        //const isLoggedIn = this.state.isLoggedIn;
+        //console.log(isLoggedIn);
         return(
-            <Fragment>
-                <StyledButton className = "loginBtn" 
-                ref="googleLoginBtn" 
-                variant="contained" 
-                color="secondary"       
-                >로그인
-             </StyledButton>
+            <Fragment> 
+                {this.state.token ? 
+                <StyledButton className = "logoutBtn" onClick={this.logout} variant="contained" color="secondary">구글로그아웃이다</StyledButton> 
+                : <StyledButton className = "loginBtn" onClick={this.login} variant="contained" color="primary">구글로그인이다</StyledButton>}
+                
             </Fragment>
         )
     }
