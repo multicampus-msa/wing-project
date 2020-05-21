@@ -32,10 +32,13 @@ public class TransactionDataService {
 //        User user = userRepository.findById(requestDto.getUserId()).orElseThrow(() ->
 //                new IllegalArgumentException("해당 유저가 없습니다."));
 
+
         Artist artist = artistRepository.findById(requestDto.getArtistId()).orElseThrow(() ->
                 exception(requestDto.getArtistId()));
 
-        return transactionDataRepository.save(requestDto.toEntity(artist)).getId();
+        System.out.println("여긴 오니?");
+
+        return transactionDataRepository.save(requestDto.toEntity(artist)).getTransactionId();
     }
 
 

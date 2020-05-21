@@ -4,6 +4,7 @@ package wing.api.domain.transactionData;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import wing.api.domain.artist.Artist;
 
 import javax.persistence.*;
@@ -15,7 +16,7 @@ public class TransactionData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long transactionId;
 
 //    @ManyToOne(targetEntity = User.class)
 //    @JoinColumn(name="user_id")
@@ -29,6 +30,8 @@ public class TransactionData {
     private String datetime;
     private String uid;
 
+    @ColumnDefault("default")
+    private Long userId;
 
 
     // TODO
