@@ -23,6 +23,7 @@ function SupportPaymentResult({ history }) {
   return (
       <Wrapper>
         <Header>{`후원에 ${resultType}하였습니다`}</Header>
+        <br/>
         <Text>
           {name}
         </Text>
@@ -40,6 +41,7 @@ function SupportPaymentResult({ history }) {
             에러 메시지 : {error_msg}
           </Text>
         )}
+        <br/>
         <Button variant="contained" onClick={() => history.push('/support')}>
           돌아가기
         </Button>
@@ -68,7 +70,7 @@ const Text = styled.div `
   text-align: left;
   padding: 2rem;
   padding-top: 0;
-  font-size: 1rem;
+  font-size: 22px;
 `;
 
 export default withRouter(SupportPaymentResult);

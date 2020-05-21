@@ -44,7 +44,7 @@ const MenuButtons = () => {
         else if (window.location.pathname === "/Live" || window.location.pathname === "/live") {
             setColorSwitch([0,0,1,0,0])
         }
-        else if (window.location.pathname === "/Support" || window.location.pathname === "/support") {
+        else if (window.location.pathname.startsWith("/Support") || window.location.pathname.startsWith("/support")) {
             setColorSwitch([0,0,0,1,0])
         }
         else {
