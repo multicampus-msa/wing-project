@@ -3,7 +3,6 @@ package wing.api.domain.musicInfo;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.transaction.annotation.Transactional;
 import wing.api.domain.album.Album;
@@ -70,7 +69,6 @@ class MusicInfoRepositoryTest {
         Music music = Music.builder()
                 .toAlbum(album)
                 .fileUri("https://www.youtube.com/watch?v=tbiuMfj-AUA")
-                .likeCnt(3L)
                 .lyrics("인생이란 버드나무")
                 .musicGenre("힙합")
                 .musicName("풍파 (feat. 한상원)")
@@ -114,7 +112,7 @@ class MusicInfoRepositoryTest {
 
         Album album = albumRepository.findByAlbumNameContaining("Map").get(0);
 
-        List<MusicInfo> list = album.getInfos();
+        Set<MusicInfo> list = album.getInfos();
         Set<Artist> artists = new HashSet<>();
 
         for (MusicInfo info : list)
@@ -125,20 +123,4 @@ class MusicInfoRepositoryTest {
 
     }
 
-    @Transactional
-    @Test
-    public void 곡참여_아티스트_목록_가져오기() {
-
-        Music music = musicRepository.findByMusicNameContaining("풍파").get(0);
-
-        List<MusicInfo> list = music.getInfos();
-        Set<Artist> artists = new HashSet<>();
-
-        for (MusicInfo info : list)
-            artists.add(info.getArtist());
-
-        Artist artist = artistRepository.findByArtistNameContaining("에픽하이").get(0);
-        assertTrue(artists.contains(artist));
-
-    }
 }
