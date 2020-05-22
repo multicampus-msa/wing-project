@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from "styled-components";
 import axios from 'axios'
 import API_URL from "../Constants/API_URL";
-import { Link } from "react-router-dom";
+import GenreList from "./GenreList";
 
 const StyledDiv = styled.div`
   display: grid;
@@ -57,27 +57,7 @@ const Genre = () => {
                 }}>일렉트로니카</p>
                 {
                     isResponseOk ?
-                        electronicaObject.map(music => {
-                            return (
-                                <div style={{ marginLeft: "2rem" }}>
-                                    <img style={{ width: "100px", height: "100px" }}
-                                         alt="test"
-                                         src={music.albumImage}/>
-                                    {
-                                        music.artistList.map(artist => {
-                                            return (
-                                                <p style={{ marginTop: "1rem", width: "100px" }}>
-                                                    <Link
-                                                        to={"/streaming/artist/" + artist.artistId}>{artist.artistName}</Link>
-                                                </p>
-                                            )
-                                        })
-                                    }
-                                    <p>{music.musicName}</p>
-                                </div>
-                            )
-                        })
-
+                        <GenreList GenreObject={electronicaObject}/>
                         : <span> </span>
                 }
 
@@ -87,31 +67,11 @@ const Genre = () => {
                     borderBottom: "1px solid",
                     borderColor: "#c2c2c2",
                     width: "900px"
-                }}>
-                    포크 / 팝 / 발라드</p>
+                }}>포크 / 팝 / 발라드</p>
 
                 {
                     isResponseOk ?
-                        popObject.map(music => {
-                            return (
-                                <div style={{ marginLeft: "2rem" }}>
-                                    <img style={{ width: "100px", height: "100px" }}
-                                         alt="test"
-                                         src={music.albumImage}/>
-                                    {
-                                        music.artistList.map(artist => {
-                                            return (
-                                                <p style={{ marginTop: "1rem", width: "100px" }}>
-                                                    <Link
-                                                        to={"/streaming/artist/" + artist.artistId}>{artist.artistName}</Link>
-                                                </p>
-                                            )
-                                        })
-                                    }
-                                    <p>{music.musicName}</p>
-                                </div>
-                            )
-                        })
+                        <GenreList GenreObject={popObject}/>
                         : <span> </span>
                 }
 
@@ -124,28 +84,8 @@ const Genre = () => {
                 }}>힙합</p>
 
                 {
-
                     isResponseOk ?
-                        hiphopObject.map(music => {
-                            return (
-                                <div style={{ marginLeft: "2rem" }}>
-                                    <img style={{ width: "100px", height: "100px" }}
-                                         alt="test"
-                                         src={music.albumImage}/>
-                                    {
-                                        music.artistList.map(artist => {
-                                            return (
-                                                <p style={{ marginTop: "1rem", width: "100px" }}>
-                                                    <Link
-                                                        to={"/streaming/artist/" + artist.artistId}>{artist.artistName}</Link>
-                                                </p>
-                                            )
-                                        })
-                                    }
-                                    <p>{music.musicName}</p>
-                                </div>
-                            )
-                        })
+                        <GenreList GenreObject={hiphopObject}/>
                         : <span> </span>
                 }
 
@@ -158,28 +98,8 @@ const Genre = () => {
                 }}>락</p>
 
                 {
-
                     isResponseOk ?
-                        rockObject.map(music => {
-                            return (
-                                <div style={{ marginLeft: "2rem" }}>
-                                    <img style={{ width: "100px", height: "100px" }}
-                                         alt="test"
-                                         src={music.albumImage}/>
-                                    {
-                                        music.artistList.map(artist => {
-                                            return (
-                                                <p style={{ marginTop: "1rem", width: "100px" }}>
-                                                    <Link
-                                                        to={"/streaming/artist/" + artist.artistId}>{artist.artistName}</Link>
-                                                </p>
-                                            )
-                                        })
-                                    }
-                                    <p>{music.musicName}</p>
-                                </div>
-                            )
-                        })
+                        <GenreList GenreObject={rockObject}/>
                         : <span> </span>
                 }
             </StyledDiv>
