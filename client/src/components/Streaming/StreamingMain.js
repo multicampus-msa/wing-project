@@ -9,13 +9,14 @@ const StyledDiv = styled.div`
   margin-top: 1rem;
   margin-left: 1rem;
   font-family: "NanumSquare", sans-serif;
+  
 `
 
 const StreamingMain = () => {
     return (
         <div style={{ gridRow: "1 / 4", gridColumn: "2 / 8", fontFamily: "NanumBarunGothic" }}>
             <StyledDiv>
-                <p style={{ borderBottom: "1px solid", borderColor: "#c2c2c2", gridColumn: "1 / 7"}}><h2>따끈따끈한 최신 추천 음악</h2></p>
+                <p style={{ fontSize: "29px", borderBottom: "1px solid", borderColor: "#c2c2c2", gridColumn: "1 / 7"}}>따끈따끈한 최신 추천 음악</p>
                 <Carousel interval={4000} style={{ gridColumn: "1 / 7" }}>
                     <Carousel.Item>
                         <img style={{ width: "300px", height: "300px" }}
