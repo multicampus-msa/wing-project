@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -38,8 +38,12 @@ function SupportPayment({history, match}) {
         setBuyerEmail] = React.useState('');
     const [artist, setArtist] = useState([]);
 
-    axios.get(API_URL + '/api/artist/' + match.params.artistId)
-    .then(res => setArtist(res.data));
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        axios.get(API_URL + "/api/artist/" + match.params.artistId)
+          .then(res => setArtist(res.data))
+          .catch(err => alert(err))
+    }, [match.params.artistId])
 
     function handleClick() {
         if (amount === '' || buyerName === '' || buyerTel === '' || buyerEmail === '') {
@@ -66,43 +70,54 @@ function SupportPayment({history, match}) {
 
     function callback(response) {
         const query = queryString.stringify(response);
-        history.push(`/support/result?${query}`);
+        const date = new Date(response.paid_at * 1000);
+        if (response.success) {
+            axios.post("http://localhost:8080/api/transaction/", {
+                "amount": response.paid_amount,
+                "artistId": artist.artistId,
+                "datetime": String(date.toISOString().substr(0, 10)) + ' ' + String(date.toString().substr(16, 8)),
+                "uid": response.merchant_uid,
+              }).then(history.push(`/support/result?${query}`))
+              .catch(err => alert(err));
+        } else {
+            history.push(`/support/result?${query}`);
+        }
     }
 
     return (
         <Wrapper>
             <Header>{artist.artistName} 후원하기</Header>
             <form className={classes.root} noValidate autoComplete="off">
-                <div>
+                <TextFieldWrapper>
                     <TextField
                         id="amount"
                         label="후원 금액"
                         type="number"
                         value={amount}
                         onChange={(event) => setAmount(event.target.value)}/>
-                </div>
-                <div>
+                </TextFieldWrapper>
+                <TextFieldWrapper>
                     <TextField
                         id="buyer_name"
                         label="후원자 이름"
                         value={buyerName}
                         onChange={(event) => setBuyerName(event.target.value)}/>
-                </div>
-                <div>
+                </TextFieldWrapper>
+                <TextFieldWrapper>
                     <TextField
                         id="buyer_tel"
                         label="후원자 전화번호"
                         type="number"
                         value={buyerTel}
                         onChange={(event) => setBuyerTel(event.target.value)}/>
-                </div>
-                <div>
+                </TextFieldWrapper>
+                <TextFieldWrapper>
                     <TextField
                         id="buyer_email"
                         label="후원자 이메일"
                         value={buyerEmail}
                         onChange={(event) => setBuyerEmail(event.target.value)}/>
-                </div>
+                </TextFieldWrapper>
             </form>
             <br/>
             <div className={classes.root}>
@@ -116,6 +131,14 @@ function SupportPayment({history, match}) {
 
 const Wrapper = styled.div `
   padding: 5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: NanumSquare;
+`;
+
+const TextFieldWrapper = styled.div `
   display: flex;
   align-items: center;
   justify-content: center;
