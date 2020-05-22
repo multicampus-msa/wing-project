@@ -42,7 +42,8 @@ export default function ({ musicList }) {
         const initChecked = {}
         musicList.forEach(music => initChecked[music.musicName] = false)
         setChecked(initChecked);
-    }, [])
+        console.log("렌더링")
+    }, [musicList])
 
 
     if (musicList === undefined)

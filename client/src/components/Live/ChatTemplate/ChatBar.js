@@ -1,4 +1,4 @@
-import React, {Fragment, Component} from 'react'; 
+import React from 'react';
 import ChatList from './ChatList'; 
 import ChatInput from './ChatInput'; 
 

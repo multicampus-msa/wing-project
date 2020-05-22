@@ -1,16 +1,10 @@
 // 인기 영상과 추천 영상을 선택할 수 있는 메뉴 컴포넌트.
-import React, { Component, Fragment } from 'react';
-import { Link, Route } from "react-router-dom";
+import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import {
-    Collapse,
     Navbar,
-    NavbarToggler,
-    NavbarBrand,
     Nav,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    NavbarText
+    NavItem
   } from 'reactstrap';
 
 class MenuTab extends Component {

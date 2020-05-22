@@ -3,11 +3,7 @@ import React, {Component} from 'react';
 
 class SearchBar extends Component {
     
-    state = { term: '' } // term 은 input 창에 쓰이는 값  
-
-    constructor(props) {
-        super(props);       
-    }
+    state = { term: '' } // term 은 input 창에 쓰이는 값
 
     onInputChange = (e) => {
         this.setState(
@@ -39,7 +35,7 @@ class SearchBar extends Component {
                     value = {this.state.term}
                     onKeyPress = {this.handleKeyPress}
                     placeholder = "검색어를 입력하세요"/>&nbsp;
-                <button onClick={this.handleClick}> 검색 <img src= "/search.png" width='22px' height='20px' /> </button>   
+                <button onClick={this.handleClick}> 검색 <img alt="search" src= "search.png" width='22px' height='20px' /> </button>
             </div>
         )
     }

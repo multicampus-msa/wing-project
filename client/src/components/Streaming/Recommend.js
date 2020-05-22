@@ -7,21 +7,16 @@ import API_URL from "../Constants/API_URL";
 
 const StyledDiv = styled.div`
   display: grid;
-  grid-template-columns: 300px 300px 300px;
-  grid-template-rows: 30px 10px 60px 350px 350px 350px;
-  //grid-column-gap: 1rem;
-  //grid-row-gap: 1rem;
+  grid-template-columns: 320px 320px 320px;
+  grid-template-rows: 65px 65px 350px 350px 350px;
+  grid-gap: 1rem 1rem;
   margin-top: 1rem;
   margin-left: 1rem;
   outline: none;
   font-family: "NanumSquare", sans-serif;
-  
+    
   h2, p, #line {
     grid-column: 1 / 4;
-  }
-  
-  .MuiLink-root {
-    color: black;
   }
   
   img {
@@ -56,38 +51,37 @@ const Recommend = () => {
             .catch(err => {
                 alert(err)
             })
+
+
     }, [])
 
     return (
         <StyledDiv>
-            <p><h2>당신의 취향을 저격할 노래들</h2></p>
-            <div id="line">
-                <hr/>
-                <br/></div>
+            <p style={{ fontSize: "29px", borderBottom: "1px solid", borderColor: "#c2c2c2", width: "900px" }}>취향에 가까운 음악을 추천합니다</p>
             <p style={{ fontSize: "20px", marginTop: "1rem" }}>사용자의 음악 청취 패턴, 선호 장르를 종합한 결과입니다.</p>
             {
                 isResponseOk ? recommendObject.map((music, index) => {
-                    return (
-                        <div style={{
-                            gridColumn: `${(index % 3) + 1} / ${(index % 3) + 2}`,
-                            width: "300px",
-                            height: "370px",
-                            marginRight: "1rem",
-                            marginBottom: "1rem"
-                        }}
-                        >
-                            <MuiLink
-                                id="imgWrapper"
-                                href={music.fileUri}>
-                                <img style={{ width: "200px", height: "200px" }} src={music.albumImage}/>
-                                <br/>
-                            </MuiLink>
-                            <div style={{ fontSize: "22px" }}>
-                                <RouterLink style={{ color: "grey" }} to={"/streaming/album/" + music.albumId}>
-                                    {music.albumName}
-                                </RouterLink>
-                            </div>
-                            <span style={{ color: "grey", fontSize: "19px" }}>
+                        return (
+                            <div style={{
+                                gridColumn: `${(index % 3) + 1} / ${(index % 3) + 2}`,
+                                width: "300px",
+                                height: "370px",
+                                marginRight: "1rem",
+                                marginBottom: "1rem"
+                            }}
+                            >
+                                <MuiLink
+                                    id="imgWrapper"
+                                    href={music.fileUri}>
+                                    <img alt="앨범 이미지" style={{ width: "200px", height: "200px" }} src={music.albumImage}/>
+                                    <br/>
+                                </MuiLink>
+                                <div style={{ fontSize: "22px" }}>
+                                    <RouterLink style={{ color: "grey" }} to={"/streaming/album/" + music.albumId}>
+                                        {music.albumName}
+                                    </RouterLink>
+                                </div>
+                                <span style={{ color: "grey", fontSize: "19px" }}>
                                         {music.artistList.map(obj => {
                                             return (
                                                 <RouterLink style={{ color: "grey" }}
@@ -96,13 +90,13 @@ const Recommend = () => {
                                                 </RouterLink>
                                             )
                                         })}
-                                <p>{music.musicName}</p>
+                                    <p>{music.musicName}</p>
                                 </span>
 
-                        </div>
-                    )
-                })
-            : <div id="loading">loading..</div>
+                            </div>
+                        )
+                    })
+                    : <div id="loading">loading..</div>
             }
         </StyledDiv>
     )

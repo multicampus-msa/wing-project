@@ -3,7 +3,6 @@ import axios from "axios";
 import API_URL from "../../Constants/API_URL";
 import styled from "styled-components";
 import { Link as RouterLink } from "react-router-dom";
-import { Link as MuiLink } from "@material-ui/core"
 import MusicTable from "../MusicTable";
 
 const ContentDiv = styled.div`
@@ -19,6 +18,7 @@ const AlbumDetailForm = ({ id }) => {
 
     const [albumObject, setAlbumObject] = useState({});
     const [isResponseOk, setIsResponseOk] = useState(false);
+
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -74,15 +74,19 @@ const AlbumDetailForm = ({ id }) => {
                         <ContentDiv style={{ marginTop: "-2rem" }}>Distributor</ContentDiv>
                         <ContentDiv style={{ marginTop: "-2rem" }}>{albumObject.distributor}</ContentDiv>
 
-                        <div style={{ fontSize: "33px", fontWeight: "bold", gridColumn: "1 / 5" }}>
+                        <div style={{ fontSize: "33px", fontWeight: "bold", gridColumn: "1 / 5"}}>
                             <TitleDiv>
                                 Description
                             </TitleDiv>
                         </div>
-                        <div style={{ fontSize: "18px", gridColumn: "1 / 5" }}>
-                            {albumObject.description}
+                        <div style={{ fontSize: "18px", gridColumn: "1 / 5", overflow: "auto" }}>
+                            {
+                                albumObject.description.split('\\r\\n').map( line => {
+                                    return (<span>{line}<br/></span>)
+                                })
+                            }
                         </div>
-                        <div style={{ fontSize: "33px", fontWeight: "bold", gridColumn: "1 / 5" }}>
+                        <div style={{ fontSize: "33px", fontWeight: "bold", gridColumn: "1 / 5", marginTop: "2rem" }}>
                             <TitleDiv>
                                 Tracklist
                             </TitleDiv>

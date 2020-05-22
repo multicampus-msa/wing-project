@@ -27,7 +27,7 @@ class ChatList extends Component {
 
         const messages = this.state.logs.map(e=>(
             <div key={e.key} >
-                <img src = "man.png"  width="25px" height="25px" style={{marginLeft:'5px'}}/> 
+                <img alt="user icon"src = "man.png"  width="25px" height="25px" style={{marginLeft:'5px'}}/>
                 <span style={{color : '#819FF7' , fontWeight : 'bold' }} > {e.name} </span>
                 <span>     { e.message } </span>
                 <p style={{clear:'both'}} />
