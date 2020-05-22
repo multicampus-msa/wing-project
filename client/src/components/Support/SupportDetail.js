@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import YouTube from 'react-youtube';
+import SupportTable from './SupportTable'
 import API_URL from "../Constants/API_URL";
 
 const useStyles = makeStyles((theme) => ({
     wrapper: {
-        display: 'block',
+        display: 'grid',
         width: '1080px',
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -56,21 +57,44 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'left',
         fontSize: '21px',
         padding: '0px 5px',
+    },
+    tableWrapper: {
+        display: 'block',
+        width: '1080px',
+        height: '600px',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginBottom: '10px',
+        position: 'relative',
     }
 }));
 
 function SupportDetail({match}) {
     const classes = useStyles();
     const [artist, setArtist] = useState([]);
+    const [totalAmount, setTotalAmount] = useState(0);
+    const [supporterNum, setSupporterNum] = useState(0);
 
-    axios.get(API_URL + '/api/artist/' + match.params.artistId)
-    .then(res => setArtist(res.data));
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        axios.get(API_URL + "/api/artist/" + match.params.artistId)
+            .then(res => setArtist(res.data))
+            .catch(err => alert(err));
+        
+        axios.get("http://localhost:8080/api/transaction/artist/" + match.params.artistId)
+            .then(res => {setTotalAmount(res.data.reduce((pre, item) => {
+                return pre += item.amount;
+            }, 0)); return res})
+            .then(res => setSupporterNum(res.data.length))
+            .catch(err => alert(err));
+
+    }, [match.params.artistId])
 
     return (
         <div className={classes.wrapper}>
+            <div className={classes.body}>
             <h2 className={classes.title}>아티스트 후원하기</h2>
             <hr className={classes.line}/>
-            <div className={classes.body}>
                 <YouTube className={classes.video} videoId={artist.video} height='390' width='640'/>
                 <div className={classes.supportInfo}>
                     <p className={classes.infoTitle}>아티스트 정보</p>
@@ -80,8 +104,8 @@ function SupportDetail({match}) {
                     <br/>
                     <p className={classes.infoTitle}>이번 달 후원 상황</p>
                     <hr className={classes.line}/>
-                    <p className={classes.infoText}><b>180,000</b>원 후원</p>
-                    <p className={classes.infoText}><b>14</b>명의 서포터</p>
+                    <p className={classes.infoText}><b>{totalAmount.toLocaleString('en-US')}</b>원 후원</p>
+                    <p className={classes.infoText}><b>{supporterNum}</b>명의 서포터</p>
                     <Link to={`/support/payment/${artist.artistId}`}>
                         <Button variant="contained" fullWidth="true">
                             후원하기
@@ -89,8 +113,11 @@ function SupportDetail({match}) {
                     </Link>
                 </div>
             </div>
-            <div className={classes.body}>
-
+            <br/>
+            <div className={classes.tableWrapper}>
+                <p className={classes.infoTitle}>아티스트 후원 상세 정보</p>
+                <hr className={classes.line}/>
+                <SupportTable artistId={match.params.artistId}/>
             </div>
         </div>
     );

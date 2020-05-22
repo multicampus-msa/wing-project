@@ -24,9 +24,9 @@ function SupportPaymentResult({ history }) {
       <Wrapper>
         <Header>{`후원에 ${resultType}하였습니다`}</Header>
         <br/>
-        <Text>
+        <SubHeader>
           {name}
-        </Text>
+        </SubHeader>
         {isSuccessed  ? (
           <>
             <Text>
@@ -55,6 +55,7 @@ const Wrapper = styled.div `
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  font-family: NanumSquare;
 `;
 
 const Header = styled.div `
@@ -63,6 +64,14 @@ const Header = styled.div `
   padding: 2rem;
   padding-top: 0;
   font-size: 3rem;
+`;
+
+const SubHeader = styled.div `
+  font-weight: bold;
+  text-align: left;
+  padding: 2rem;
+  padding-top: 0;
+  font-size: 30px;
 `;
 
 const Text = styled.div `

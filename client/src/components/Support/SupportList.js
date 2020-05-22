@@ -45,6 +45,8 @@ const useStyles = makeStyles((theme) => ({
 function SupportList ({match}) {
     const classes = useStyles();
     const pageNum = match.params.pageNum == null ? 1 : match.params.pageNum;
+    const cardIndex = [0, 1, 2, 3, 4, 5, 6, 7];
+    const pageIndex = [1, 2, 3, 4, 5];
 
     return (
         <div className={classes.wrapper}>
@@ -52,59 +54,42 @@ function SupportList ({match}) {
             <hr className={classes.line}/>
             <div className={classes.body}>
                 <div className={classes.root}>
-                    <SupportCard artistId={Number(pageNum) * 8 - 7}/>
-                    <SupportCard artistId={Number(pageNum) * 8 - 7 + Number(1)}/>
-                    <SupportCard artistId={Number(pageNum) * 8 - 7 + Number(2)}/>
-                    <SupportCard artistId={Number(pageNum) * 8 - 7 + Number(3)}/>
-                    <SupportCard artistId={Number(pageNum) * 8 - 7 + Number(4)}/>
-                    <SupportCard artistId={Number(pageNum) * 8 - 7 + Number(5)}/>
-                    <SupportCard artistId={Number(pageNum) * 8 - 7 + Number(6)}/>
-                    <SupportCard artistId={Number(pageNum) * 8 - 7 + Number(7)}/>
+                    {
+                        cardIndex.map((idx) => {
+                            return <SupportCard artistId={Number(pageNum) * 8 - 7 + Number(idx)}/>
+                        })
+                    }
                 </div>
                 <div className={classes.page}>
                     <Pagination aria-label="Page navigation">
                     <PaginationItem>
-                        <PaginationLink href="#">
+                        <PaginationLink>
                         {'≪'}
                         </PaginationLink>
                     </PaginationItem>
                     <PaginationItem>
-                        <PaginationLink href="#">
+                        <PaginationLink>
                         {'<'}
                         </PaginationLink>
                     </PaginationItem>
+                    {
+                        pageIndex.map((idx) => {
+                            return (
+                                <PaginationItem>
+                                    <PaginationLink href={"/support/list/" + idx}>
+                                        {idx}
+                                    </PaginationLink>
+                                </PaginationItem>
+                            );
+                        })
+                    }
                     <PaginationItem>
-                        <PaginationLink href="/support/list/1">
-                        1
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="/support/list/2">
-                        2
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="/support/list/3">
-                        3
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#">
-                        4
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#">
-                        5
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#">
+                        <PaginationLink>
                         {'>'}
                         </PaginationLink>
                     </PaginationItem>
                     <PaginationItem>
-                        <PaginationLink href="#">
+                        <PaginationLink>
                         {'≫'}
                         </PaginationLink>
                     </PaginationItem>
