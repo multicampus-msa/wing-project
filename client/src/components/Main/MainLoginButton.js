@@ -1,10 +1,10 @@
 import { Button, withStyles } from "@material-ui/core";
 import React, { Component, Fragment } from 'react'
+import axios from 'axios';
 const StyledButton = withStyles({
     root: {
         justifyContent: 'center',
-        display: 'black',
-        
+        display: 'black',        
         borderRadius: 3,
         border: 0,
         color: 'white',
@@ -22,7 +22,7 @@ const StyledButton = withStyles({
 class MainLoginButton extends Component{
     constructor(props){
         super(props);
-        this.state={token:''}
+        this.state={token:'', name:''}
     }
 
     componentDidMount(){
@@ -32,11 +32,30 @@ class MainLoginButton extends Component{
     login=()=>{
         this.auth2.signIn().then(googleUser=>{
             let profile = googleUser.getBasicProfile();
-            console.log('ID : '+profile.getId());
-            console.log('Name : '+profile.getName());
-            console.log('Image URL : '+profile.getImageUrl());
-            console.log('Email : '+profile.getEmail());
-            this.setState({token: googleUser.getAuthResponse().id_token});
+           
+            const data = {      
+                userId: profile.getId(),        
+                name: profile.getName(),
+                email: profile.getEmail(),
+                imageUri: profile.getImageUrl(),
+                role: "USER",
+            }
+            const targetUrl = 'http://localhost:8080/api/user/save'
+            console.log(data);
+            axios.post(targetUrl, data)
+            .then(response =>{  
+                
+                console.log(response)
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+            // console.log('ID : '+profile.getId());
+            // console.log('Name : '+profile.getName());
+            // console.log('Image URL : '+profile.getImageUrl());
+            // console.log('Email : '+profile.getEmail());
+            this.setState({token: googleUser.getAuthResponse().id_token, name: profile.getName()});
+            
         })
     }
 
@@ -72,8 +91,16 @@ class MainLoginButton extends Component{
         return(
             <Fragment> 
                 {this.state.token ? 
-                <StyledButton className = "logoutBtn" onClick={this.logout} variant="contained" color="secondary">구글로그아웃이다</StyledButton> 
-                : <StyledButton className = "loginBtn" onClick={this.login} variant="contained" color="primary">구글로그인이다</StyledButton>}
+                // todo : 로그인 시  logout 버튼 위에 사용자 이름, 프로필 이미지 보이게 하기
+                // 이름을 누르거나 뭐 링크를 누르면 마이페이지로 이동하도록 하기
+                <>                
+                    <div>
+                        {this.state.name}님 안녕하세요
+                    </div>              
+                    <StyledButton className = "logoutBtn" onClick={this.logout} variant="contained" color="secondary">Logout</StyledButton> 
+                </>
+                
+                : <StyledButton className = "loginBtn" onClick={this.login} variant="contained" color="primary">Login</StyledButton>}
                 
             </Fragment>
         )
