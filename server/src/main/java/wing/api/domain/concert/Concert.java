@@ -27,8 +27,8 @@ public class Concert {
     private String imageUri;
     private String description;
 
-    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
-    Set<Artist> artistsList = new HashSet<>();
+//    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
+//    Set<Artist> artistsList = new HashSet<>();
 
     @Builder
     public Concert(String concertName, LocalDateTime dateStart, LocalDateTime dateEnd,

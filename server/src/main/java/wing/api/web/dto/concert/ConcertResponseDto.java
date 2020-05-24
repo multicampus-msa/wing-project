@@ -24,7 +24,7 @@ public class ConcertResponseDto {
     private final String place;
     private final String imageUri;
     private final String description;
-    private final Set<Map<String, String>> artistList;
+//    private final Set<Map<String, String>> artistList;
 
     public ConcertResponseDto(Concert entity) {
         this.concertId = entity.getConcertId();
@@ -36,13 +36,13 @@ public class ConcertResponseDto {
         this.imageUri = entity.getImageUri();
         this.description = entity.getDescription();
 
-        this.artistList = new HashSet<>();
-        for(Artist artist : entity.getArtistsList()) {
-            Map<String, String> artistObj = new HashMap<>();
-            artistObj.put("artistId", artist.getArtistId().toString());
-            artistObj.put("artistName", artist.getArtistName());
-            artistList.add(artistObj);
-        }
+//        this.artistList = new HashSet<>();
+//        for(Artist artist : entity.getArtistsList()) {
+//            Map<String, String> artistObj = new HashMap<>();
+//            artistObj.put("artistId", artist.getArtistId().toString());
+//            artistObj.put("artistName", artist.getArtistName());
+//            artistList.add(artistObj);
+//        }
     }
 
 
