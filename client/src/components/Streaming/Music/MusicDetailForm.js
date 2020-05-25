@@ -86,7 +86,9 @@ const MusicDetailForm = ({ id }) => {
                             </TitleDiv>
                         </div>
                         <div style={{ fontSize: "18px", gridColumn: "1 / 5" }}>
-                            {musicObject.lyrics}
+                            {musicObject.lyrics.split('\\r\\n').map( line => {
+                                return (<span>{line}<br/></span>)
+                            })}
                         </div>
 
                         <div className="footer" style={{display: "absolute", bottom: "100%", width: "100%", height: "200px"}}> </div>

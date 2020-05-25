@@ -57,8 +57,8 @@ export default function ({ musicList }) {
             <ButtonDiv>
                 <button>
                     <img
-                        src="https://lh3.googleusercontent.com/proxy/9hKhXf5mC6_PTXhGWYeC1EaQDHJjHYphSxR4iok3ljw0_LGFyBnuaDoeAvXKdF9Unp_ACYkUx2heI_xd08ol-F0paesx3jI_LobO_YA4aJMcUWSzMcTQIt7Cv89rgfi4SYE"
-                        alt="재생"
+                        src="https://image.shutterstock.com/image-vector/play-sign-flat-style-icon-260nw-376854928.jpg"
+                        alt="듣기"
                         style={{ width: "25px", height: "25px" }}
                     />
                     듣기
