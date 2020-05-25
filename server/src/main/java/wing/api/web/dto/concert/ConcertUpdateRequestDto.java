@@ -13,18 +13,18 @@ public class ConcertUpdateRequestDto {
     private String concertName;
     private LocalDateTime dateStart;
     private LocalDateTime dateEnd;
-    private String tickekUri;
+    private String ticketUri;
     private String place;
     private String imageUri;
     private String description;
 
     @Builder
     public ConcertUpdateRequestDto(String concertName, LocalDateTime dateStart, LocalDateTime dateEnd,
-                                 String tickekUri, String place, String imageUri, String description) {
+                                 String ticketUri, String place, String imageUri, String description) {
         this.concertName = concertName;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
-        this.tickekUri = tickekUri;
+        this.ticketUri = ticketUri;
         this.place = place;
         this.imageUri = imageUri;
         this.description = description;

@@ -14,18 +14,18 @@ public class ConcertSaveRequestDto {
     private String concertName;
     private LocalDateTime dateStart;
     private LocalDateTime dateEnd;
-    private String tickekUri;
+    private String ticketUri;
     private String place;
     private String imageUri;
     private String description;
 
     @Builder
     public ConcertSaveRequestDto(String concertName, LocalDateTime dateStart, LocalDateTime dateEnd,
-                   String tickekUri, String place, String imageUri, String description) {
+                   String ticketUri, String place, String imageUri, String description) {
         this.concertName = concertName;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
-        this.tickekUri = tickekUri;
+        this.ticketUri = ticketUri;
         this.place = place;
         this.imageUri = imageUri;
         this.description = description;
@@ -36,7 +36,7 @@ public class ConcertSaveRequestDto {
                 .concertName(concertName)
                 .dateStart(dateStart)
                 .dateEnd(dateEnd)
-                .tickekUri(tickekUri)
+                .ticketUri(ticketUri)
                 .place(place)
                 .imageUri(imageUri)
                 .description(description)
