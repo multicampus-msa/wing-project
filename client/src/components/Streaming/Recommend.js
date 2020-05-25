@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import axios from "axios";
 import { Link as MuiLink } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom"
@@ -38,12 +38,11 @@ const StyledDiv = styled.div`
 `
 
 const Recommend = () => {
-
     const [isResponseOk, setIsResponseOk] = useState(false);
     const [recommendObject, setRecommendObject] = useState([]);
 
     useEffect(() => {
-        axios.get(API_URL + "/api/music?name=")
+        axios.get(API_URL + "/api/music/name=")
             .then(res => {
                 setRecommendObject(res.data.slice(0, 9));
                 setIsResponseOk(true);
@@ -58,7 +57,7 @@ const Recommend = () => {
     return (
         <StyledDiv>
             <p style={{ fontSize: "29px", borderBottom: "1px solid", borderColor: "#c2c2c2", width: "900px" }}>취향에 가까운 음악을 추천합니다</p>
-            <p style={{ fontSize: "20px", marginTop: "1rem" }}>사용자의 음악 청취 패턴, 선호 장르를 종합한 결과입니다.</p>
+            <p style={{ fontSize: "20px", marginTop: "1rem" }}>사용자의 음악 청취 패턴, 선호 장르를 종합한 결과입니다</p>
             {
                 isResponseOk ? recommendObject.map((music, index) => {
                         return (

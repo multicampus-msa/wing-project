@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from 'react-bootstrap/Carousel'
 import styled from 'styled-components'
+import axios from "axios";
+import API_URL from "../Constants/API_URL";
+import MusicTable from "./MusicTable";
 
 const StyledDiv = styled.div`
   display: grid;
   grid-template-columns: 150px 150px 150px 150px 150px 150px;
-  grid-template-rows: 65px 300px 65px 300px 300px;
+  grid-template-rows: 65px 300px 100px 300px 300px;
   margin-top: 1rem;
   margin-left: 1rem;
   font-family: "NanumSquare", sans-serif;
@@ -13,6 +16,23 @@ const StyledDiv = styled.div`
 `
 
 const StreamingMain = () => {
+
+    const [isResponseOk, setIsResponseOk] = useState(false);
+    const [recommendObject, setRecommendObject] = useState([]);
+
+    useEffect(() => {
+        axios.get(API_URL + "/api/music/name=")
+            .then(res => {
+                setRecommendObject(res.data.slice(0, 9));
+                setIsResponseOk(true);
+            })
+            .catch(err => {
+                alert(err)
+            })
+
+
+    }, [])
+
     return (
         <div style={{ gridRow: "1 / 4", gridColumn: "2 / 8", fontFamily: "NanumBarunGothic" }}>
             <StyledDiv>
@@ -48,6 +68,16 @@ const StreamingMain = () => {
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
+
+
+
+                <p style={{ fontSize: "29px", borderBottom: "1px solid", borderColor: "#c2c2c2", gridColumn: "1 / 7", marginTop: "2rem"}}>최신음악</p>
+
+                <div style={{ gridColumn: "1 / 7"}}>
+                {
+                    isResponseOk ? <MusicTable musicList={recommendObject}/> : <span> </span>
+                }
+                </div>
             </StyledDiv>
         </div>
     )

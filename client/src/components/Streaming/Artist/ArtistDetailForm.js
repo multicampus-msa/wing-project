@@ -65,10 +65,12 @@ const ArtistDetailForm = ({ id }) => {
                                     Description
                                 </TitleDiv>
                             </div>
-                            <div style={{fontSize: "18px", gridColumn: "1 / 5"}}>
-                                {artistObject.description}
+                            <div style={{fontSize: "18px", gridColumn: "1 / 5", overflow: "auto"}}>
+                                {artistObject.description.split('\\r\\n').map( line => {
+                                    return (<span>{line}<br/></span>)
+                                })}
                             </div>
-                            <div style={{fontSize: "33px", fontWeight: "bold", gridColumn: "1 / 5"}}>
+                            <div style={{fontSize: "33px", fontWeight: "bold", gridColumn: "1 / 5", marginTop: "2rem"}}>
                                 <TitleDiv>
                                     Discography
                                 </TitleDiv>
