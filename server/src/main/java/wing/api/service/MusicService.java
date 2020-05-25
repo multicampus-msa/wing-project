@@ -127,4 +127,14 @@ public class MusicService {
 
         return responseDtos;
     }
+
+    public Set<MusicResponseDto> findByGenre(String genre) {
+        Set<Music> musicList = musicRepository.findByMusicGenreContaining(genre);
+        Set<MusicResponseDto> responseDtos = new HashSet<>();
+
+        for (Music music : musicList)
+            responseDtos.add(new MusicResponseDto(music));
+
+        return responseDtos;
+    }
 }
