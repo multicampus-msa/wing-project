@@ -20,7 +20,7 @@ public class ConcertResponseDto {
     private final String concertName;
     private final LocalDateTime dateStart;
     private final LocalDateTime dateEnd;
-    private final String tickekUri;
+    private final String ticketUri;
     private final String place;
     private final String imageUri;
     private final String description;
@@ -31,7 +31,7 @@ public class ConcertResponseDto {
         this.concertName = entity.getConcertName();
         this.dateStart = entity.getDateStart();
         this.dateEnd = entity.getDateEnd();
-        this.tickekUri = entity.getTickekUri();
+        this.ticketUri = entity.getTicketUri();
         this.place = entity.getPlace();
         this.imageUri = entity.getImageUri();
         this.description = entity.getDescription();

@@ -29,7 +29,7 @@ public class ConcertService {
                 () -> new IllegalArgumentException("앨범 정보 없음 id=" + id));
 
         concert.update(requestDto.getConcertName(),requestDto.getDateStart(), requestDto.getDateEnd(),
-                requestDto.getTickekUri(), requestDto.getPlace(), requestDto.getImageUri(),
+                requestDto.getTicketUri(), requestDto.getPlace(), requestDto.getImageUri(),
                 requestDto.getDescription());
 
         return id;
