@@ -8,7 +8,7 @@ import API_URL from "../Constants/API_URL";
 const StyledDiv = styled.div`
   display: grid;
   grid-template-columns: 320px 320px 320px;
-  grid-template-rows: 65px 65px 350px 350px 350px;
+  grid-template-rows: 65px 65px 350px 350px 350px 400px;
   grid-gap: 1rem 1rem;
   margin-top: 1rem;
   margin-left: 1rem;
@@ -99,6 +99,7 @@ const Recommend = () => {
                     })
                     : <div id="loading">loading..</div>
             }
+            <div style={{gridRow: "6"}}> </div>
         </StyledDiv>
     )
 }

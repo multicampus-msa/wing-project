@@ -117,6 +117,8 @@ const Genre = () => {
                         <GenreList GenreObject={rockObject}/>
                         : <span> </span>
                 }
+                
+                <div style={{gridRow: "10", height: "300px"}}> </div>
             </StyledDiv>
 
         </>
