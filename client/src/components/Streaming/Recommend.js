@@ -90,7 +90,9 @@ const Recommend = () => {
                                                 </RouterLink>
                                             )
                                         })}
-                                    <p>{music.musicName}</p>
+                                    <RouterLink style={{ color: "grey" }} to={"/streaming/music/" + music.musicId}>
+                                        <p>{music.musicName}</p>
+                                    </RouterLink>
                                 </span>
 
                             </div>
