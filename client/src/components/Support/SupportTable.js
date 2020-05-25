@@ -12,7 +12,7 @@ import axios from 'axios';
 
 const columns = [
   { id: 'index', label: '#', minWidth: 150 },
-  { id: 'supporter', label: '후원자', minWidth: 130 },
+  { id: 'userName', label: '후원자', minWidth: 130 },
   {
     id: 'amount',
     label: '후원 금액',
