@@ -5,6 +5,7 @@ import LivePage from './Live/LivePage'
 import StreamingPage from './Streaming/StreamingPage'
 import SupportPage from './Support/SupportPage'
 import ConcertPage from './Concert/ConcertPage'
+import SearchPage from './Search/SearchPage';
 
 function Root() {
     return (
@@ -15,7 +16,7 @@ function Root() {
             <Route path="/live" component={LivePage}/>
             <Route path="/support" component={SupportPage}/>
             <Route path="/concert" component={ConcertPage}/>
-            
+            <Route path="/search/:searchWord" component={SearchPage}/>
        </>
     );
 }
