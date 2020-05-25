@@ -1,11 +1,16 @@
 import React from 'react'
 import { TextField } from "@material-ui/core";
+import { withRouter } from 'react-router-dom';
 
-
-const SearchInputField = () => {
+const SearchInputField = ({history}) => {
     // 검색창에 엔터키 입력했을 때 처리
     const HandleKey = (e) => {
-        if (e.key === "Enter") alert(e.target.value + " 검색 기능 수행")
+        if (e.key === "Enter") {
+            e.target.value === '' ?
+            alert('검색어를 입력하세요') :
+            history.push(`/search/${e.target.value}`)
+            e.target.value = ''
+        };
     };
 
     return (
@@ -14,5 +19,4 @@ const SearchInputField = () => {
     )
 };
 
-
-export default SearchInputField;
+export default withRouter(SearchInputField);

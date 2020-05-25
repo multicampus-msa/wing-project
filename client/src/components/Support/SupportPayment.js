@@ -77,6 +77,7 @@ function SupportPayment({history, match}) {
                 "artistId": artist.artistId,
                 "datetime": String(date.toISOString().substr(0, 10)) + ' ' + String(date.toString().substr(16, 8)),
                 "uid": response.merchant_uid,
+                "userId": "123456789123456789123",
               }).then(history.push(`/support/result?${query}`))
               .catch(err => alert(err));
         } else {

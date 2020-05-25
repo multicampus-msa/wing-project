@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import {Link} from 'react-router-dom'
 import SupportCard from './SupportCard';
 
 const useStyles = makeStyles((theme) => ({
@@ -76,9 +77,11 @@ function SupportList ({match}) {
                         pageIndex.map((idx) => {
                             return (
                                 <PaginationItem>
-                                    <PaginationLink href={"/support/list/" + idx}>
-                                        {idx}
-                                    </PaginationLink>
+                                    <Link to={"/support/list/" + idx}>
+                                        <PaginationLink>
+                                            {idx}
+                                        </PaginationLink>
+                                    </Link>
                                 </PaginationItem>
                             );
                         })
