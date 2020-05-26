@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class UserLikedMusicSaveRequestDto {
+public class UserLikedMusicRequestDto {
 
     private String userId;
     private Long musicId;

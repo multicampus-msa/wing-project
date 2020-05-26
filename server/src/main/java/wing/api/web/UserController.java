@@ -6,11 +6,9 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import wing.api.service.UserService;
-import wing.api.web.dto.user.UserLikedMusicSaveRequestDto;
+import wing.api.web.dto.user.UserLikedMusicRequestDto;
 import wing.api.web.dto.user.UserLikedMusicResponseDto;
 import wing.api.web.dto.user.UserRequestDto;
-
-import java.util.Set;
 
 @RestController
 @Api(tags = {"User Controller"})
@@ -30,13 +28,19 @@ public class UserController {
 
     @ApiOperation(value = "유저 음악 좋아요")
     @PostMapping("/liked")
-    public Long userLikedMusic(@RequestBody UserLikedMusicSaveRequestDto requestDto){
+    public Long userLikedMusicSave(@RequestBody UserLikedMusicRequestDto requestDto){
         return userService.likedMusic(requestDto);
+    }
+
+    @ApiOperation(value = "유저 음악 좋아요 취소")
+    @DeleteMapping("/liked")
+    public Long userLikedMusicDelete(@RequestBody UserLikedMusicRequestDto requestDto){
+        return userService.likedMusicDelete(requestDto);
     }
 
     @ApiOperation(value = "유저 음악 좋아요 목록")
     @GetMapping("/liked/{id}")
-    public UserLikedMusicResponseDto userLikedMusic(@PathVariable("id") String userId){
+    public UserLikedMusicResponseDto userLikedMusicSave(@PathVariable("id") String userId){
         return userService.likedMusicSet(userId);
     }
 }
