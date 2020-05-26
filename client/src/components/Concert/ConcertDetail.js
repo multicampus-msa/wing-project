@@ -6,7 +6,7 @@ import ConcertLocation from './ConcertLocation';
 
 const useStyles = makeStyles((theme) => ({
     wrapper: {
-        display: 'block',
+        display: 'navy',
         width: '1080px',
         marginLeft: 'auto',
         marginRight: 'auto',
