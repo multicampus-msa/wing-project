@@ -66,6 +66,9 @@ const Menu = ({history}) => {
         setToken('')        
         console.log("로그아웃 합니다");
         auth2.disconnect();
+        setUserId(null);
+        setName(null)
+        setToken(null)
         history.push(`/`);
 
     }
