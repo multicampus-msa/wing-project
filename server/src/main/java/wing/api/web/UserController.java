@@ -4,9 +4,10 @@ package wing.api.web;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.springframework.web.bind.annotation.*;
 import wing.api.service.UserService;
+import wing.api.web.dto.user.UserLikedMusicRequestDto;
+import wing.api.web.dto.user.UserLikedMusicResponseDto;
 import wing.api.web.dto.user.UserRequestDto;
 
 @RestController
@@ -23,5 +24,23 @@ public class UserController {
     public String saveUser(@RequestBody UserRequestDto userRequestDto){
         System.out.println(userRequestDto.toString());
         return userService.save(userRequestDto);
+    }
+
+    @ApiOperation(value = "유저 음악 좋아요")
+    @PostMapping("/liked")
+    public Long userLikedMusicSave(@RequestBody UserLikedMusicRequestDto requestDto){
+        return userService.likedMusic(requestDto);
+    }
+
+    @ApiOperation(value = "유저 음악 좋아요 취소")
+    @DeleteMapping("/liked")
+    public Long userLikedMusicDelete(@RequestBody UserLikedMusicRequestDto requestDto){
+        return userService.likedMusicDelete(requestDto);
+    }
+
+    @ApiOperation(value = "유저 음악 좋아요 목록")
+    @GetMapping("/liked/{id}")
+    public UserLikedMusicResponseDto userLikedMusicSave(@PathVariable("id") String userId){
+        return userService.likedMusicSet(userId);
     }
 }

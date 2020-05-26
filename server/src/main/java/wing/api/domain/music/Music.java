@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import wing.api.domain.album.Album;
 import wing.api.domain.musicInfo.MusicInfo;
+import wing.api.domain.userLiked.UserLikedMusic;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -38,6 +39,8 @@ public class Music {
     @OneToMany(mappedBy = "music", cascade = CascadeType.ALL)
     Set<MusicInfo> infos = new HashSet<>();
 
+    @OneToMany(mappedBy = "music", cascade = CascadeType.ALL)
+    private Set<UserLikedMusic> likedMusicSet;
 
     @Builder
     public Music(String musicName, String musicGenre, String fileUri,
