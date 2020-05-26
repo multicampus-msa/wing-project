@@ -57,7 +57,7 @@ function SupportList ({match}) {
                 <div className={classes.root}>
                     {
                         cardIndex.map((idx) => {
-                            return <SupportCard artistId={Number(pageNum) * 8 - 7 + Number(idx)}/>
+                            return <SupportCard key={Number(pageNum) * 8 - 7 + Number(idx)} artistId={Number(pageNum) * 8 - 7 + Number(idx)}/>
                         })
                     }
                 </div>

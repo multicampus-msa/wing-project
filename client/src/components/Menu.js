@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, createContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components'
 import MenuButtons from "./Main/MenuButtons";
 // import MainLoginButton from "./Main/MainLoginButton";
@@ -23,10 +23,12 @@ const BtnStlye = styled.button`
     margin-bottom: 1rem;
 `;
 
-export const ctx = createContext("hello")
+export const ctx = createContext("name")
+export const loginUserId = createContext("userId")
 
-const Menu = () => {
+const Menu = ({history}) => {
 
+    const [userId, setUserId] = useState(null); 
     const [token, setToken] = useState(null); 
     const [name, setName] = useState("");// 로그인 된 사용자 정보 
     const [auth2, setAuth2] = useState(null);
@@ -44,8 +46,7 @@ const Menu = () => {
             const targetUrl = 'http://localhost:8080/api/user/save'
             console.log(data);
             axios.post(targetUrl, data)
-            .then(response =>{  
-                
+            .then(response =>{                  
                 console.log(response)
             })
             .catch(function(error){
@@ -55,8 +56,9 @@ const Menu = () => {
             // console.log('Name : '+profile.getName());
             // console.log('Image URL : '+profile.getImageUrl());
             // console.log('Email : '+profile.getEmail());
-            setToken(googleUser.getAuthResponse().id_token);
+            setUserId(profile.getId());
             setName(profile.getName())
+            setToken(googleUser.getAuthResponse().id_token)
             
         })
     }
@@ -64,6 +66,11 @@ const Menu = () => {
         setToken('')        
         console.log("로그아웃 합니다");
         auth2.disconnect();
+        setUserId(null);
+        setName(null)
+        setToken(null)
+        history.push(`/`);
+
     }
     const googleSDK=()=>{
         // platform.js 스크립트 로드 후 .. 
@@ -87,18 +94,19 @@ const Menu = () => {
     }
     useEffect(()=>{ // token 값이 업데이트 될 때만 실행
         googleSDK()
-        console.log(auth2)
+        //console.log(auth2)
     },[token]);
 
     return (
         <ctx.Provider value={name}>
+            <loginUserId.Provider value={userId}>
             <Fragment>
                 <StyledDiv>
                     <Link to="/"><img src={LOGO_URL} alt="Win:G 로고"/></Link>
                 </StyledDiv>
                 <br/>
                 <BtnStlye>
-                    <LoginButton token={token} login={login} logout={logout}/>
+                    <LoginButton token={token} name={name} login={login} logout={logout}/>
                 </BtnStlye>
                 <br/>
                 <StyledDiv>
@@ -108,8 +116,9 @@ const Menu = () => {
 
                 <Root/>
             </Fragment>
+            </loginUserId.Provider>
         </ctx.Provider>
     )
 };
 
-export default Menu;
+export default withRouter(Menu);

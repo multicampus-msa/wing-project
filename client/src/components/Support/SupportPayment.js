@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import queryString from 'query-string';
 import axios from 'axios';
 import API_URL from "../Constants/API_URL";
+import {loginUserId, ctx} from '../Menu';
 
 import {withRouter} from 'react-router-dom';
 
@@ -37,6 +38,9 @@ function SupportPayment({history, match}) {
     const [buyerEmail,
         setBuyerEmail] = React.useState('');
     const [artist, setArtist] = useState([]);
+
+    const getLoginUserName = useContext(ctx);
+    const getLoginUserId = useContext(loginUserId);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -77,7 +81,7 @@ function SupportPayment({history, match}) {
                 "artistId": artist.artistId,
                 "datetime": String(date.toISOString().substr(0, 10)) + ' ' + String(date.toString().substr(16, 8)),
                 "uid": response.merchant_uid,
-                "userId": "123456789123456789123",
+                "userId": getLoginUserId,
               }).then(history.push(`/support/result?${query}`))
               .catch(err => alert(err));
         } else {
