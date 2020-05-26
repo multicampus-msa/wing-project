@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -17,17 +19,17 @@ public class MusicUpdateRequestDto {
     private String fileUri;
     private int trackNumber;
     private String lyrics;
-    private Set<Long> artistIdList;
+    private List<Long> artistIdList;
 
     @Builder
     public MusicUpdateRequestDto(String musicName, String musicGenre, String fileUri,
-                                 int trackNumber, String lyrics, Set<Long> artistIdList) {
+                                 int trackNumber, String lyrics, List<Long> artistIdList) {
 
         this.musicName = musicName;
         this.musicGenre = musicGenre;
         this.fileUri = fileUri;
         this.trackNumber = trackNumber;
         this.lyrics = lyrics;
-        this.artistIdList = new HashSet<>(artistIdList);
+        this.artistIdList = new ArrayList<>(artistIdList);
     }
 }
