@@ -27,7 +27,6 @@ public class UserRequestDto {
         this.name = name;
         this.imageUri = imageUri;
         this.role =role;
-
     }
 
     public User toEntity(){
