@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     wrapper: {
         display: 'block',
-        width: '1080px',
+        width: '1200px',
         marginLeft: 'auto',
         marginRight: 'auto',
         marginBottom: '10px',
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         justifyContent: 'center',
         display: 'block',
-        height: '200px',
+        height: '300px',
         marginBottom: '100px',
     },
     page: {
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ConcertList = () => {
     const classes = useStyles();
-    const index = [0, 1, 2, 3, 4, 5 ,6 ,7];
+    const index = [0, 1, 2, 3];
 
     
     return (
@@ -56,7 +56,7 @@ const ConcertList = () => {
                 <div className={classes.root}>
                 {
                     index.map((id) => 
-                        <ConcertPoster artistId={id + 1}/>
+                        <ConcertPoster concertId={id + 1}/>
                     )
                 }
                 </div>

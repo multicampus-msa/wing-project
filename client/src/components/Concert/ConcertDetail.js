@@ -2,28 +2,18 @@ import React, {useState, useEffect} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import axios from 'axios';
 import API_URL from "../Constants/API_URL";
-import ConcertLocation from './ConcertLocation';
+import ConcertTab from './ConcertTab';
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     wrapper: {
         display: 'block',
-        width: '1080px',
+        width: '1200px',
         marginLeft: 'auto',
         marginRight: 'auto',
         marginBottom: '10px',
         position: 'relative',
         fontFamily: "NanumSquare",
-    },
-    root: {
-        justifyContent: 'center'
-    },
-    body: {
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginBottom: '10px',
-        textAlign: 'center',
-        width: '1080px',
-        display: 'block',
     },
     title: {
         textAlign: 'center',
@@ -32,22 +22,24 @@ const useStyles = makeStyles((theme) => ({
     line: {
         borderWidth: '2px',
     },
-    video: {
-        margin: '20px 5px',
-        display: 'grid',
-        float: 'left',
+    image: {
+        width: '430px',
+        height: '600px',
+        float: 'left'
     },
-    supportInfo: {
-        width: '360px',
-        height: '350px',
+    concertInfo: {
+        width: '600px',
+        height: '600px',
         display: 'block',
         float: 'left',
-        justifyContent: 'left',
-        margin: '10px 30px',
+        marginLeft: '100px',
+    },
+    tab: {
+        display: 'block'
     },
     infoTitle: {
         fontWeight: 'bold',
-        textAlign: 'left',
+        textAlign: 'center',
         fontSize: '25px',
     },
     infoText: {
@@ -57,19 +49,36 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+
+
 const ConcertDetail = ({match}) => {
-    const [artist, setArtist] = useState([]);
+    const classes = useStyles();
+    const [concert, setConcert] = useState([]);
   
     useEffect(() => {
-      axios.get(API_URL + '/api/artist/' + match.params.artistId)
-        .then(res => setArtist(res.data));
-    })
+      axios.get(API_URL + '/api/concert/' + match.params.concertId)
+        .then(res => setConcert(res.data));
+    }, [match.params.concertId]);
 
     return (
         <>
-            <p>{artist.artistId}</p>
-            <p>{artist.artistName}</p>
-            <ConcertLocation></ConcertLocation>
+            <div className={classes.wrapper}>
+                <h2 className={classes.title}>{concert.concertName}</h2>
+                <hr className={classes.line}/>
+                <img className={classes.image} src={concert.imageUri} alt="공연포스터이미지"/>
+                <div className={classes.concertInfo}>
+                    <p className={classes.infoTitle}>공연날짜</p>
+                    <hr className={classes.line}/>
+                    <p className={classes.infoText}>시작 : {concert.dateStart} ~ 끝 : {concert.dateEnd}</p>
+                    <p className={classes.infoTitle}>공연설명</p>
+                    <hr className={classes.line}/>
+                    <p className={classes.infoText}>{concert.description}</p>
+                    <p>{concert.place}</p>
+                    <Button variant="contained" color="primary" href={concert.ticketUri}>예매하기</Button>
+                </div>
+                <ConcertTab className={classes.tab} place={concert.place}/>
+
+            </div>
         </>
     )
 };
