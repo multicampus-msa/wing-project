@@ -47,7 +47,8 @@ function SupportPayment({history, match}) {
         axios.get(API_URL + "/api/artist/" + match.params.artistId)
           .then(res => setArtist(res.data))
           .catch(err => alert(err))
-    }, [match.params.artistId])
+        setBuyerName(getLoginUserName)
+    }, [match.params.artistId, getLoginUserName])
 
     function handleClick() {
         if (amount === '' || buyerName === '' || buyerTel === '' || buyerEmail === '') {
