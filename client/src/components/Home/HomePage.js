@@ -6,17 +6,25 @@ import Carousel from "react-bootstrap/Carousel";
 const StyledDiv = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 300px);
-  grid-template-rows: repeat(3, 300px);
+  grid-template-rows: 65px 300px 300px;
   justify-content: center;
+
+`
+
+const Title = styled.p`
+  text-align: center;
+  grid-column: 1 / 4;
+  font-family: "NanumSquare", sans-serif;
+  font-size: 33px;
+  color: lightgoldenrodyellow;
+  background: darkgrey;
 
 `
 
 const HomePage = () => {
     return (
         <StyledDiv>
-            <h2>이게마찌~</h2>
-            <h2>이거자나~</h2>
-            <h2>이거라구~</h2>
+            <Title>Win:G는 인디 뮤지션과 팬들을 위한 플랫폼 입니다.</Title>
             <Carousel style={{gridColumn: "1 / 4"}}>
                 <CarouselItem>
                     <img style={{ width: "300px", height: "300px" }}
