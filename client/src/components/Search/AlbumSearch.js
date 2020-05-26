@@ -20,14 +20,12 @@ const useStyles = makeStyles((theme) => ({
         width: '185px',
         minHeight: '110px',
         marginLeft: '18px',
-        marginTop: '5px',
         padding: '0 20px 10px 0',
         display: 'grid',
     },
     wrapperText: {
         display: 'block',
         fontSize: '15px',
-        marginBottom: '3px',
     },
     image: {
         display: 'block',
@@ -37,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     albumName: {
         fontSize: '17px',
         fontWeight: 'bold',
-        marginBottom: '7px',
+        marginBottom: '3px',
     },
 }));
 

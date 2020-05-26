@@ -23,10 +23,12 @@ const BtnStlye = styled.button`
     margin-bottom: 1rem;
 `;
 
-export const ctx = createContext("hello")
+export const ctx = createContext("name")
+export const loginUserId = createContext("userId")
 
 const Menu = () => {
 
+    const [userId, setUserId] = useState(null); 
     const [token, setToken] = useState(null); 
     const [name, setName] = useState("");// 로그인 된 사용자 정보 
     const [auth2, setAuth2] = useState(null);
@@ -55,8 +57,9 @@ const Menu = () => {
             // console.log('Name : '+profile.getName());
             // console.log('Image URL : '+profile.getImageUrl());
             // console.log('Email : '+profile.getEmail());
-            setToken(googleUser.getAuthResponse().id_token);
+            setUserId(profile.getId());
             setName(profile.getName())
+            setToken(googleUser.getAuthResponse().id_token)
             
         })
     }
@@ -92,6 +95,7 @@ const Menu = () => {
 
     return (
         <ctx.Provider value={name}>
+            <loginUserId.Provider value={userId}>
             <Fragment>
                 <StyledDiv>
                     <Link to="/"><img src={LOGO_URL} alt="Win:G 로고"/></Link>
@@ -108,6 +112,7 @@ const Menu = () => {
 
                 <Root/>
             </Fragment>
+            </loginUserId.Provider>
         </ctx.Provider>
     )
 };
