@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,6 +10,9 @@ import Paper from '@material-ui/core/Paper';
 import { Checkbox, Link } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom"
 import styled from "styled-components"
+import axios from 'axios'
+import { loginUserId } from "../Menu";
+import API_URL from "../Constants/API_URL";
 
 const useStyles = makeStyles({
     table: {
@@ -36,14 +39,21 @@ export default function ({ musicList }) {
     const classes = useStyles();
 
     const [checked, setChecked] = useState({})
-
+    const [isResponseOk, setIsResponseOk] = useState(false);
+    const userId = useContext(loginUserId);
 
     useEffect(() => {
-        const initChecked = {}
-        musicList.forEach(music => initChecked[music.musicName] = false)
-        setChecked(initChecked);
-        console.log("렌더링")
-    }, [musicList])
+        axios.get(API_URL + "/api/user/liked/" + userId)
+            .then(res => {
+                setChecked(res.data.musicIdSet);
+                console.log("useEffect 완료")
+            })
+            .then(() => setIsResponseOk(true))
+            .catch(err => {
+                console.log("미로그인 오류")
+        })
+    }, [userId, isResponseOk])
+
 
 
     if (musicList === undefined)
@@ -107,12 +117,18 @@ export default function ({ musicList }) {
                                     </TableCell>
                                     <TableCell align="right">
                                         {
-                                            !checked[row.musicName] ?
+                                            userId == null || (!checked.hasOwnProperty(row.musicId)) ?
                                                 <img
-                                                    onClick={() => setChecked({
-                                                        ...checked,
-                                                        [row.musicName]: !checked[row.musicName]
-                                                    })}
+                                                    onClick={() => {
+                                                        // 좋아요 api post
+                                                        axios.post(API_URL + "/api/user/liked", {
+                                                            musicId: row.musicId,
+                                                            userId: userId
+                                                        }).then(res => {
+                                                            setIsResponseOk(false);
+                                                            console.log(res)
+                                                        })
+                                                    }}
                                                     src="https://icons-for-free.com/iconfiles/png/512/heart-131965017458786724.png"
                                                     alt="like"
                                                     style={{ display: "inline", width: "35px", height: "35px" }}
@@ -120,11 +136,18 @@ export default function ({ musicList }) {
 
                                                 :
                                                 <img
-                                                    onClick={() => setChecked({
-                                                        ...checked,
-                                                        [row.musicName]: !checked[row.musicName]
-                                                    })}
-                                                    src="https://blogfiles.pstatic.net/MjAyMDA1MjBfMTIy/MDAxNTg5OTUyNTc5MTYx.J4EQyrKa1tHbw0-toHO1cqhHJh1g4NOeNBRrRJ8RHDsg.SrQ5zPYyf-N55CrS3o30vV58P9v1yqHxbChLKRHWApUg.PNG.unknown9732/heart.png?type=w2"
+                                                    onClick={() => {
+                                                        axios.delete(API_URL + "/api/user/liked", {
+                                                            data: {
+                                                                musicId: row.musicId,
+                                                                userId: userId
+                                                            }
+                                                        }).then(res => {
+                                                            setIsResponseOk(false);
+                                                            console.log(res)
+                                                        })
+                                                    }}
+                                                    src="heart.png"
                                                     alt="liked"
                                                     style={{ display: "inline", width: "35px", height: "35px" }}
                                                 />
