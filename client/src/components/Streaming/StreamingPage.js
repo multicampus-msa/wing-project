@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from "@material-ui/core/Button";
-import { BrowserRouter, Link, Route } from "react-router-dom";
+import { Switch, Link, Route } from "react-router-dom";
 import Recommend from "./Recommend";
 import StreamingMain from "./StreamingMain";
 import Genre from "./Genre";
@@ -30,7 +30,7 @@ const StyledDiv = styled.div`
 const StreamingPage = () => {
 
     return (
-        <BrowserRouter>
+        <Switch>
             <StyledDiv>
                 <Link style={{gridColumn: "1 / 2"}} to={'/Streaming'}>
                     <Button>최신음악</Button>
@@ -44,14 +44,14 @@ const StreamingPage = () => {
 
                 <div style={{ gridRow: "2 / 3"}}>
                     <Route exact path={'/Streaming/'} component={StreamingMain}/>
-                    <Route path={'/Streaming/recommend'} component={Recommend}/>
+                    <Route exact path={'/Streaming/recommend'} component={Recommend}/>
                     <Route exact path={'/Streaming/genre'} component={Genre}/>
                     <Route exact path={'/Streaming/artist/:id'} component={ArtistDetailPage}/>
                     <Route exact path={'/Streaming/album/:id'} component={AlbumDetailPage}/>
                     <Route exact path={'/Streaming/music/:id'} component={MusicDetailPage}/>
                 </div>
             </StyledDiv>
-        </BrowserRouter>
+        </Switch>
     )
 };
 
