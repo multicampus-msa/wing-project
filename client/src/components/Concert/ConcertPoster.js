@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
     },
     media: {
       height: 0,
-      paddingTop: '100%', 
+      paddingTop: '100%',
+      
     },
     headerTitle: {
       fontSize: '20px',
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ConcertPoster = ({concertId}) => {
   const classes = useStyles();
-  const [concert, setConcert] = useState(null);
+  const [concert, setConcert] = useState({});
 
   useEffect(() => {
     axios.get(API_URL + '/api/concert/' + concertId)
