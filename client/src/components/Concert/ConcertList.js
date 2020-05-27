@@ -19,10 +19,6 @@ const useStyles = makeStyles((theme) => ({
         height: '300px',
         marginBottom: '100px',
     },
-    page: {
-        display: 'grid',
-        justifyContent: 'center',
-    },
     body: {
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -36,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         marginBottom: '10px',
         fontWeight: 'bold',
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
     },
     line: {
         borderWidth: '2px',
