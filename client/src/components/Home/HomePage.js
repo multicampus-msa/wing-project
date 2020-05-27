@@ -11,7 +11,9 @@ const StyledDiv = styled.div`
   grid-template-rows: 200px 45px 450px 60px 450px 200px;
   grid-gap: 1rem;
   justify-content: center;
+  align-items: center;
   font-family: "NanumSquare", sans-serif;
+  
 
   a {
     color: black;

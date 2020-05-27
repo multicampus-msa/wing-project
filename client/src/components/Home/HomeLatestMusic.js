@@ -8,7 +8,8 @@ const LatestMusicTitleDiv = styled.div`
   grid-row: 2;
   grid-column: 1;
   border-bottom: 1px solid darkgrey;
-  font-size: 23px;
+  font-size: 25px;
+  background: whitesmoke;
 `
 
 const CarouselDiv = styled.div`

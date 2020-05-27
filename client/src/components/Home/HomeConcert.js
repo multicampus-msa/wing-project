@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const TitleDiv = styled.div`
   margin-top: 1rem;
   grid-row: 4;
   grid-column: 2;
   border-bottom: 1px solid darkgrey;
-  font-size: 23px;
+  font-size: 25px;
+  background: whitesmoke;
 `
 
 const ConcertSampleDiv = styled.div`
@@ -19,7 +21,7 @@ const ConcertSampleDiv = styled.div`
 const HomeConcert = () => {
     return (
         <>
-            <TitleDiv>공연 정보</TitleDiv>
+            <TitleDiv><Link to={"/concert"}>공연 정보</Link></TitleDiv>
             <ConcertSampleDiv>공연 콘텐츠</ConcertSampleDiv>
         </>
     )
