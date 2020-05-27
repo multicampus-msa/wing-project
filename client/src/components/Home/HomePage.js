@@ -8,11 +8,12 @@ import HomeConcert from "./HomeConcert";
 const StyledDiv = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 450px);
-  grid-template-rows: 200px 45px 450px 60px 450px 200px;
-  grid-gap: 1rem;
+  grid-template-rows: 100px 45px 450px 60px 450px 200px;
+  grid-gap: 1rem 5rem;
   justify-content: center;
   align-items: center;
   font-family: "NanumSquare", sans-serif;
+  font-weight: bold;
   
 
   a {
@@ -32,6 +33,8 @@ const StyledDiv = styled.div`
 `
 
 const Title = styled.p`
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   text-align: center;
   grid-column: 1 / 3;
   font-size: 29px;
@@ -50,7 +53,7 @@ const Footer = styled.div`
 const HomePage = () => {
     return (
         <StyledDiv>
-            <Title>Win:G는 인디 아티스트들을 위한 플랫폼 입니다.이미지로 때우기 </Title>
+            <Title>Win:G는 인디 아티스트들을 위한 플랫폼 입니다.</Title>
             <HomeLatestMusic/>
             <HomeSupport/>
             <HomeLive/>
