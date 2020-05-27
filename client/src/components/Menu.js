@@ -19,9 +19,9 @@ const StyledDiv = styled.div`
 `;
 
 // todo : 로그인 버튼 위치 수정 필요
-const BtnStlye = styled.button`
-    margin-left: 70rem;
-    margin-bottom: 1rem;
+const BtnStlye = styled.div`
+    margin-left: 88rem;
+    margin-bottom: -1rem;
 `;
 
 const Menu = ({history}) => {
