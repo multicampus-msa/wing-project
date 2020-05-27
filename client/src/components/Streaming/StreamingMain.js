@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import axios from "axios";
 import API_URL from "../Constants/API_URL";
 import MusicTable from "./MusicTable";
-import { ctx } from "../Menu";
+import UserContext from "../Context/UserContext";
 
 const StyledDiv = styled.div`
   display: grid;
@@ -20,7 +20,7 @@ const StreamingMain = () => {
 
     const [isResponseOk, setIsResponseOk] = useState(false);
     const [recommendObject, setRecommendObject] = useState([]);
-    const getCtx = useContext(ctx)
+    const userState = useContext(UserContext);
 
     useEffect(() => {
         axios.get(API_URL + "/api/music/name=")
@@ -38,7 +38,7 @@ const StreamingMain = () => {
     return (
         <div style={{ gridRow: "1 / 4", gridColumn: "2 / 8", fontFamily: "NanumBarunGothic" }}>
             <StyledDiv>
-                <p style={{ fontSize: "29px", borderBottom: "1px solid", borderColor: "#c2c2c2", gridColumn: "1 / 7"}}>{getCtx} 님에게 추천하는 따끈따끈한 최신 추천 음악</p>
+                <p style={{ fontSize: "29px", borderBottom: "1px solid", borderColor: "#c2c2c2", gridColumn: "1 / 7"}}>{userState.name} 님에게 추천하는 따끈따끈한 최신 추천 음악</p>
                 <Carousel interval={4000} style={{ gridColumn: "1 / 7" }}>
                     <Carousel.Item>
                         <img style={{ width: "300px", height: "300px" }}
