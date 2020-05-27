@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import wing.api.domain.concert.Concert;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -18,10 +20,11 @@ public class ConcertSaveRequestDto {
     private String place;
     private String imageUri;
     private String description;
+    private List<Long> artistIdList;
 
     @Builder
     public ConcertSaveRequestDto(String concertName, LocalDateTime dateStart, LocalDateTime dateEnd,
-                   String ticketUri, String place, String imageUri, String description) {
+                   String ticketUri, String place, String imageUri, String description, List<Long> artistIdList) {
         this.concertName = concertName;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
@@ -29,6 +32,7 @@ public class ConcertSaveRequestDto {
         this.place = place;
         this.imageUri = imageUri;
         this.description = description;
+        this.artistIdList = new ArrayList<>(artistIdList);
     }
 
     public Concert toEntity() {

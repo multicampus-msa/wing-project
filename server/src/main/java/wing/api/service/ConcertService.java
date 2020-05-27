@@ -3,8 +3,11 @@ package wing.api.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import wing.api.domain.artist.Artist;
+import wing.api.domain.artist.ArtistRepository;
 import wing.api.domain.concert.Concert;
 import wing.api.domain.concert.ConcertRepository;
+import wing.api.domain.concertArtists.ConcertArtists;
 import wing.api.web.dto.concert.ConcertResponseDto;
 import wing.api.web.dto.concert.ConcertSaveRequestDto;
 import wing.api.web.dto.concert.ConcertUpdateRequestDto;
@@ -16,11 +19,32 @@ import java.util.List;
 @Service
 public class ConcertService {
 
+    private final ArtistRepository artistRepository;
     private final ConcertRepository concertRepository;
+    private final ConcertArtistsService concertArtistsService;
 
     @Transactional
     public Long save(ConcertSaveRequestDto requestDto) {
-        return concertRepository.save(requestDto.toEntity()).getConcertId();
+
+        Concert concert = requestDto.toEntity();
+
+        for (Long artistId : requestDto.getArtistIdList()) {
+            Artist artist = artistRepository.findById(artistId)
+                    .orElseThrow(() -> new IllegalArgumentException("해당 아티스트 없음"));
+
+
+            System.out.println("전이다");
+            System.out.println(artist.getConcertList());
+            System.out.println(concert.getArtistsList());
+            concertArtistsService.save(concert, artist);
+            concertRepository.save(concert);
+            artistRepository.save(artist);
+            System.out.println("저장했다");
+            System.out.println(concert.getArtistsList());
+            System.out.println(artist.getConcertList());
+        }
+
+        return concert.getConcertId();
     }
 
     @Transactional

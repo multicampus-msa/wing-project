@@ -1,8 +1,6 @@
 package wing.api.web.dto.user;
 
 import lombok.Getter;
-import wing.api.domain.artist.Artist;
-import wing.api.domain.music.Music;
 import wing.api.domain.musicInfo.MusicInfo;
 import wing.api.domain.user.User;
 import wing.api.domain.userLiked.UserLikedMusic;
