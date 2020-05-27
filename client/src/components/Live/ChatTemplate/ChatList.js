@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import socketio from 'socket.io-client'; 
 
-const socket = socketio.connect('http://localhost:3001'); 
+const socket = socketio.connect('http://localhost:3001');
 
 
 class ChatList extends Component {
@@ -14,6 +14,7 @@ class ChatList extends Component {
     }
 
     componentDidMount(){
+        socket.emit('joinRoom', {roomName: this.props.playUrl});
         socket.on('message', (data) =>{
             const logs2 = this.state.logs; 
             data.key = 'key_' + (this.state.logs.length+1); 
@@ -27,7 +28,7 @@ class ChatList extends Component {
 
         const messages = this.state.logs.map(e=>(
             <div key={e.key} >
-                <img alt="user icon"src = "man.png"  width="25px" height="25px" style={{marginLeft:'5px'}}/>
+                <img alt="user icon" src = "man.png"  width="25px" height="25px" style={{marginLeft:'5px'}}/>
                 <span style={{color : '#819FF7' , fontWeight : 'bold' }} > {e.name} </span>
                 <span>     { e.message } </span>
                 <p style={{clear:'both'}} />

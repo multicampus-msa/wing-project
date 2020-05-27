@@ -42,7 +42,7 @@ class BestLive extends Component {
                 {playFlag ? ( //선택한 영상이 있을 경우 react-player 실행 
                     <div style= {{ display : 'flex'}}>
                         <VideoPlayer playUrl={this.state.playUrl} />
-                        <ChatBar />
+                        <ChatBar playUrl={this.state.playUrl} />
                     </div>
                 ) : 
                     (<BestVideoList     // 선택한 영상이 없을 경우 목록 보여주는 컴포넌트 실행 
