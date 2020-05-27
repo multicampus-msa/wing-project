@@ -19,7 +19,7 @@ public class ConcertController {
 
     private final ConcertService concertService;
 
-    @ApiOperation(value = "콘서트 조회", notes = "기본 키 (consert_id)로 조회")
+    @ApiOperation(value = "콘서트 조회", notes = "기본 키 (concert_id)로 조회")
     @GetMapping("/api/concert/{id}")
     private ConcertResponseDto findById(@PathVariable("id") Long id) {
         return concertService.findById(id);

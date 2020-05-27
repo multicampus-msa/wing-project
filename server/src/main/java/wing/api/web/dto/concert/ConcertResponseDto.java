@@ -5,13 +5,11 @@ import lombok.Getter;
 import wing.api.domain.album.Album;
 import wing.api.domain.artist.Artist;
 import wing.api.domain.concert.Concert;
+import wing.api.domain.concertArtists.ConcertArtists;
 import wing.api.domain.music.Music;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 public class ConcertResponseDto {
@@ -24,7 +22,7 @@ public class ConcertResponseDto {
     private final String place;
     private final String imageUri;
     private final String description;
-//    private final Set<Map<String, String>> artistList;
+    private final List<Map<String, String>> artistList;
 
     public ConcertResponseDto(Concert entity) {
         this.concertId = entity.getConcertId();
@@ -36,14 +34,13 @@ public class ConcertResponseDto {
         this.imageUri = entity.getImageUri();
         this.description = entity.getDescription();
 
-//        this.artistList = new HashSet<>();
-//        for(Artist artist : entity.getArtistsList()) {
-//            Map<String, String> artistObj = new HashMap<>();
-//            artistObj.put("artistId", artist.getArtistId().toString());
-//            artistObj.put("artistName", artist.getArtistName());
-//            artistList.add(artistObj);
-//        }
+        this.artistList = new ArrayList<>();
+        for(ConcertArtists concertArtists : entity.getArtistsList()) {
+            Map<String, String> artistObj = new HashMap<>();
+            artistObj.put("artistId", concertArtists.getArtist().getArtistId().toString());
+            artistObj.put("artistName", concertArtists.getArtist().getArtistName());
+            artistObj.put("imageUri", concertArtists.getArtist().getImageUri());
+            artistList.add(artistObj);
+        }
     }
-
-
 }
