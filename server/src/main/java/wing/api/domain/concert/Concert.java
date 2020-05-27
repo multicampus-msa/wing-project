@@ -4,10 +4,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import wing.api.domain.artist.Artist;
+import wing.api.domain.concertArtists.ConcertArtists;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -27,8 +30,8 @@ public class Concert {
     private String imageUri;
     private String description;
 
-//    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
-//    Set<Artist> artistsList = new HashSet<>();
+    @OneToMany(mappedBy = "concert", cascade = CascadeType.ALL)
+    List<ConcertArtists> artistsList = new ArrayList<>();
 
     @Builder
     public Concert(String concertName, LocalDateTime dateStart, LocalDateTime dateEnd,

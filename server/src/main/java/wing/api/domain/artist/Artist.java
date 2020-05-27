@@ -3,12 +3,14 @@ package wing.api.domain.artist;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import wing.api.domain.concertArtists.ConcertArtists;
 import wing.api.domain.musicInfo.MusicInfo;
 import wing.api.domain.transactionData.TransactionData;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -37,6 +39,9 @@ public class Artist {
 
     @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
     Set<TransactionData> dataSet = new HashSet<>();
+
+    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
+    List<ConcertArtists> concertList;
 
 
     @Builder

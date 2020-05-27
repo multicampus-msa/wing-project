@@ -1,8 +1,6 @@
 package wing.api.web.dto.user;
 
 import lombok.Getter;
-import wing.api.domain.artist.Artist;
-import wing.api.domain.music.Music;
 import wing.api.domain.musicInfo.MusicInfo;
 import wing.api.domain.user.User;
 import wing.api.domain.userLiked.UserLikedMusic;
@@ -16,7 +14,7 @@ import java.util.Set;
 public class UserLikedMusicResponseDto {
 
     private final Set<Map<String, String>> musicSet;
-    private final Map<Long, Long> musicIdSet;;
+    private final Map<Long, Long> musicIdSet;
 
     public UserLikedMusicResponseDto(User entity) {
 
@@ -27,6 +25,7 @@ public class UserLikedMusicResponseDto {
             Map<String, String> musicObj = new HashMap<>();
             musicObj.put("musicId", likedMusic.getMusic().getMusicId().toString());
             musicObj.put("musicName", likedMusic.getMusic().getMusicName());
+            musicObj.put("fileUri",likedMusic.getMusic().getFileUri());
 
             for (MusicInfo info : likedMusic.getMusic().getInfos()) {
                 musicObj.put("artistId", info.getArtist().getArtistId().toString());
