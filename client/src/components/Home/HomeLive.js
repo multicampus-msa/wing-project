@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const TitleDiv = styled.div`
-  margin-top: 1rem;
+  margin-top: 2rem;
+  background: linear-gradient( to right, whitesmoke, white);
   grid-row: 4;  
   grid-column: 1;
   border-bottom: 1px solid darkgrey;
-  font-size: 23px;
+  font-size: 25px;
 `
 
 const LiveSampleDiv = styled.div`
@@ -20,10 +22,13 @@ const HomeLive = () => {
     return (
         <>
             <TitleDiv>
-                Live Now!
+                <Link to={"/live"}>> Live Now!</Link>
             </TitleDiv>
             <LiveSampleDiv>
-                라이브 콘텐츠
+                {/* eslint-disable-next-line jsx-a11y/iframe-has-title */}
+                <iframe width="450" height="450" src="https://www.youtube.com/embed/L-tuKezAciU" frameBorder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen/>
             </LiveSampleDiv>
         </>
     )

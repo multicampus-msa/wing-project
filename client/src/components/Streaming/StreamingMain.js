@@ -58,7 +58,7 @@ const StreamingMain = () => {
                     <Carousel.Item>
                         <img style={{ width: "300px", height: "300px" }}
                              alt="test"
-                             src="https://lh3.googleusercontent.com/proxy/V0ho6dA75yXlryz_x4Qp6jF1hAF5L0x_EmzTq3rAJ8mMPzPGeaX-zwvXb5kHNXnqLtb4wlt6sThPXcgpdmYBBdwCvD26g5rQKiLZNJhhyi6_8Nlzpnq7fBCfx9I9Dqs"/>
+                             src="http://image.xportsnews.com/contents/images/upload/article/2013/0724/1374660073655.jpg"/>
                         <img style={{ width: "300px", height: "300px" }}
                              alt="test"
                              src="https://img.hani.co.kr/imgdb/resize/2017/0317/148964211022_20170317.JPG"/>

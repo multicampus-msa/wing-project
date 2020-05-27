@@ -8,7 +8,8 @@ const LatestMusicTitleDiv = styled.div`
   grid-row: 2;
   grid-column: 1;
   border-bottom: 1px solid darkgrey;
-  font-size: 23px;
+  font-size: 25px;
+  background: linear-gradient( to right, whitesmoke, white);
 `
 
 const CarouselDiv = styled.div`
@@ -19,7 +20,7 @@ const CarouselDiv = styled.div`
 const HomeLatestMusic = () => {
     return (
         <>
-            <LatestMusicTitleDiv><Link to={"/streaming/"}>최신음악</Link></LatestMusicTitleDiv>
+            <LatestMusicTitleDiv><Link to={"/streaming/"}>> 최신음악</Link></LatestMusicTitleDiv>
             <CarouselDiv>
                 <Carousel>
                     <CarouselItem>
@@ -27,7 +28,7 @@ const HomeLatestMusic = () => {
                             <div className="image">
                                 <img style={{ width: "450px", height: "450px" }}
                                      alt="test"
-                                     src="weare.png"/>
+                                     src="fantasy.png"/>
                             </div>
                         </Link>
                     </CarouselItem>
