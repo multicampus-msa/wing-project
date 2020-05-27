@@ -1,21 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {MdSend} from 'react-icons/md';
 import {Button} from 'reactstrap'; 
 import socketio from 'socket.io-client'; 
 
-const ChatInput = () => {
+const ChatInput = ({playUrl}) => {
     const [name, setName] = useState(''); 
     const [value, setValue] = useState(''); 
-    const socket = socketio.connect('http://localhost:3001'); 
+    const socket = socketio.connect('http://localhost:3001');
+    
+    useEffect(() => {
+        socket.emit('joinRoom', {roomName: playUrl});
+    },[playUrl])
 
     const handleName = (e) => {
         setName(e.target.value); 
     }
-
+    
     const handleChange = (e) =>{ // input 창 입력 변화 이벤트 처리 
         setValue(e.target.value); 
     }
-
+    
     const handleClick = () => { // 보내기 버튼 클릭 시 이벤트 처리 
         console.log(value); 
         socket.emit('message', {name : name, message : value}); 
