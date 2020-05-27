@@ -11,8 +11,8 @@ import { Checkbox, Link } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom"
 import styled from "styled-components"
 import axios from 'axios'
-import { loginUserId } from "../Menu";
 import API_URL from "../Constants/API_URL";
+import UserContext from "../Context/UserContext";
 
 const useStyles = makeStyles({
     table: {
@@ -40,10 +40,10 @@ export default function ({ musicList }) {
 
     const [checked, setChecked] = useState({})
     const [isResponseOk, setIsResponseOk] = useState(false);
-    const userId = useContext(loginUserId);
+    const userState = useContext(UserContext);
 
     useEffect(() => {
-        axios.get(API_URL + "/api/user/liked/" + userId)
+        axios.get(API_URL + "/api/user/liked/" + userState.userId)
             .then(res => {
                 setChecked(res.data.musicIdSet);
                 console.log("useEffect 완료")
@@ -52,7 +52,7 @@ export default function ({ musicList }) {
             .catch(err => {
                 console.log("미로그인 오류")
         })
-    }, [userId, isResponseOk])
+    }, [userState.userId, isResponseOk])
 
 
 
@@ -117,13 +117,13 @@ export default function ({ musicList }) {
                                     </TableCell>
                                     <TableCell align="right">
                                         {
-                                            userId == null || (!checked.hasOwnProperty(row.musicId)) ?
+                                            userState.userId == null || (!checked.hasOwnProperty(row.musicId)) ?
                                                 <img
                                                     onClick={() => {
                                                         // 좋아요 api post
                                                         axios.post(API_URL + "/api/user/liked", {
                                                             musicId: row.musicId,
-                                                            userId: userId
+                                                            userId: userState.userId
                                                         }).then(res => {
                                                             setIsResponseOk(false);
                                                             console.log(res)
@@ -140,7 +140,7 @@ export default function ({ musicList }) {
                                                         axios.delete(API_URL + "/api/user/liked", {
                                                             data: {
                                                                 musicId: row.musicId,
-                                                                userId: userId
+                                                                userId: userState.userId
                                                             }
                                                         }).then(res => {
                                                             setIsResponseOk(false);

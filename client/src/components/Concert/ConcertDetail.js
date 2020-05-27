@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import {makeStyles ,withStyles} from '@material-ui/core/styles';
 import axios from 'axios';
 import API_URL from "../Constants/API_URL";
 import ConcertTab from './ConcertTab';
 import { Button } from '@material-ui/core';
+import {purple } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
     wrapper: {
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
     concertInfo: {
         width: '600px',
-        height: '600px',
+        height: '520px',
         display: 'block',
         float: 'left',
         marginLeft: '100px',
@@ -46,19 +47,42 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'left',
         fontSize: '21px',
         padding: '0px 5px',
-    }
+    },
+    button: {
+        float: 'right',
+        
+    },
+    margin: {
+        margin: theme.spacing(1),
+        fontWeight: 'bold',
+        fontFamily: "NanumSquare",
+        fontSize: '20px',
+    },
 }));
 
+const ColorButton = withStyles((theme) => ({
+    root: {
+      color: theme.palette.getContrastText(purple[200]),
+      backgroundColor: purple[200],
+      size: 'large',
+      '&:hover': {
+        backgroundColor: purple[300],
+        transform: 'scale(1.03)',
+      },
+    },
+}))(Button);
 
 
 const ConcertDetail = ({match}) => {
     const classes = useStyles();
-    const [concert, setConcert] = useState([]);
+    const [concert, setConcert] = useState({});
+
   
     useEffect(() => {
       axios.get(API_URL + '/api/concert/' + match.params.concertId)
         .then(res => setConcert(res.data));
     }, [match.params.concertId]);
+
 
     return (
         <>
@@ -73,10 +97,15 @@ const ConcertDetail = ({match}) => {
                     <p className={classes.infoTitle}>공연설명</p>
                     <hr className={classes.line}/>
                     <p className={classes.infoText}>{concert.description}</p>
-                    <p>{concert.place}</p>
-                    <Button variant="contained" color="primary" href={concert.ticketUri}>예매하기</Button>
+                    <p></p>
                 </div>
-                <ConcertTab className={classes.tab} place={concert.place}/>
+                    <div className={classes.button}>
+                        <ColorButton size="large" variant="contained" color="secondary" className={classes.margin} href={concert.ticketUri}>
+                            예매하기
+                        </ColorButton>
+                    </div>
+                <ConcertTab className={classes.tab} place={concert.place} artistList={concert.artistList} />
+
 
             </div>
         </>

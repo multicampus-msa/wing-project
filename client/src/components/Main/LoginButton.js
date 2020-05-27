@@ -3,8 +3,6 @@ import { Button, withStyles } from "@material-ui/core";
 import axios from 'axios';
 import { Link } from "react-router-dom";
 
-import { ctx } from '../Menu'
-
 const StyledButton = withStyles({
     root: {
         justifyContent: 'center',
@@ -23,7 +21,6 @@ const StyledButton = withStyles({
 })(Button);
 
 const LoginButton = ({ token, name, login, logout }) => {
-    const getCtx = useContext(ctx)      
     return(
         <>
         {token ? 

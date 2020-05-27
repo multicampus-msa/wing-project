@@ -6,9 +6,9 @@ import styled from 'styled-components';
 import queryString from 'query-string';
 import axios from 'axios';
 import API_URL from "../Constants/API_URL";
-import {loginUserId, ctx} from '../Menu';
 
 import {withRouter} from 'react-router-dom';
+import UserContext from "../Context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -39,16 +39,16 @@ function SupportPayment({history, match}) {
         setBuyerEmail] = React.useState('');
     const [artist, setArtist] = useState([]);
 
-    const getLoginUserName = useContext(ctx);
-    const getLoginUserId = useContext(loginUserId);
+    const userState = useContext(UserContext);
 
     useEffect(() => {
         window.scrollTo(0, 0);
         axios.get(API_URL + "/api/artist/" + match.params.artistId)
           .then(res => setArtist(res.data))
           .catch(err => alert(err))
-        setBuyerName(getLoginUserName)
-    }, [match.params.artistId, getLoginUserName])
+        setBuyerName(userState.name)
+        setBuyerEmail(userState.email)
+    }, [match.params.artistId, userState.name])
 
     function handleClick() {
         if (amount === '' || buyerName === '' || buyerTel === '' || buyerEmail === '') {
@@ -82,7 +82,7 @@ function SupportPayment({history, match}) {
                 "artistId": artist.artistId,
                 "datetime": String(date.toISOString().substr(0, 10)) + ' ' + String(date.toString().substr(16, 8)),
                 "uid": response.merchant_uid,
-                "userId": getLoginUserId,
+                "userId": userState.userId,
               }).then(history.push(`/support/result?${query}`))
               .catch(err => alert(err));
         } else {

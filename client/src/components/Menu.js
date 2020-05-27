@@ -8,6 +8,7 @@ import axios from 'axios'
 import LOGO_URL from "./Constants/LOGO_URL";
 import LoginButton from './Main/LoginButton';
 import Root from './Root'
+import UserContext from "./Context/UserContext";
 
 
 const StyledDiv = styled.div`
@@ -23,16 +24,18 @@ const BtnStlye = styled.button`
     margin-bottom: 1rem;
 `;
 
-export const ctx = createContext("name")
-export const loginUserId = createContext("userId")
-
 const Menu = ({history}) => {
 
     const [userId, setUserId] = useState(null); 
     const [token, setToken] = useState(null); 
     const [name, setName] = useState("");// 로그인 된 사용자 정보 
     const [auth2, setAuth2] = useState(null);
-    
+    const [userState, setUserState] = useState({
+        userId: "",
+        name: "",
+        email: ""
+    })
+
     const login=()=>{
         auth2.signIn().then(googleUser=>{
             let profile = googleUser.getBasicProfile();           
@@ -43,6 +46,14 @@ const Menu = ({history}) => {
                 imageUri: profile.getImageUrl(),
                 role: "USER",
             }
+
+            setUserState({
+                ...userState,
+                userId: profile.getId(),
+                name: profile.getName(),
+                email: profile.getEmail()
+            })
+
             const targetUrl = 'http://localhost:8080/api/user/save'
             console.log(data);
             axios.post(targetUrl, data)
@@ -98,8 +109,7 @@ const Menu = ({history}) => {
     },[token]);
 
     return (
-        <ctx.Provider value={name}>
-            <loginUserId.Provider value={userId}>
+        <UserContext.Provider value={userState}>
             <Fragment>
                 <StyledDiv>
                     <Link to="/"><img src={LOGO_URL} alt="Win:G 로고"/></Link>
@@ -113,11 +123,9 @@ const Menu = ({history}) => {
                     <MenuButtons />
                 </StyledDiv>
                 <hr/>
-
                 <Root/>
             </Fragment>
-            </loginUserId.Provider>
-        </ctx.Provider>
+        </UserContext.Provider>
     )
 };
 
