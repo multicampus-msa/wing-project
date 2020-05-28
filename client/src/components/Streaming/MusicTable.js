@@ -37,7 +37,6 @@ const ButtonDiv = styled.div`
 
 export default function ({ musicList }) {
     const classes = useStyles();
-
     const [checked, setChecked] = useState({})
     const [riseUseEffect, setRiseUseEffect] = useState(false);
     const userState = useContext(UserContext);
@@ -93,6 +92,7 @@ export default function ({ musicList }) {
                         <TableRow>
                             <TableCell padding="checkbox"><Checkbox/></TableCell>
                             <TableCell>곡정보</TableCell>
+                            <TableCell>아티스트</TableCell>
                             <TableCell align="right">좋아요</TableCell>
                             <TableCell align="right">다운</TableCell>
                         </TableRow>
@@ -113,6 +113,9 @@ export default function ({ musicList }) {
                                         <Link href={row.fileUri} style={{ color: "black" }}>
                                             {row.musicName}
                                         </Link>
+                                    </TableCell>
+                                    <TableCell>
+                                        {row.artistName ? row.artistName : row.artistList[0].artistName}
                                     </TableCell>
                                     <TableCell align="right">
                                         {
