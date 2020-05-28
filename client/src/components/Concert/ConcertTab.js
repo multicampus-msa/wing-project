@@ -8,6 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import ConcertLocation from './ConcertLocation';
 import { Link } from "react-router-dom";
+import Avatar from '@material-ui/core/Avatar';
+import { LocationOn, Person, Warning } from '@material-ui/icons';
+
 
 
 function TabPanel(props) {
@@ -46,38 +49,57 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
   },
   title: {
     fontSize: '20px',
     fontFamily: "NanumSquare",
+    backgroundColor: '#fafafa',
+    color: 'black',
   },
   box: {
     width: '1200px',
     height: '500px'
   },
   image: {
-    width: '400px',
-    height: '400px',
-    display: 'block',
+    width: theme.spacing(30),
+    height: theme.spacing(30),
+    display: 'flex',
     float: 'left',
     marginLeft: '100px',
+    marginBottom: '20px',
     '&:hover': {
       transform: 'scale(1.05)',
-    }
+    },
+    '& > *': {
+      margin: theme.spacing(1),
+    },
   },
   name: {
+    height: '250px',
     fontSize: '30px',
     fontWeight: 'bold',
     fontFamily: 'NanumSquare',
     float: "left",
     marginLeft: '100px',
-    marginTop: 'auto',
+    marginTop: '50px',
     display: 'block',
     color: 'black',
     '&:hover': {
       transform: 'scale(1.05)',
     }
+  },
+  info: {
+    marginTop: '20px',
+    display: 'block',
+    fontSize: '20px',
+    fontFamily: "NanumSquare",
+    float: 'left',
+    marginLeft: '50px',
+  },
+  place: {
+    fontWeight: 'bold',
+    fontSize: '18px',
+    fontFamily: 'NanumSquare',
   }
 }));
 
@@ -85,21 +107,18 @@ const ConcertTab = ({place, artistList}) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
 
-  console.log(artistList);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  
 
     return (
       <div className={classes.root}>
         <AppBar position="static">
           <Tabs variant="fullWidth" value={value} onChange={handleChange} aria-label="simple tabs example" centered>
-            <Tab className={classes.title} label="아티스트 정보" {...a11yProps(0)} />
-            <Tab className={classes.title} label="공연장 위치" {...a11yProps(1)} />
-            <Tab className={classes.title} label="예매시 주의사항" {...a11yProps(2)} />
+            <Tab className={classes.title} icon={<Person />} label="아티스트 정보" {...a11yProps(0)} />
+            <Tab className={classes.title} icon={<LocationOn />} label="공연장 위치" {...a11yProps(1)} />
+            <Tab className={classes.title} icon={<Warning />} label="예매시 주의사항" {...a11yProps(2)} />
           </Tabs>
         </AppBar>
         <TabPanel className={classes.box} value={value} index={0}>
@@ -108,11 +127,12 @@ const ConcertTab = ({place, artistList}) => {
               return (
                 <>
                   <Link to={"/streaming/artist/" + artist.artistId}>
-                    <img className={classes.image} src={artist.imageUri} alt="아타스트이미지"/>
+                    <Avatar className={classes.image} src={artist.imageUri} alt="아티스트이미지"/>
                   </Link>
                   <Link to={"/streaming/artist/" + artist.artistId}>
                     <div className={classes.name}>{artist.artistName}</div>
-                  </Link>
+                  </Link>                  
+                  <div className={classes.info}>{artist.description}</div>
                 </>
               )
             }))
@@ -123,7 +143,7 @@ const ConcertTab = ({place, artistList}) => {
 
         </TabPanel>
         <TabPanel value={value} index={1}>
-          {place}
+          <p className={classes.place}>공연장 : {place}</p>
           <ConcertLocation place={place}/>
         </TabPanel>
         <TabPanel className={classes.box} value={value} index={2}>
@@ -142,6 +162,22 @@ const ConcertTab = ({place, artistList}) => {
           - 일괄배송의 경우 공연 별로 배송일자가 상이하며 지정된 배송일자 기준으로 배송이 시작됩니다. (지정된 배송일자는 상세정보 및 예매공지사항에서 확인할 수 있습니다.)
           <br></br>
           - 지역 및 배송서비스 사정에 따라 배송사가 변경될 수 있으며, 배송일이 추가적으로 소요될 수 있습니다. (CJ대한통운, 우체국 외 1개 업체)
+          </p>
+          <h5>취소/환불 안내</h5>
+          <p>
+          - 취소마감시간 이후 또는 관람일 당일 예매하신 건에 대해서는 취소/변경/환불이 불가합니다.
+          <br></br>
+          - 예매수수료는 예매 당일 밤 12시 이전까지 취소 시 환불 가능합니다.
+          <br></br>
+          - 배송이 시작된 경우 취소마감시간 이전까지 멜론티켓 고객센터로 티켓을 반환해주셔야 환불이 가능하며, 도착한 일자 기준으로 취소수수료가 부과됩니다.
+          (* 단, 반환된 티켓의 배송료는 환불되지 않으며 일괄배송 상품의 경우 취소에 대한 자세한 문의는 고객센터로 문의해 주시기 바랍니다.)
+          <br></br>
+          - 예매취소 시점과 결제 시 사용하신 신용카드사의 환불 처리기준에 따라 취소금액의 환급방법과 환급일은 다소 차이가 있을 수 있습니다.
+          <br></br>
+          - 티켓 부분 취소 시 신용카드 할부 결제는 티켓 예매 시점으로 적용됩니다. (무이자할부 행사기간이 지날 경우 혜택 받지 못하실 수 있으니 유의하시기 바랍니다. )
+          <br></br>
+          - 취소일자에 따라 아래와 같이 취소수수료가 부과됩니다.
+          (예매 후 7일 이내라도 취소시점이 관람일로부터 10일 이내라면 관람일 기준의 취소수수료가 부과됩니다.)
           </p>
         </TabPanel>
       </div>
