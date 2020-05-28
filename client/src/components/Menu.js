@@ -162,17 +162,22 @@ const Menu = ({ history }) => {
 
                     <div className="avatar">
                         {
-                            token ? <Avatar alt="Remy Sharp" src={userState.imageUrl}/>
-                                : <p> </p>
+                            token ?
+                                <>
+                                    <Link to={"/mypage/" + userState.name}>
+                                        <Avatar alt="Remy Sharp" src={userState.imageUrl}/>
+                                    </Link>
+                                </>
+                                : <p></p>
                         }
                     </div>
 
                     <div className="hello">
-                        {token ? <p>안녕하세요 </p> : <p> </p>}
+                        {token ? <p>안녕하세요 </p> : <p></p>}
                     </div>
 
                     <div className="userName">
-                        {token ? <p>{userState.name} 님^^</p> : <p> </p>}
+                        {token ? <p>{userState.name} 님^^</p> : <p></p>}
                     </div>
 
                     <div className="loginButton">
