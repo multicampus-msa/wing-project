@@ -19,7 +19,7 @@ public class AlbumResponseDto {
     private final Date date;
     private final String imageUri;
     private final String description;
-    private final Set<Map<String, String>> musicList;
+    private final Set<Map<Object, Object>> musicList;
     private final Set<Map<String, String>> artistList;
 
     public AlbumResponseDto(Album entity) {
@@ -32,13 +32,24 @@ public class AlbumResponseDto {
         this.imageUri = entity.getImageUri();
         this.description = entity.getDescription();
 
-        this.musicList = new HashSet<>();
+        this.musicList = new HashSet<Map<Object, Object>>();
         for(Music music : entity.getMusicList()) {
-            Map<String, String> musicObj = new HashMap<>();
+            Map<Object, Object> musicObj = new HashMap<>();
             musicObj.put("musicId", music.getMusicId().toString());
             musicObj.put("musicName", music.getMusicName());
             musicObj.put("fileUri", music.getFileUri());
-            musicObj.put("trackNumber", Integer.toString(music.getTrackNumber()));
+            musicObj.put("trackNumber", music.getTrackNumber());
+
+            Set<Object> artistList = new HashSet<>();
+
+            for (MusicInfo info : music.getInfos()) {
+                Map<Object, Object> artistObj = new HashMap<>();
+                artistObj.put("artistId", info.getArtist().getArtistId());
+                artistObj.put("artistName", info.getArtist().getArtistName());
+                artistList.add(artistObj);
+            }
+
+            musicObj.put("artistList", artistList);
             musicList.add(musicObj);
         }
 
