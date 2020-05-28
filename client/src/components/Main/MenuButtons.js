@@ -25,7 +25,8 @@ const MenuButtons = () => {
 
     useEffect(() => {
         onClick()
-    }, [])
+        console.log("버튼 렌더링")
+    }, [window.location.pathname])
 
     const onClick = (idx) => {
         if (idx !== undefined) {
@@ -37,11 +38,11 @@ const MenuButtons = () => {
         if (window.location.pathname === "/" || window.location.pathname === "/home" || window.location.pathname === "/Home") {
             setColorSwitch([1,0,0,0,0])
         }
-        else if (window.location.pathname === "/Streaming" || window.location.pathname === "/streaming") {
+        else if (window.location.pathname.startsWith("/Streaming") || window.location.pathname.startsWith("/streaming")) {
             setColorSwitch([0,1,0,0,0])
         }
 
-        else if (window.location.pathname === "/Live" || window.location.pathname === "/live") {
+        else if (window.location.pathname.startsWith("/Live") || window.location.pathname.startsWith("/live")) {
             setColorSwitch([0,0,1,0,0])
         }
         else if (window.location.pathname.startsWith("/Support") || window.location.pathname.startsWith("/support")) {

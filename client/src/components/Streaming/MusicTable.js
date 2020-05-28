@@ -37,9 +37,8 @@ const ButtonDiv = styled.div`
 
 export default function ({ musicList }) {
     const classes = useStyles();
-
     const [checked, setChecked] = useState({})
-    const [isResponseOk, setIsResponseOk] = useState(false);
+    const [riseUseEffect, setRiseUseEffect] = useState(false);
     const userState = useContext(UserContext);
 
     useEffect(() => {
@@ -48,11 +47,10 @@ export default function ({ musicList }) {
                 setChecked(res.data.musicIdSet);
                 console.log("useEffect 완료")
             })
-            .then(() => setIsResponseOk(true))
             .catch(err => {
                 console.log("미로그인 오류")
         })
-    }, [userState.userId, isResponseOk])
+    }, [userState.userId, riseUseEffect])
 
 
 
@@ -94,6 +92,7 @@ export default function ({ musicList }) {
                         <TableRow>
                             <TableCell padding="checkbox"><Checkbox/></TableCell>
                             <TableCell>곡정보</TableCell>
+                            <TableCell>아티스트</TableCell>
                             <TableCell align="right">좋아요</TableCell>
                             <TableCell align="right">다운</TableCell>
                         </TableRow>
@@ -115,6 +114,9 @@ export default function ({ musicList }) {
                                             {row.musicName}
                                         </Link>
                                     </TableCell>
+                                    <TableCell>
+                                        {row.artistName ? row.artistName : row.artistList[0].artistName}
+                                    </TableCell>
                                     <TableCell align="right">
                                         {
                                             userState.userId == null || (!checked.hasOwnProperty(row.musicId)) ?
@@ -125,7 +127,7 @@ export default function ({ musicList }) {
                                                             musicId: row.musicId,
                                                             userId: userState.userId
                                                         }).then(res => {
-                                                            setIsResponseOk(false);
+                                                            setRiseUseEffect(!riseUseEffect);
                                                             console.log(res)
                                                         })
                                                     }}
@@ -143,11 +145,11 @@ export default function ({ musicList }) {
                                                                 userId: userState.userId
                                                             }
                                                         }).then(res => {
-                                                            setIsResponseOk(false);
+                                                            setRiseUseEffect(!riseUseEffect);
                                                             console.log(res)
                                                         })
                                                     }}
-                                                    src="heart.png"
+                                                    src="https://i.ibb.co/f8y1tG4/liked.png"
                                                     alt="liked"
                                                     style={{ display: "inline", width: "35px", height: "35px" }}
                                                 />
