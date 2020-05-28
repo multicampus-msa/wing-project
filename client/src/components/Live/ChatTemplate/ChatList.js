@@ -1,46 +1,37 @@
-import React, { Component } from 'react';
-import socketio from 'socket.io-client'; 
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
 
-const socket = socketio.connect('http://localhost:3001');
+const useStyles = makeStyles((theme) => ({
+    root: {
+      width: '100%',
+      position: 'relative',
+      overflow: 'auto',
+      height: 800,
+    },
+}));
 
+const ChatList = ({logs}) => {
+    const classes = useStyles();
 
-class ChatList extends Component {
-    
-    constructor(props){
-        super(props); 
-        this.state = {
-            logs : []
-        }
-    }
-
-    componentDidMount(){
-        socket.emit('joinRoom', {roomName: this.props.playUrl});
-        socket.on('message', (data) =>{
-            const logs2 = this.state.logs; 
-            data.key = 'key_' + (this.state.logs.length+1); 
-            console.log(data); 
-            logs2.unshift(data);   
-            this.setState({logs : logs2}); 
-        }); 
-    }
-    
-    render() {
-
-        const messages = this.state.logs.map(e=>(
-            <div key={e.key} >
-                <img alt="user icon" src = "man.png"  width="25px" height="25px" style={{marginLeft:'5px'}}/>
-                <span style={{color : '#819FF7' , fontWeight : 'bold' }} > {e.name} </span>
-                <span>     { e.message } </span>
-                <p style={{clear:'both'}} />
-            </div>
-        ))
-
-        return (
-            <div style = {{backgroundColor : '#f2f2f2', marginTop:'80px', marginBottom:'15px', height : '800px'}}>
-                {messages}
-            </div>
-        );
-    }
+    return (
+        <List className={classes.root}>
+            {
+                logs.map((value) => (
+                    <ListItem key={value.key}>
+                        <ListItemAvatar>
+                            <Avatar src={``} />
+                        </ListItemAvatar>
+                        <ListItemText id={value.key} primary={value.name} secondary={value.message} />
+                    </ListItem>
+                ))
+            }
+        </List>
+    );
 }
 
 export default ChatList;

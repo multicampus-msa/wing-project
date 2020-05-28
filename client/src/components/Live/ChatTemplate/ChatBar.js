@@ -1,5 +1,5 @@
 import React from 'react';
-import ChatList from './ChatList'; 
+import ChatListTemplate from './ChatListTemplate'; 
 import ChatInput from './ChatInput'; 
 
 const ChatBar = ({playUrl}) => { 
@@ -8,7 +8,7 @@ const ChatBar = ({playUrl}) => {
 
     return (
         <div style={{display: 'flex', flexDirection:'column', marginLeft:'20px'}}>
-            <ChatList playUrl={playUrl}/>
+            <ChatListTemplate playUrl={playUrl}/>
 
             <ChatInput playUrl={playUrl}/>
         </div>
