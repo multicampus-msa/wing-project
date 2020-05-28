@@ -126,9 +126,8 @@ const Menu = ({ history }) => {
         if (auth2) auth2.disconnect();
 
         window.sessionStorage.clear()
-
-        history.go(0)
-
+        
+        history.push("/Home");
     }
     const googleSDK = () => {
         // platform.js 스크립트 로드 후 .. 
