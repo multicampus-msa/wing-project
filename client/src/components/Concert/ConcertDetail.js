@@ -25,8 +25,9 @@ const useStyles = makeStyles((theme) => ({
     },
     image: {
         width: '430px',
-        height: '600px',
-        float: 'left'
+        height: '550px',
+        float: 'left',
+        marginBottom: '5px',
     },
     concertInfo: {
         width: '600px',
@@ -81,6 +82,7 @@ const ConcertDetail = ({match}) => {
     useEffect(() => {
       axios.get(API_URL + '/api/concert/' + match.params.concertId)
         .then(res => setConcert(res.data));
+        window.scrollTo(0,0);
     }, [match.params.concertId]);
 
 
@@ -93,7 +95,15 @@ const ConcertDetail = ({match}) => {
                 <div className={classes.concertInfo}>
                     <p className={classes.infoTitle}>공연날짜</p>
                     <hr className={classes.line}/>
-                    <p className={classes.infoText}>시작 : {concert.dateStart} ~ 끝 : {concert.dateEnd}</p>
+                    <p className={classes.infoText}>
+                        {
+                            concert.dateStart !== undefined ? (
+                                <p>콘서트기간 : {concert.dateStart.split("T",1)} ~ {concert.dateEnd.split("T",1)}</p>
+                            )
+                            :
+                            <span>loading..</span>
+                        }
+                    </p>
                     <p className={classes.infoTitle}>공연설명</p>
                     <hr className={classes.line}/>
                     <p className={classes.infoText}>{concert.description}</p>

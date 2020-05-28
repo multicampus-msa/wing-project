@@ -8,6 +8,7 @@ const ConcertPage = () => {
     return (
         <Switch>
             <Route exact path="/concert" component={ConcertList}/>
+            <Route exact path="/concert/:pageNumber" component={ConcertList}/>
             <Route exact path="/concert/detail/:concertId" component={ConcertDetail}/>
         </Switch>
     )

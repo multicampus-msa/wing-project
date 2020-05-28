@@ -21,9 +21,11 @@ const useStyles = makeStyles((theme) => ({
       }
     },
     media: {
-      height: 0,
-      paddingTop: '100%',
-      
+      height: 'auto',
+      maxWidth: '100%',
+      flex: 1,
+      display: 'flex', 
+      justifyContent: 'center',
     },
     headerTitle: {
       fontSize: '20px',
@@ -33,6 +35,11 @@ const useStyles = makeStyles((theme) => ({
       background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
       height: "40px",
     },
+    text: {
+      fontWeight: 'bold',
+      fontSize: '16px',
+      align: 'center',
+    }
 }));
 
 const ConcertPoster = ({concertId}) => {
@@ -55,15 +62,11 @@ const ConcertPoster = ({concertId}) => {
               title={concert.concertName}
             />
             <CardMedia
+              component="img"
               className={classes.media}
               image={concert.imageUri}
               title={concert.concertName}
             />
-            <CardContent>
-              <Typography variant="body2" color="textSecondary" component="p" align='center' >
-                {concert.description}
-              </Typography>
-            </CardContent>
           </Card>
         </Link>
       }

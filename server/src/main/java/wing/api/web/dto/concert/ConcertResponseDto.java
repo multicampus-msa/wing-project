@@ -40,6 +40,7 @@ public class ConcertResponseDto {
             artistObj.put("artistId", concertArtists.getArtist().getArtistId().toString());
             artistObj.put("artistName", concertArtists.getArtist().getArtistName());
             artistObj.put("imageUri", concertArtists.getArtist().getImageUri());
+            artistObj.put("description", concertArtists.getArtist().getDescription());
             artistList.add(artistObj);
         }
     }
