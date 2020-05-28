@@ -106,9 +106,13 @@ const Menu = ({ history }) => {
             // console.log('Image URL : '+profile.getImageUrl());
             // console.log('Email : '+profile.getEmail());
             setToken(googleUser.getAuthResponse().id_token)
+            window.sessionStorage.setItem("token", googleUser.getAuthResponse().id_token);
+            window.sessionStorage.setItem("userState", JSON.stringify(data));
         })
     }
     const logout = () => {
+        if (auth2 === null)
+            googleSDK()
         setToken(null);
         setUserState(
             {
@@ -119,7 +123,10 @@ const Menu = ({ history }) => {
             }
         )
         console.log("로그아웃 합니다");
-        auth2.disconnect();
+        if (auth2) auth2.disconnect();
+
+        window.sessionStorage.clear()
+
         history.go(0)
 
     }
@@ -146,8 +153,14 @@ const Menu = ({ history }) => {
         }(document, 'script', 'google-jssdk'));
     }
     useEffect(() => { // token 값이 업데이트 될 때만 실행
-        googleSDK()
-        //console.log(auth2)
+        const storageToken = window.sessionStorage.getItem("token")
+        const storageState = window.sessionStorage.getItem("userState")
+        if (token === null && storageToken) {
+            setToken(storageToken)
+            setUserState(JSON.parse(storageState))
+        }
+        else if (token === null)
+            googleSDK();
     }, [token]);
 
     return (
