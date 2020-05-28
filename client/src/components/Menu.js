@@ -31,6 +31,7 @@ const LogoDiv = styled.div`
   }
   
   .logo {
+    margin-left: 2rem;
     grid-column: 2;
     grid-row: 1;
   }
@@ -119,7 +120,7 @@ const Menu = ({ history }) => {
         )
         console.log("로그아웃 합니다");
         auth2.disconnect();
-        history.push(`/`);
+        history.go(0)
 
     }
     const googleSDK = () => {
