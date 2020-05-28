@@ -1,1 +1,1 @@
-export default "https://blogfiles.pstatic.net/MjAyMDA1MTlfOTgg/MDAxNTg5ODcyMzkyMzA1._Wi7XSXYXr3Pkoj-6zAk1vAeoyJizpC0RntB-zMqw9kg.fJX5mkpdBxkEOwFLT_5YpShtSCdbg1swqMUa3mh-RNwg.JPEG.unknown9732/logo.jpg?type=w2"
+export default "https://i.ibb.co/hgvS0jy/image.jpg"
