@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
 import styled from 'styled-components'
 import axios from 'axios';
 import API_URL from '../Constants/API_URL';
@@ -12,11 +13,17 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import UserContext from "../Context/UserContext";
+
+
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
         maxWidth: '36ch',
         backgroundColor: theme.palette.background.paper,
+        display: 'flex',
+        '& > *': {
+        margin: theme.spacing(1),
+      },
     },
     inline: {
         display: 'inline',
@@ -50,8 +57,10 @@ const MyPage = () => {
   
 
   return (
-    <div>         
-      <img src = {userState.imageUrl } alt = "Profile Image"/>
+      <div>         
+        <div className={classes.root}>
+          <Avatar src = {userState.imageUrl } alt = "Profile Image"/>
+        </div>
         <h4>{userState.name}님 안녕하세요</h4>
         <p>{userState.name}님이  좋아하는 음악 입니다</p>
         <TableContainer component={Paper}>
