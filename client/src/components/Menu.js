@@ -1,36 +1,70 @@
-import React, { Fragment, useEffect, createContext, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components'
 import MenuButtons from "./Main/MenuButtons";
-// import MainLoginButton from "./Main/MainLoginButton";
-//import Login from './Login/Login';
 import axios from 'axios'
 import LOGO_URL from "./Constants/LOGO_URL";
 import LoginButton from './Main/LoginButton';
 import Root from './Root'
 import UserContext from "./Context/UserContext";
+import Avatar from "@material-ui/core/Avatar";
 
+const LogoDiv = styled.div`
+  display: grid;
+  grid-template-columns: 300px 300px 175px 100px 150px;
+  grid-template-rows: 50px 25px 45px;
+  justify-content: center;
+  font-family: "NanumSquare", sans-serif;
+  font-weight: bold;
+  font-size: large;
+  
+  .avatar {
+    margin-left: 1rem;
+    margin-top: -0.9rem;
+    grid-column: 4;
+    grid-row: 2;
+  }
+  
+  .MuiAvatar-root {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .logo {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  
+  .loginButton {
+    margin-left: 1.5rem;
+    grid-column: 5;
+    grid-row: 3;
+  }
+  
+  .hello {
+    margin-top: 2rem;
+    grid-column: 5;
+    grid-row: 1;
+  }
+  
+  .userName {
+    grid-column: 5;
+    grid-row: 2;
+  }
+`
 
-const StyledDiv = styled.div`
+const ButtonDiv = styled.div`
+
     display: flex;
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
-`;
+`
 
-// todo : 로그인 버튼 위치 수정 필요
-const BtnStlye = styled.div`
-    margin-left: 88rem;
-    margin-bottom: -1rem;
-`;
+const Menu = ({ history }) => {
 
-const Menu = ({history}) => {
-
-    const [userId, setUserId] = useState(null); 
-    const [token, setToken] = useState(null); 
-    const [name, setName] = useState("");// 로그인 된 사용자 정보 
+    const [token, setToken] = useState(null);
     const [auth2, setAuth2] = useState(null);
-    const [image, setImage] = useState(null);
     const [userState, setUserState] = useState({
         userId: "",
         name: "",
@@ -38,11 +72,11 @@ const Menu = ({history}) => {
         imageUrl: "",
     })
 
-    const login=()=>{
-        auth2.signIn().then(googleUser=>{
-            let profile = googleUser.getBasicProfile();           
-            const data = {      
-                userId: profile.getId(),        
+    const login = () => {
+        auth2.signIn().then(googleUser => {
+            let profile = googleUser.getBasicProfile();
+            const data = {
+                userId: profile.getId(),
                 name: profile.getName(),
                 email: profile.getEmail(),
                 imageUrl: profile.getImageUrl(),
@@ -60,37 +94,38 @@ const Menu = ({history}) => {
             const targetUrl = 'http://localhost:8080/api/user/save'
             console.log(data);
             axios.post(targetUrl, data)
-            .then(response =>{                  
-                console.log(response)
-            })
-            .catch(function(error){
-                console.log(error);
-            })
+                .then(response => {
+                    console.log(response)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
             // console.log('ID : '+profile.getId());
             // console.log('Name : '+profile.getName());
             // console.log('Image URL : '+profile.getImageUrl());
             // console.log('Email : '+profile.getEmail());
-            setUserId(profile.getId());
-            setName(profile.getName());
-            setImage(profile.getImageUrl());
             setToken(googleUser.getAuthResponse().id_token)
         })
     }
-    const logout=()=>{
-        setToken('')        
-        setUserId(null);
-        setName(null)
-        setToken(null)
-        setImage(null)
+    const logout = () => {
+        setToken(null);
+        setUserState(
+            {
+                userId: "",
+                name: "",
+                email: "",
+                imageUrl: ""
+            }
+        )
         console.log("로그아웃 합니다");
         auth2.disconnect();
         history.push(`/`);
 
     }
-    const googleSDK=()=>{
+    const googleSDK = () => {
         // platform.js 스크립트 로드 후 .. 
-        window['googleSDKLoaded']=()=>{
-            window['gapi'].load('auth2', ()=>{
+        window['googleSDKLoaded'] = () => {
+            window['gapi'].load('auth2', () => {
                 setAuth2(window['gapi'].auth2.init({
                     client_id: '4141518158-olfgnnv29g8163c0v5saq6dorpg806l2.apps.googleusercontent.com',
                     cookiepolicy: 'single_host_origin',
@@ -98,34 +133,55 @@ const Menu = ({history}) => {
                 }));
             })
         }
-        (function(d,s,id){
+        (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
-            if(d.getElementById(id)){return;}
+            if (d.getElementById(id)) {
+                return;
+            }
             js = d.createElement(s);
             js.id = id;
             js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
-            fjs.parentNode.insertBefore(js, fjs);  
-        }(document, 'script', 'google-jssdk'));        
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'google-jssdk'));
     }
-    useEffect(()=>{ // token 값이 업데이트 될 때만 실행
+    useEffect(() => { // token 값이 업데이트 될 때만 실행
         googleSDK()
         //console.log(auth2)
-    },[token]);
+    }, [token]);
 
     return (
         <UserContext.Provider value={userState}>
             <Fragment>
-                <StyledDiv>
-                    <Link to="/"><img src={LOGO_URL} alt="Win:G 로고"/></Link>
-                </StyledDiv>
-                <br/>
-                <BtnStlye>
-                    <LoginButton token={token} name={name} image={image} login={login} logout={logout}/>
-                </BtnStlye>
-                <br/>
-                <StyledDiv>
-                    <MenuButtons />
-                </StyledDiv>
+                <LogoDiv>
+                    <div className="logo">
+                        <Link to="/"><img src={LOGO_URL}
+                                          alt="Win:G 로고"
+                                          style={{ width: "330px", height: "120px" }}
+                        /></Link>
+                    </div>
+
+                    <div className="avatar">
+                        {
+                            token ? <Avatar alt="Remy Sharp" src={userState.imageUrl}/>
+                                : <p> </p>
+                        }
+                    </div>
+
+                    <div className="hello">
+                        {token ? <p>안녕하세요 </p> : <p> </p>}
+                    </div>
+
+                    <div className="userName">
+                        {token ? <p>{userState.name} 님^^</p> : <p> </p>}
+                    </div>
+
+                    <div className="loginButton">
+                        <LoginButton token={token} name={userState.name} login={login} logout={logout}/>
+                    </div>
+                </LogoDiv>
+                <ButtonDiv>
+                    <MenuButtons/>
+                </ButtonDiv>
                 <hr/>
                 <Root/>
             </Fragment>
