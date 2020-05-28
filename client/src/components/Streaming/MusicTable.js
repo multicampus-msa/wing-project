@@ -47,7 +47,7 @@ export default function ({ musicList }) {
                 setChecked(res.data.musicIdSet);
                 console.log("useEffect 완료")
             })
-            .catch(err => {
+            .catch(() => {
                 console.log("미로그인 오류")
         })
     }, [userState.userId, riseUseEffect])
@@ -115,7 +115,13 @@ export default function ({ musicList }) {
                                         </Link>
                                     </TableCell>
                                     <TableCell>
-                                        {row.artistList[0].artistName}
+                                        {row.artistList.map(artist => {
+                                            return (
+                                                <RouterLink style={{color: "black"}} to={"/streaming/artist/" + artist.artistId}>
+                                                    {artist.artistName}
+                                                </RouterLink>
+                                            )
+                                        })}
                                     </TableCell>
                                     <TableCell align="right">
                                         {
