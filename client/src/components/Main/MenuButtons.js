@@ -31,25 +31,22 @@ const MenuButtons = () => {
     const onClick = (idx) => {
         if (idx !== undefined) {
             setColorSwitch(colorSwitch.map((value, index) => {
-              return Number(index === idx);
+                return Number(index === idx);
             }))
             return;
         }
         if (window.location.pathname === "/" || window.location.pathname === "/home" || window.location.pathname === "/Home") {
-            setColorSwitch([1,0,0,0,0])
-        }
-        else if (window.location.pathname.startsWith("/Streaming") || window.location.pathname.startsWith("/streaming")) {
-            setColorSwitch([0,1,0,0,0])
-        }
-
-        else if (window.location.pathname.startsWith("/Live") || window.location.pathname.startsWith("/live")) {
-            setColorSwitch([0,0,1,0,0])
-        }
-        else if (window.location.pathname.startsWith("/Support") || window.location.pathname.startsWith("/support")) {
-            setColorSwitch([0,0,0,1,0])
-        }
-        else {
-            setColorSwitch([0,0,0,0,1])
+            setColorSwitch([1, 0, 0, 0, 0])
+        } else if (window.location.pathname.startsWith("/Streaming") || window.location.pathname.startsWith("/streaming")) {
+            setColorSwitch([0, 1, 0, 0, 0])
+        } else if (window.location.pathname.startsWith("/Live") || window.location.pathname.startsWith("/live")) {
+            setColorSwitch([0, 0, 1, 0, 0])
+        } else if (window.location.pathname.startsWith("/Support") || window.location.pathname.startsWith("/support")) {
+            setColorSwitch([0, 0, 0, 1, 0])
+        } else if (window.location.pathname.startsWith("/Concert") || window.location.pathname.startsWith("/concert")) {
+            setColorSwitch([0, 0, 0, 0, 1])
+        } else {
+            setColorSwitch([0, 0, 0, 0, 0]);
         }
     }
 
@@ -73,7 +70,14 @@ const MenuButtons = () => {
                             :
 
                             <StyleButton
-                                style={{ minWidth: "150px", maxWidth: "150px", minHeight: "59px", maxHeight: "59px", borderBottom: "3px solid", borderBottomColor: "purple"}}
+                                style={{
+                                    minWidth: "150px",
+                                    maxWidth: "150px",
+                                    minHeight: "59px",
+                                    maxHeight: "59px",
+                                    borderBottom: "3px solid",
+                                    borderBottomColor: "purple"
+                                }}
                                 size="large" variant="contained"
                                 onClick={() => onClick(idx)}
                             >
