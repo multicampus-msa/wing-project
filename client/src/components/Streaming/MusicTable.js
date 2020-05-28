@@ -115,7 +115,7 @@ export default function ({ musicList }) {
                                         </Link>
                                     </TableCell>
                                     <TableCell>
-                                        {row.artistName ? row.artistName : row.artistList[0].artistName}
+                                        {row.artistList[0].artistName}
                                     </TableCell>
                                     <TableCell align="right">
                                         {
