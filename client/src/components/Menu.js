@@ -30,10 +30,12 @@ const Menu = ({history}) => {
     const [token, setToken] = useState(null); 
     const [name, setName] = useState("");// 로그인 된 사용자 정보 
     const [auth2, setAuth2] = useState(null);
+    const [image, setImage] = useState(null);
     const [userState, setUserState] = useState({
         userId: "",
         name: "",
-        email: ""
+        email: "",
+        imageUrl: "",
     })
 
     const login=()=>{
@@ -43,7 +45,7 @@ const Menu = ({history}) => {
                 userId: profile.getId(),        
                 name: profile.getName(),
                 email: profile.getEmail(),
-                imageUri: profile.getImageUrl(),
+                imageUrl: profile.getImageUrl(),
                 role: "USER",
             }
 
@@ -51,7 +53,8 @@ const Menu = ({history}) => {
                 ...userState,
                 userId: profile.getId(),
                 name: profile.getName(),
-                email: profile.getEmail()
+                email: profile.getEmail(),
+                imageUrl: profile.getImageUrl(),
             })
 
             const targetUrl = 'http://localhost:8080/api/user/save'
@@ -68,18 +71,19 @@ const Menu = ({history}) => {
             // console.log('Image URL : '+profile.getImageUrl());
             // console.log('Email : '+profile.getEmail());
             setUserId(profile.getId());
-            setName(profile.getName())
+            setName(profile.getName());
+            setImage(profile.getImageUrl());
             setToken(googleUser.getAuthResponse().id_token)
-            
         })
     }
     const logout=()=>{
         setToken('')        
-        console.log("로그아웃 합니다");
-        auth2.disconnect();
         setUserId(null);
         setName(null)
         setToken(null)
+        setImage(null)
+        console.log("로그아웃 합니다");
+        auth2.disconnect();
         history.push(`/`);
 
     }
@@ -116,7 +120,7 @@ const Menu = ({history}) => {
                 </StyledDiv>
                 <br/>
                 <BtnStlye>
-                    <LoginButton token={token} name={name} login={login} logout={logout}/>
+                    <LoginButton token={token} name={name} image={image} login={login} logout={logout}/>
                 </BtnStlye>
                 <br/>
                 <StyledDiv>

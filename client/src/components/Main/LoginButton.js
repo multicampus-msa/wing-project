@@ -20,16 +20,18 @@ const StyledButton = withStyles({
     },
 })(Button);
 
-const LoginButton = ({ token, name, login, logout }) => {
+const LoginButton = ({ token, name, image, login, logout }) => {
     return(
         <>
         {token ? 
                 // todo : 로그인 시 프로필 이미지 보이게 하기
                 // 이름을 누르면 마이페이지로 이동                
                 <>    
+                        
                     <Link to={`/mypage/${name}`}>
                         <div>
-                            {name} 님 안녕하세요!!!!
+                            <img src = {image} alt = "Profile Image"/>
+                            {name} 님 안녕하세요
                         </div>
                     </Link>                                
                     <StyledButton className = "logoutBtn" onClick={logout} variant="contained" color="secondary">Logout</StyledButton> 

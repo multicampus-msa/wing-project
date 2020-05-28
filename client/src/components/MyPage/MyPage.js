@@ -31,10 +31,12 @@ const MyPage = () => {
   const userState = useContext(UserContext);
 
   const [likedMusicList, setLikedMusicList] = useState([]);
-  const [supportingMusician, setSupportingMusician] = useState({});
+
+ // const [supportingMusician, setSupportingMusician] = useState({});
 
   useEffect(()=>{
       // 좋아요 한 음악 가져오기 
+      
       axios.get(API_URL+"/api/user/liked/"+ userState.userId)
       .then(res =>{
         console.log(res.data); // musicIdSet에 들어있는 musicId, 
@@ -48,7 +50,8 @@ const MyPage = () => {
   
 
   return (
-    <div>        
+    <div>         
+      <img src = {userState.imageUrl } alt = "Profile Image"/>
         <h4>{userState.name}님 안녕하세요</h4>
         <p>{userState.name}님이  좋아하는 음악 입니다</p>
         <TableContainer component={Paper}>
