@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {MdSend} from 'react-icons/md';
 import {Button} from 'reactstrap'; 
-import socketio from 'socket.io-client'; 
+import socketio from 'socket.io-client';
+import UserContext from "../../Context/UserContext";
 
 const ChatInput = ({playUrl}) => {
     const [name, setName] = useState(''); 
     const [value, setValue] = useState(''); 
     const socket = socketio.connect('http://localhost:3001');
+    const userState = useContext(UserContext);
 
     const handleName = (e) => {
         setName(e.target.value); 
@@ -19,7 +21,8 @@ const ChatInput = ({playUrl}) => {
     const handleClick = () => { // 보내기 버튼 클릭 시 이벤트 처리 
         console.log(value);
         socket.emit('joinRoom', {roomName: playUrl});
-        socket.emit('message', {name : name, message : value}); 
+        const imageUrl = userState.imageUrl;
+        socket.emit('message', {name : name, message : value, imageUrl: imageUrl}); 
         setValue('');
     }
 
@@ -32,7 +35,7 @@ const ChatInput = ({playUrl}) => {
     return (
         <div style = {{display : 'flex'}}>
             <input name = {name} onChange = {handleName} onKeyPress = {handleKeypress} placeholder="닉네임을 입력하세요" style={{marginRight : '5px'}}/>
-            <input placeholder="채팅을 입력하세요" value = {value} onChange = {handleChange} onKeyPress={handleKeypress} style={{marginRight:'5px', width:'auto'}}/>
+            <input placeholder="메시지를 입력하세요" value = {value} onChange = {handleChange} onKeyPress={handleKeypress} style={{marginRight:'5px', width:'auto'}}/>
             <Button outline color = "info" size="sm" onClick= {handleClick}> <MdSend /> </Button>
         </div>
     );
