@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: '10px',
         position: 'relative',
         fontFamily: "NanumSquare",
-        
     },
     root: {
         justifyContent: 'center',
@@ -50,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const ConcertList = ({}) => {
+const ConcertList = () => {
     const classes = useStyles();
     const index = [0, 1, 2, 3];
 

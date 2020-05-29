@@ -36,7 +36,7 @@ const StreamingMain = () => {
     }, [])
 
     return (
-        <div style={{ gridRow: "1 / 4", gridColumn: "2 / 8", fontFamily: "NanumBarunGothic" }}>
+        <div style={{ gridRow: "1 / 4", gridColumn: "2 / 8", fontFamily: "NanumBarunGothic"}}>
             <StyledDiv>
                 <p style={{ fontSize: "29px", borderBottom: "1px solid", borderColor: "#c2c2c2", gridColumn: "1 / 7"}}>{userState.name} 님에게 추천하는 따끈따끈한 최신 추천 음악</p>
                 <Carousel interval={4000} style={{ gridColumn: "1 / 7" }}>
