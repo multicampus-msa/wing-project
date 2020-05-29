@@ -19,12 +19,21 @@ const useStyles = makeStyles((theme) => ({
     },
     wrapperTitle: {
         marginBottom: '10px',
-        width: '900px',
+        width: '951px',
         fontFamily: "NanumSquare",
     },
-    text: {
-        textAlign: 'left',
-        wordBreak: 'break-all',
+    videoTitle: {
+        fontSize: '18px',
+        fontWeight: 'bold',
+        marginTop: '10px',
+    },
+    videoInfo: {
+        color: 'red',
+        border: 'solid',
+        borderColor: 'red',
+        borderWidth: '1px',
+        width: '130px',
+        textAlign: 'center',
     }
 }));
 
@@ -40,8 +49,8 @@ function LivePlayer({match}) {
             <div className={classes.wrapperBody}>
                 <div className={classes.wrapperVideo}>
                     <YouTube videoId={match.params.videoId} />
-                    <p>{match.params.title}</p>
-                    <p>실시간 스트리밍 중</p>
+                    <p className={classes.videoTitle}>{match.params.title}</p>
+                    <p className={classes.videoInfo}>실시간 스트리밍 중</p>
                 </div>
                 <ChatBar />
             </div>

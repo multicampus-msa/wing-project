@@ -85,7 +85,11 @@ function SupportDetail({match}) {
             .then(res => {setTotalAmount(res.data.reduce((pre, item) => {
                 return pre += item.amount;
             }, 0)); return res})
-            .then(res => setSupporterNum(res.data.length))
+            .then(res => {
+                let set = new Set();
+                res.data.map((item) => set.add(item.userName))
+                setSupporterNum(set.size)
+            })
             .catch(err => alert(err));
 
     }, [match.params.artistId])

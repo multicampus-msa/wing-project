@@ -5,7 +5,6 @@ import UserContext from "../../Context/UserContext";
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import InputBase from '@material-ui/core/InputBase';
-import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import SendIcon from '@material-ui/icons/Send';
 
@@ -14,11 +13,13 @@ const useStyles = makeStyles((theme) => ({
       padding: '2px 4px',
       display: 'block',
       alignItems: 'center',
+      width: '270px',
       fontFamily: "NanumSquare",
     },
     name: {
         fontSize: '14px',
         marginLeft: '8px',
+        textAlign: 'left',
     },
     inputWrapper: {
         display: 'flex',
@@ -87,7 +88,6 @@ const ChatInput = ({playUrl}) => {
                     <IconButton className={classes.iconButton} aria-label="send" onClick={handleClick}>
                         <SendIcon />
                     </IconButton>
-                    <Divider className={classes.divider} orientation="vertical" />
                 </div>
             </div>
         </div>

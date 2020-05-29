@@ -25,7 +25,7 @@ class ChatList extends Component {
     
     render() {
         return (
-            <div style = {{backgroundColor : '#f2f2f2', marginBottom:'15px', height : '500px'}}>
+            <div style = {{backgroundColor : '#f2f2f2', marginBottom:'15px', height : '450px'}}>
                 <ChatListItem logs={this.state.logs}/>
             </div>
         );
