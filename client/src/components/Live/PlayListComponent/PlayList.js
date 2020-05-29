@@ -72,7 +72,7 @@ function PlayList() {
                                 Win:G
                             </Typography>
                             <Typography variant="caption" color="textSecondary">
-                                {video.snippet.publishedAt}
+                                {video.snippet.publishedAt.substr(0, 10)}
                             </Typography>
                             </Box>
                         </div>
