@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
       padding: '2px 4px',
       display: 'block',
       alignItems: 'center',
-      width: 400,
       fontFamily: "NanumSquare",
     },
     name: {
