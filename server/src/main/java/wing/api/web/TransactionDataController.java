@@ -37,4 +37,9 @@ public class TransactionDataController {
         return transactionDataService.save(requestDto);
     }
 
+    @ApiOperation(value = "트랜잭션 정보를 유저 아이디로 조회", notes = "유저가 후원한 모든 내역을 가져옴")
+    @GetMapping("/api/transaction/user/{id}")
+    private Set<TransactionDataResponseDto> findByUser(@PathVariable("id") String id) {
+        return transactionDataService.findByUser(id);
+    }
 }
