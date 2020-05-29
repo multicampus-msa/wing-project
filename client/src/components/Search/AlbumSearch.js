@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     },
     wrapper: {
         display: 'flex',
+        overflow: 'auto',
         width: '920px',
         padding: '5px 0',
         borderBottom: '1px solid #ccc',
