@@ -68,9 +68,10 @@ function LiveList() {
                                 {video.snippet.title}
                             </Typography>
                             <Typography display="block" variant="caption" color="textSecondary">
-                                {video.snippet.channelTitle}
+                                {/* {video.snippet.channelTitle} */}
+                                Wing:G
                             </Typography>
-                            <Typography variant="caption" color="textSecondary">
+                            <Typography variant="caption" color="error" style={{border: 'solid', borderWidth: '1px'}}>
                                 {/* {video.snippet.publishedAt} */}
                                 실시간 스트리밍 중
                             </Typography>
