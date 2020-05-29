@@ -1,6 +1,7 @@
+// 특정 페이지의 재생 목록을 긁어오는 API 를 사용 - Data V3 API playlistItems 
 let axios = require("axios");
 
-const ROOT_URL = "https://www.googleapis.com/youtube/v3/search";
+const ROOT_URL = "https://www.googleapis.com/youtube/v3/playlistItems";
 
 module.exports = function(options, callback) {
   if (!options.key) {
@@ -9,12 +10,9 @@ module.exports = function(options, callback) {
 
   let params = {
     part: "snippet",
+    playlistId : "PLPPhnCB6eObiP22Lo_MfrKieMmxWwRMV9",
     key: options.key,
-    q: options.term,
-    eventType: "live",
-    channelId:"UCJhjE7wbdYAae1G25m0tHAA", // 현재 테스트 페이지 : cafe Music BGM Channel 채널 
-    type: "video",
-    maxResults: 10
+    maxResults: 12
   };
 
   axios
@@ -22,7 +20,9 @@ module.exports = function(options, callback) {
     .then(function(response) {
       var arr = response.data.items;
 
-      if (callback) {
+      console.log(arr[0].snippet.resourceId.videoId)
+
+      if (callback) { 
         callback(arr); // 모든 영상 다 띄울 경우
       }
     })

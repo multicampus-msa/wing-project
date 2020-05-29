@@ -1,42 +1,35 @@
-import React, {useEffect, useRef} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
+import React, { Component } from 'react';
+import socketio from 'socket.io-client';
+import ChatListItem from './ChatListItem';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      width: '100%',
-      position: 'relative',
-      overflow: 'auto',
-      height: 800,
-    },
-}));
+const socket = socketio.connect('http://localhost:3001'); 
 
-const ChatList = ({logs}) => {
-    const classes = useStyles();
-    const listEl = useRef(null);
+class ChatList extends Component {
+    
+    constructor(props){
+        super(props); 
+        this.state = {
+            logs : []
+        }
+    }
 
-    useEffect(() => {
-        listEl.current.scrollTo(0, listEl.current.scrollHeight)
-    })
-
-    return (
-        <List className={classes.root} ref={listEl}>
-            {
-                logs.map((value) => (
-                    <ListItem key={value.key}>
-                        <ListItemAvatar>
-                            <Avatar src={value.imageUrl} />
-                        </ListItemAvatar>
-                        <ListItemText id={value.key} primary={value.name} secondary={value.message} />
-                    </ListItem>
-                ))
-            }
-        </List>
-    );
+    componentDidMount(){
+        socket.emit('joinRoom', {roomName: this.props.playUrl});
+        socket.on('message', (data) =>{
+            const logs2 = this.state.logs; 
+            data.key = 'key_' + (this.state.logs.length + 1); 
+            logs2.push(data);   
+            this.setState({logs : logs2}); 
+        });
+    }
+    
+    render() {
+        return (
+            <div style = {{backgroundColor : '#f2f2f2', marginBottom:'15px', height : '500px'}}>
+                <ChatListItem logs={this.state.logs}/>
+            </div>
+        );
+    }
 }
 
 export default ChatList;
