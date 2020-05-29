@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
     },
     subWrapper: {
         display: 'flex',
+        overflow: 'auto',
         width: '920px',
         padding: '5px 0',
         borderBottom: '1px solid #ccc',
@@ -133,7 +134,7 @@ const ArtistSearch = ({searchWord}) => {
                             </div>
                         </div>
                         <div className={classes.subWrapper}>
-                            {artistList.slice(1, 4).map((artist) => {
+                            {artistList.slice(1).map((artist) => {
                                 return (
                                     <div className={classes.wrapperSubBody}>
                                         <Link to={`/streaming/artist/${artist.artistId}`}
