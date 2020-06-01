@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -18,14 +17,16 @@ const useStyles = makeStyles((theme) => ({
       border: '1px solid gray',
       '&:hover': {
         transform: 'scale(1.05)',
-      }
+      },
+      position: 'relative'
     },
     media: {
-      height: 'auto',
-      maxWidth: '100%',
-      flex: 1,
-      display: 'flex', 
+      height: 390,
+      paddingBottom: '20%',
+      margin: 'auto',
+      maxWidth: 300,
       justifyContent: 'center',
+      
     },
     headerTitle: {
       fontSize: '20px',
@@ -37,8 +38,11 @@ const useStyles = makeStyles((theme) => ({
     },
     text: {
       fontWeight: 'bold',
-      fontSize: '16px',
-      align: 'center',
+      fontSize: '20px',
+      fontFamily: 'NanumSquare',
+      height: 30,
+      bottom: 32,
+      position: 'absolute',
     }
 }));
 
@@ -58,15 +62,18 @@ const ConcertPoster = ({concertId}) => {
         concert==null ||
         <Link to={`/concert/detail/${concert.concertId}`}>
           <Card className={classes.root}>
-            <CardHeader classes={{title: classes.headerTitle, root: classes.headerRoot}}
-              title={concert.concertName}
-            />
             <CardMedia
               component="img"
               className={classes.media}
               image={concert.imageUri}
               title={concert.concertName}
             />
+            <CardContent >
+              <Typography variant="h6" component="div" className={classes.text} align="left">
+                {concert.concertName}
+              </Typography>
+            </CardContent>
+            
           </Card>
         </Link>
       }

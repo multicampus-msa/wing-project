@@ -100,7 +100,15 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     fontSize: '18px',
     fontFamily: 'NanumSquare',
+  },
+  warning: {
+    color: 'red',
+    fontWeight: 'bold',
+    fontSize: '23px',
+    position: 'absolute',
+    marginLeft: '340px',
   }
+  
 }));
 
 const ConcertTab = ({place, artistList}) => {
@@ -179,6 +187,11 @@ const ConcertTab = ({place, artistList}) => {
           - 취소일자에 따라 아래와 같이 취소수수료가 부과됩니다.
           (예매 후 7일 이내라도 취소시점이 관람일로부터 10일 이내라면 관람일 기준의 취소수수료가 부과됩니다.)
           </p>
+          <br></br>
+          <br></br>
+          <footer className={classes.warning}>
+            Win:G는 예매관련 모든 책임을 지지 않습니다.
+          </footer>
         </TabPanel>
       </div>
     );

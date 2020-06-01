@@ -5,9 +5,7 @@ import { Link } from "react-router-dom";
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
-
-const API_KEY = "AIzaSyAbHU2YayTtCVZw08IGVCni7uVVUitPhPs"; // 상우 API KEY
-//const API_KEY = "AIzaSyAuwZEvGnPgEkdiYMxey0RXsCfclb0vJ7k"; // 성건 API KEY
+import YOUTUBE_DATA_API_KEY from "../../Constants/YOUTUBE_DATA_API_KEY";
 
 const useStyles = makeStyles((theme) => ({
     wrapperVideo: {
@@ -39,7 +37,7 @@ function PlayList() {
 
     useEffect(() => {
         BringPlayListData({
-            key: API_KEY
+            key: YOUTUBE_DATA_API_KEY
         }, videos => {
             setVideos(videos)
         });
