@@ -14,7 +14,7 @@ class ChatList extends Component {
     }
 
     componentDidMount(){
-        socket.emit('joinRoom', {roomName: this.props.playUrl});
+        socket.emit('joinRoom', {roomName: this.props.videoId});
         socket.on('message', (data) =>{
             const logs2 = this.state.logs; 
             data.key = 'key_' + (this.state.logs.length + 1); 
@@ -23,6 +23,10 @@ class ChatList extends Component {
         });
     }
     
+    componentDidUpdate() {
+        socket.emit('joinRoom', {roomName: this.props.videoId});        
+    }
+
     render() {
         return (
             <div style = {{backgroundColor : '#f2f2f2', marginBottom:'15px', height : '450px'}}>

@@ -29,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '18px',
         fontWeight: 'bold',
         marginTop: '10px',
+        wordBreak: 'break-all',
+        width: '640px',
     },
 }));
 
