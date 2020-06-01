@@ -1,7 +1,6 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {Fragment, useState, useEffect, useContext} from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import styled from 'styled-components'
 import axios from 'axios';
 import API_URL from '../Constants/API_URL';
 import MusicTable from '../Streaming/MusicTable'
@@ -11,20 +10,12 @@ import UserContext from "../Context/UserContext";
 
 import Table from '@material-ui/core/Table';
 
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
-
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 
 
-import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
 import TableBody from '@material-ui/core/TableBody';
@@ -33,7 +24,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -61,28 +51,28 @@ const useRowStyles = makeStyles({
   },
 });
 
-function createData(name, calories, fat, carbs, protein, price) {
-  return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
-    price,
-    history: [
-      { date: '2020-01-05', customerId: '11091700', amount: 3 },
-      { date: '2020-01-02', customerId: 'Anonymous', amount: 1 },
-    ],
-  };
+
+function createData(mylist){
+  const result = {};
+  for(const i in mylist){
+    if(result.hasOwnProperty(mylist[i].artistName)){
+      result[mylist[i].artistName].push({userName:mylist[i].userName, amount:mylist[i].amount, datetime:mylist[i].datetime})
+    }
+    else{
+      result[mylist[i].artistName] = [{userName:mylist[i].userName, amount:mylist[i].amount, datetime:mylist[i].datetime}];
+    }
+  }
+   return result;
 }
 
 function Row(props) {
   const { row } = props;
-  const [open, setOpen] = React.useState(false);
+  // console.log("Row 컴포넌트")
+  // console.log(row);
+  const [open, setOpen] = useState(false);
   const classes = useRowStyles();
-
   return (
-    <React.Fragment>
+    <Fragment>
       <TableRow className={classes.root}>
         <TableCell>
           <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
@@ -90,82 +80,72 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          {row.name}
+          {row.artistName}
         </TableCell>
-        <TableCell align="right">{row.calories}</TableCell>
-        <TableCell align="right">{row.fat}</TableCell>
+        <TableCell>{Object.keys(row.history).length}회</TableCell>        
+        <TableCell align="right">
+        {        
+            (row.history.reduce((pre, item) => {
+              return pre += item.amount;
+            }, 0)).toLocaleString('en-US')
+         
+        }원
+
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
               <Typography variant="h6" gutterBottom component="div">
-                History
+                {row.artistName} 후원기록
               </Typography>
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Customer</TableCell>
-                    <TableCell align="right">Amount</TableCell>
-                    <TableCell align="right">Total price ($)</TableCell>
+                    <TableCell>후원일자</TableCell>
+                    <TableCell>유저명</TableCell>
+                    <TableCell align="right">후원금액</TableCell>
+                    {/* <TableCell align="right">Total price ($)</TableCell> */}
                   </TableRow>
                 </TableHead>
-                <TableBody>
-                  {row.history.map((historyRow) => (
+                <TableBody>                  
+                  {row.history.sort((a, b) => {
+                      const dateA = new Date(a.datetime);
+                      const dateB = new Date(b.datetime);
+                      return dateA < dateB ? 1 : -1;
+                    }).map((historyRow) => (
                     <TableRow key={historyRow.date}>
                       <TableCell component="th" scope="row">
-                        {historyRow.date}
+                        {historyRow.datetime}
                       </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align="right">{historyRow.amount}</TableCell>
-                      <TableCell align="right">
-                        {Math.round(historyRow.amount * row.price * 100) / 100}
-                      </TableCell>
+                      <TableCell>{historyRow.userName}</TableCell>
+                      <TableCell align="right">{(historyRow.amount).toLocaleString('en-US')}원</TableCell>
+                      {/* <TableCell align="right"> */}
+                        {/* {Math.round(historyRow.amount * row.price * 100) / 100} */}
+                      {/* </TableCell> */}
                     </TableRow>
                   ))}
+                  {/* 아티스트 별로 정리, 후원 날짜순으로 정렬 */}
+              
                 </TableBody>
               </Table>
             </Box>
           </Collapse>
         </TableCell>
       </TableRow>
-    </React.Fragment>
+    </Fragment>
   );
 }
-
-Row.propTypes = {
-  row: PropTypes.shape({
-    calories: PropTypes.number.isRequired,
-    carbs: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired,
-    history: PropTypes.arrayOf(
-      PropTypes.shape({
-        amount: PropTypes.number.isRequired,
-        customerId: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-      }),
-    ).isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    protein: PropTypes.number.isRequired,
-  }).isRequired,
-};
-
-const rows = [  // 동적으로 데이터를 넣자
-  createData('아티스트 A', Date().toString(), 6.0, 24, 4.0, 3.99),
-  createData('아티스트 B', 237, 9.0, 37, 4.3, 4.99),
-  createData('아티스트 C', 262, 16.0, 24, 6.0, 3.79),
-  createData('아티스트 D', 305, 3.7, 67, 4.3, 2.5),
-];
 
 
 const MyPage = () => {
   const classes = useStyles();  
   const userState = useContext(UserContext);
   const [likedMusicList, setLikedMusicList] = useState([]);
-
- // const [supportingMusician, setSupportingMusician] = useState({});
+  const [supportedList, setSupportedList] = useState([]);
+  const [rowData, setRowData] = useState({});
+  const [keyList, setKeyList] = useState([]);
   useEffect(()=>{
       // 좋아요 한 음악 가져오기       
       if(userState.userId === "") return;
@@ -173,11 +153,17 @@ const MyPage = () => {
       .then(res =>{
         console.log(res.data); // musicIdSet에 들어있는 musicId, 
         setLikedMusicList(res.data.musicSet);
-        console.log(likedMusicList ) // empty
+       // console.log(likedMusicList ) // empty
       })
       .catch(err=>alert("로그인하세요"))
-      //axios.get(API_URL+"/api/mypage/likedmusic")
-
+      //후원정보 가져오기
+      axios.get(API_URL+"/api/transaction/user/"+userState.userId)
+      .then(res=>{
+        console.log(res.data);
+        setSupportedList(res.data);
+        setRowData(createData(res.data));
+        setKeyList(Object.keys(createData(res.data)));
+      })
   }, [userState.userId]) //  [userId, likedMusicList] -> 무한 렌더링
   
 // 후원 뮤지션 : Collapsible table 사용  https://material-ui.com/components/tables/#collapsible-table
@@ -185,9 +171,8 @@ const MyPage = () => {
   return (
     <>
     <CssBaseline/>
-
     <Container maxWidth="md">   
-        <Typography component="div" style={{backgroundColor: "whitesmoke", width: '60vw', height: '20vh'}}>
+        <Typography component="div" style={{backgroundColor: "whitesmoke", margin:'auto',}}>
             <div align="center">
               <Avatar src = {userState.imageUrl } alt = "Profile Image"/>
               <h3>{userState.name}님 안녕하세요</h3>
@@ -198,12 +183,12 @@ const MyPage = () => {
             </div>
         </Typography>
            
-        <Typography component="table" style={{backgroundColor: "whitesmoke", width: '60vw', height: '50vh'}}>
+        <Typography component="table" style={{backgroundColor: "whitesmoke", width: '40vw', height: '50vh'}}>
               <MusicTable musicList={likedMusicList} />  
         </Typography>
     
 
-        <Typography component="table" style={{backgroundColor: "whitesmoke", width: '60vw', height: '50vh'}}>
+        <Typography component="table" style={{backgroundColor: "whitesmoke", width: '40vw', height: '50vh'}}>
           <h4>{userState.name}님이 후원하는 아티스트 입니다</h4> 
           <TableContainer component={Paper}>
             <Table aria-label="collapsible table">
@@ -211,14 +196,20 @@ const MyPage = () => {
                 <TableRow>
                   <TableCell />
                   <TableCell>아티스트 이름</TableCell>
-                  <TableCell align="right">후원일자</TableCell>
-                  <TableCell align="right">후원금액</TableCell>
+                  <TableCell>총 후원 횟수</TableCell>
+                  <TableCell>총 후원금액</TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody>
-                {rows.map((row) => (
-                  <Row key={row.name} row={row} />
-                ))}
+              <TableBody>                
+                {                  
+                  keyList.sort((a, b) => {
+                    return Object.keys(rowData[a]).length < Object.keys(rowData[b]).length ? 1 : -1;
+                  }).map(obj => {
+                    return (
+                      <Row row={{artistName: obj, history: rowData[obj]}}/>
+                    )
+                  })
+                }
               </TableBody>
             </Table>
           </TableContainer>          
