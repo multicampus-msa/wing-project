@@ -53,6 +53,7 @@ public class TransactionDataService {
         return responseDtos;
     }
 
+    // 유저가 후원한 데이터
     public Set<TransactionDataResponseDto> findByUser(String userId) {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new IllegalArgumentException("해당 유저 없음"));
@@ -63,4 +64,6 @@ public class TransactionDataService {
         for (TransactionData data : dataSet) responseDtos.add(new TransactionDataResponseDto(data));
         return responseDtos;
     }
+    
+    
 }
