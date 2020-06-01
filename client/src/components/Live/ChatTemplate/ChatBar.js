@@ -2,14 +2,14 @@ import React from 'react';
 import ChatList from './ChatList'; 
 import ChatInput from './ChatInput'; 
 
-const ChatBar = ({playUrl}) => { 
+const ChatBar = ({videoId}) => { 
 
-    console.log(playUrl);
+    console.log(videoId);
 
     return (
         <div style={{display: 'flex', flexDirection:'column', width: '300px', marginLeft:'12px'}}>
-            <ChatList playUrl={playUrl}/>
-            <ChatInput playUrl={playUrl}/>
+            <ChatList videoId={videoId}/>
+            <ChatInput videoId={videoId}/>
         </div>
     ); 
 }

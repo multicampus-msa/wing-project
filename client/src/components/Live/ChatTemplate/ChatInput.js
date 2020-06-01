@@ -37,10 +37,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const ChatInput = ({playUrl}) => {
+const ChatInput = ({videoId}) => {
     const classes = useStyles();
-    const [message, setMessage] = useState(''); 
-    const socket = socketio.connect('http://localhost:3001');
+    const [message, setMessage] = useState('');
     const userState = useContext(UserContext);
 
     const handleChange = (e) =>{ // input 창 입력 변화 이벤트 처리 
@@ -55,7 +54,8 @@ const ChatInput = ({playUrl}) => {
             alert('메시지를 입력하세요.')
         }
         else {
-            socket.emit('joinRoom', {roomName: playUrl});
+            const socket = socketio.connect('http://localhost:3001');
+            socket.emit('joinRoom', {roomName: videoId});
             const {name, imageUrl} = userState;
             socket.emit('message', {name : name, message : message, imageUrl: imageUrl}); 
         }

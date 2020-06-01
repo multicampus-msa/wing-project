@@ -26,6 +26,8 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '18px',
         fontWeight: 'bold',
         marginTop: '10px',
+        wordBreak: 'break-all',
+        width: '640px',
     },
     videoInfo: {
         color: 'red',
@@ -52,7 +54,7 @@ function LivePlayer({match}) {
                     <p className={classes.videoTitle}>{match.params.title}</p>
                     <p className={classes.videoInfo}>실시간 스트리밍 중</p>
                 </div>
-                <ChatBar />
+                <ChatBar videoId={match.params.videoId}/>
             </div>
         </>
     );
