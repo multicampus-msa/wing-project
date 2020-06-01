@@ -11,13 +11,14 @@ const useStyles = makeStyles((theme) => ({
 
 }))
 
+//window 객체로부터 스크립트에서 로드한 kakao api를 가져옴
 const {kakao} = window;
   
 const ConcertLocation = ({place}) => {
     const classes = useStyles();
 
 
-    useEffect((match) => {
+    useEffect(() => {
         kakao.maps.load(() => {
             let el = document.getElementById('map');
             let map = new kakao.maps.Map(el, {
@@ -27,7 +28,11 @@ const ConcertLocation = ({place}) => {
 
             // var placeName = concert.place;
             var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+
+            //장소 검색 객체를 생성
             const ps = new kakao.maps.services.Places();
+
+            //props로 넘어온 값을 검색
             ps.keywordSearch(place, placesSearchCB);
         
             function placesSearchCB (data, status, pagination) {
@@ -37,7 +42,6 @@ const ConcertLocation = ({place}) => {
                     // LatLngBounds 객체에 좌표를 추가합니다
                     var bounds = new kakao.maps.LatLngBounds();
             
-                    
                     displayMarker(data[0]);    
                     bounds.extend(new kakao.maps.LatLng(data[0].y, data[0].x));
                        
@@ -46,6 +50,7 @@ const ConcertLocation = ({place}) => {
                     map.setBounds(bounds);
                 } 
             }
+            // 지도에 마커를 표시하는 함수
             function displayMarker(place) {
     
                 // 마커를 생성하고 지도에 표시합니다
@@ -59,10 +64,10 @@ const ConcertLocation = ({place}) => {
                 infowindow.open(map, marker);
                 
             }
-            
         })
         
     }, [place]);
+    // 지도 출력
     return (
         <div className="App">
         <div id="map" className={classes.root} />
