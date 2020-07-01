@@ -92,7 +92,7 @@ const Menu = ({ history }) => {
                 imageUrl: profile.getImageUrl(),
             })
 
-            const targetUrl = 'http://localhost:8080/api/user/save'
+            const targetUrl = 'http://localhost:8002/api/user/save'
             console.log(data);
             axios.post(targetUrl, data)
                 .then(response => {

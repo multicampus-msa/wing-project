@@ -149,7 +149,7 @@ const MyPage = () => {
   useEffect(()=>{
       // 좋아요 한 음악 가져오기       
       if(userState.userId === "") return;
-      axios.get(API_URL+"/api/user/liked/"+ userState.userId)
+      axios.get("http://localhost:8003/api/music/liked/"+ userState.userId)
       .then(res =>{
         console.log(res.data); // musicIdSet에 들어있는 musicId, 
         setLikedMusicList(res.data.musicSet);
@@ -157,7 +157,7 @@ const MyPage = () => {
       })
       .catch(err=>alert("로그인하세요"))
       //후원정보 가져오기
-      axios.get(API_URL+"/api/transaction/user/"+userState.userId)
+      axios.get("http://localhost:8005/api/support/user/"+userState.userId)
       .then(res=>{
         console.log(res.data);
         setSupportedList(res.data);
