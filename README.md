@@ -1,21 +1,12 @@
 # wing-project
 
-인디 음악 플랫폼 Win:G
+### 인디 음악 플랫폼 Win:G - 모놀리스 아키텍처
+- 먼저 모놀리스로 구현한 후, MSA로 전환하는 방식으로 프로젝트를 진행했습니다.
 
-- 소스트리 등 gui 툴로 wing-project 저장소를 클론한다. 또는 터미널에서 git clone https://github.com/multicampus-msa/wing-project 
-- 터미널에서 yarn 설치 : **npm i yarn -g**
-- 터미널에서 client 디렉토리로 이동한 후 **yarn** 실행
+### Frontend - React
+- 주로 Material-Ui, styled-components를 활용해 구현했습니다.
+- 참고도서 : 리액트를 다루는 기술
 
-- 패키지 관리는 **yarn** (https://medium.com/@ehddnjs8989/npm-vs-yarn-3a611c89d291)
-  - 프로젝트 실행은 **yarn start**
-  - 패키지 설치는 **yarn add -패키지명-**
-  - 패키지 설치 시 slack에 공유한다.
-
-- 초기 환경에 추가한 패키지
-  - react-router-dom
-  - @material-ui/core
-  - bootstrap
-  - reactstrap
-  - storybook
-  - @storybook/addon-knobs
-  - styled-components
+### Backend - Spring Boot
+- Spring Data JPA, AWS RDS를 활용해 구현했습니다.
+- 참고도서 : 스프링 부트와 aws로 혼자 구현하는 웹 서비스
